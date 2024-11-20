@@ -133,10 +133,10 @@ public class CrabController : MonoBehaviour
     private void RotateBody()
     {
         if (!enableBodyRotation) return;
-        Vector3 v1 = legTargets[0].transform.position - legTargets[1].transform.position;
-        Vector3 v2 = legTargets[2].transform.position - legTargets[3].transform.position;
+        Vector3 v1 = legTargets[0].transform.position - legTargets[7].transform.position;
+        Vector3 v2 = legTargets[4].transform.position - legTargets[3].transform.position;
         Vector3 normal = Vector3.Cross(v1, v2).normalized;
-        Vector3 up = Vector3.Lerp(_lastBodyUp, normal, 1f / (float)(bodySmoothing));
+        Vector3 up = Vector3.Lerp(_lastBodyUp, normal, 1f / bodySmoothing);
         transform.up = up;
 
         if (!rigidBodyController) transform.rotation = Quaternion.LookRotation(transform.parent.forward, up);
