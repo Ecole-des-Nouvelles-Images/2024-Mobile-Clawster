@@ -3037,7 +3037,7 @@ MonoBehaviour:
   spiderJitterCutOff: 0
   waitTimeBetweenEveryStep: 0
   LegSmoothness: 8
-  BodySmoothness: 8
+  BodySmoothness: 16
   OverStepMultiplier: 4
 --- !u!1 &4057473481804475909
 GameObject:
