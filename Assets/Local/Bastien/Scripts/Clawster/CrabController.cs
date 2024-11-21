@@ -27,7 +27,8 @@ public class CrabController : MonoBehaviour
     public float bodySmoothing = 8f;        //I have no idea for the moment
     public float overStepFac = 4f;          //I have no idea for the moment
     public int stepWaitTime = 1;
-
+    public float velocityCap = 6f;
+    
     //Private garbage (I showed it to Fred, IHO it's disgusting)
     private Vector3 _velocity;
     private Vector3 _lastVelocity = Vector3.one;
@@ -115,7 +116,7 @@ public class CrabController : MonoBehaviour
         for (int i = 1; i <= legSmoothing; ++i)
         {
             legTargets[index].transform.position = Vector3.Lerp(startPos, moveTo + new Vector3(0, Mathf.Sin(i / (float)(legSmoothing + jitterCutoff) * Mathf.PI) * stepHeight, 0), (i / legSmoothing + jitterCutoff));
-            yield return new WaitForFixedUpdate();
+            yield return null;  //Waits 1 frame
         }
         
         _origLegPos[index] = moveTo;
@@ -142,6 +143,10 @@ public class CrabController : MonoBehaviour
         if (!rigidBodyController) transform.rotation = Quaternion.LookRotation(transform.parent.forward, up);
         _lastBodyUp = transform.up;
     }
-    
+    private void OnGUI()
+    {
+        GUI.skin.label.fontSize = 32; GUI.skin.box.fontSize = 32;
+        GUI.Box(new Rect(20, 20, 300, 40), _velocity.magnitude.ToString());
+    }
 }
 
