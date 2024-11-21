@@ -66,7 +66,6 @@ public class CrabController : MonoBehaviour
             
             _lastCrabPos = Crab.transform.position;
 
-            rotateBody();
         }
     }
 
