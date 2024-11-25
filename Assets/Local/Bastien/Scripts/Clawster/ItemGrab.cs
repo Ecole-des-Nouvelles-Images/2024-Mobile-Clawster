@@ -22,6 +22,8 @@ public class ItemGrab : MonoBehaviour
         if (Physics.Raycast(_grabRay, out _grabRch))
         {
             Debug.Log("Grabbed Item!");
+            
+            
             _grabTarget = _grabRch.collider.gameObject;
             GameObject.Destroy(_grabTarget.transform.parent.gameObject);
         }
