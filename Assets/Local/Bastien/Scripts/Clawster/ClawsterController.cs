@@ -9,7 +9,7 @@ using UnityEngine.Serialization;
 /*This code was copied straight from the video just to get the script working
  * We need to rework it ASAP to adapt it to a touch screen, and remove some
  * of the horrid tecnhiques used to make movement possible*/
-public class Controller : MonoBehaviour
+public class ClawsterController : MonoBehaviour
 {
     public Rigidbody controller; 
     [SerializeField] private Camera _cam;           //Camera used to launch rays from
@@ -25,10 +25,11 @@ public class Controller : MonoBehaviour
     public float turnSmoothTime = 0.1f;
     
     [SerializeField] private Ray _grabRay;          //Said rays
-    [SerializeField] private RaycastHit _grabRch;   //Class acting as callback when ray hits
+    [SerializeField] private RaycastHit _grabRch;   //Class acting as callback when >W   ray hits
 
     private GameObject _grabTarget;                 //Grabbed item
-    public void InputPlayer(InputAction.CallbackContext context)
+    
+    public void OnJoystickMove(InputAction.CallbackContext context)
     {
         _movement = context.ReadValue<Vector2>();
     }
