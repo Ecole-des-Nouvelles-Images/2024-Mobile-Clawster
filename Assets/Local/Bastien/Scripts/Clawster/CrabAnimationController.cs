@@ -46,37 +46,30 @@ public class CrabAnimationController : MonoBehaviour
     private bool _currLeg = true;
     private float _resetTimer = 0.5f;
 
-    private void Start()
-    {
+    private void Start() {
         _lastBodyUp = transform.up;
         
         _currLegPos = new Vector3[LegTargets.Length]; //Making sure both arrays have the same size
         _origLegPos = new Vector3[LegTargets.Length]; //Repeat for other array
 
-        for (int i = 0; i < LegTargets.Length; i++)
-        {
+        for (int i = 0; i < LegTargets.Length; i++) {
             _currLegPos[i] = LegTargets[i].transform.position; //Assign pos from the target
-            _currLegPos[i] = LegTargets[i].transform.position; //Make values identical in both arrays
 
-            if (_currLeg)
-            {
+            if (_currLeg) {
                 _oppoMoveInd.Add(i + 1);
                 _currLeg = false;
             }
-            else if (!_currLeg)
-            {
+            else if (!_currLeg) {
                 _oppoMoveInd.Add(i - 1);
                 _currLeg = true;
             }
             
             _lastCrabPos = Crab.transform.position;
-
             RotateBody();
         }
     }
 
-    private void FixedUpdate()
-    {
+    private void FixedUpdate() {
         _velocity = Crab.transform.position - _lastCrabPos; //Set velocity to the delta between the positions
         _velocity = (_velocity + bodySmoothing * _lastVelocity) / (bodySmoothing + 1f);
 
@@ -87,54 +80,47 @@ public class CrabAnimationController : MonoBehaviour
         _lastVelocity = _velocity;
     }
 
-    void MoveLegs()
-    {
+    void MoveLegs() {
         if (!EnableMovementRotation) return;
-        for (int i = 0; i < LegTargets.Length; i++)
-        {
-            if (Vector3.Distance(LegTargets[i].transform.position, LegCubes[i].transform.position) >= moveDistance)
-            {
+        for (int i = 0; i < LegTargets.Length; i++) {
+            if (Vector3.Distance(LegTargets[i].transform.position, LegCubes[i].transform.position) >= moveDistance) {
                 if (!_nextMoveInd.Contains(i) && !_currMoveInd.Contains(i)) _nextMoveInd.Add(i);
                 
-            } else if (!_currMoveInd.Contains(i))
-            {
+            } else if (!_currMoveInd.Contains(i)) {
                 LegTargets[i].transform.position = _origLegPos[i];
             }
         }
 
         if (_nextMoveInd.Count == 0 || _currMoveInd.Count != 0) return;
-        Vector3 targetPos = LegCubes[_nextMoveInd[0]].transform.position + Mathf.Clamp(_velocity.magnitude * overStepFac, 0f, 1.5f) * (LegCubes[_nextMoveInd[0]].transform.position - LegTargets[_nextMoveInd[0]].transform.position) + _velocity * overStepFac;
+        Vector3 targetPos = LegCubes[_nextMoveInd[0]].transform.position + Mathf.Clamp(_velocity.magnitude * overStepFac, 0f, 1.5f)
+            * (LegCubes[_nextMoveInd[0]].transform.position - LegTargets[_nextMoveInd[0]].transform.position) + _velocity * overStepFac;
         StartCoroutine(Step(_nextMoveInd[0], targetPos, false));
     }
 
-    IEnumerator Step(int index, Vector3 moveTo, bool isOpp)
-    {
+    IEnumerator Step(int index, Vector3 moveTo, bool isOpp) {
         if(!isOpp) MoveOppLeg(_oppoMoveInd[index]);
         if(_nextMoveInd.Contains(index)) _nextMoveInd.Remove(index);
         if(!_currMoveInd.Contains(index)) _currMoveInd.Add(index);
         
         Vector3 startPos = _origLegPos[index];
 
-        for (int i = 1; i <= legSmoothing; ++i)
-        {
-            LegTargets[index].transform.position = Vector3.Slerp(startPos, moveTo + new Vector3(0, stepHeight, 0), interpolationCurve.Evaluate(i));
+        for (int i = 1; i <= legSmoothing; ++i) {
+            LegTargets[index].transform.position = Vector3.Lerp(startPos, moveTo + new Vector3(0, stepHeight, 0), interpolationCurve.Evaluate(i / legSmoothing));
             yield return new WaitForEndOfFrame();  //Waits 1 frame
         }
         
         _origLegPos[index] = moveTo;
         
-        for (int i = 1; i <= stepWaitTime; ++i) yield return new WaitForEndOfFrame();
+        for (int i = 1; i <= stepWaitTime; ++i) yield return null;
         if (_currMoveInd.Contains(index)) _currMoveInd.Remove(index);
     }
 
-    private void MoveOppLeg(int index)
-    {
+    private void MoveOppLeg(int index) {
         Vector3 targetPosition = LegCubes[index].transform.position + Mathf.Clamp(_velocity.magnitude * overStepFac, 0.0f, 1.5f) * (LegCubes[index].transform.position - LegTargets[index].transform.position) + _velocity * overStepFac;
         StartCoroutine(Step(index, targetPosition, true));
     }
 
-    private void RotateBody()
-    {
+    private void RotateBody() {
         if (!EnableBodyRotation) return;
         Vector3 v1 = LegTargets[0].transform.position - LegTargets[7].transform.position;
         Vector3 v2 = LegTargets[4].transform.position - LegTargets[3].transform.position;
@@ -146,35 +132,34 @@ public class CrabAnimationController : MonoBehaviour
         _lastBodyUp = transform.up;
     }
     
-    public IEnumerator Grab(GameObject target)
-    {
+    public IEnumerator Grab(GameObject target) {
         //Determine which arm should move to get the item based on calculating distances
         int id = (Vector3.Magnitude(target.transform.position - ArmTargets[0].transform.position)) <
                  (Vector3.Magnitude(target.transform.position - ArmTargets[1].transform.position)) ? 0 : 1;
         
-        Vector3 startLocalPos = ArmTargets[id].transform.localPosition; //Save start position
+        Vector3 startLocalPos = ArmTargets[id].transform.localPosition;     //Save start position
+        Vector3 targetLocalPos = new Vector3(
+            target.transform.position.x - ArmTargets[id].transform.position.x,
+            target.transform.position.y - ArmTargets[id].transform.position.y,
+            target.transform.position.z - ArmTargets[id].transform.position.z);
         
-        for (float i = 1f; i < 20f; i++)
-        { 
-            ArmTargets[id].transform.position = Vector3.Lerp(ArmTargets[id].transform.position,
-                target.transform.position, i / 20f);
+        ArmTargets[id].transform.localPosition = targetLocalPos;      //Position test
+        
+        for (int i = 0; i < 20; i++) {
+            ArmTargets[id].transform.localPosition =
+                Vector3.Lerp(ArmTargets[id].transform.localPosition, startLocalPos, i / 20f);
             yield return new WaitForEndOfFrame();
         }
-
-        ArmTargets[id].transform.localPosition = startLocalPos; // Reset position
     }
     
-    public IEnumerator GrabAndRemoveObject(GameObject target)
-    {
-        yield return StartCoroutine(Grab(target));
-        Debug.Log(target.name);
+    public void GrabAndRemoveObject(GameObject target) {
+        StartCoroutine(Grab(target));
     }
     
-     private void OnGUI()
-     {
+     private void OnGUI() {
          GUI.skin.label.fontSize = 32; GUI.skin.box.fontSize = 32;
          GUI.Box(new Rect(20, 20, 300, 40), _velocity.magnitude.ToString());
-    }
+     }
 
 }
 

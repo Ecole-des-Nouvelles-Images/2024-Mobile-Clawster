@@ -55,9 +55,12 @@ public class ClawsterController : MonoBehaviour
         
         if (Physics.Raycast(_grabRay, out _grabRch))
         {
-            Debug.Log("Grabbed Item!");
             _grabTarget = _grabRch.collider.gameObject;
-            StartCoroutine(cac.Grab(_grabTarget));
+            
+            if (!_grabTarget.CompareTag("Item")) return;
+            
+            _grabTarget = _grabRch.collider.gameObject;
+            cac.GrabAndRemoveObject(_grabTarget);
             GameObject.Destroy(_grabTarget.transform.parent.gameObject);
         }
         
