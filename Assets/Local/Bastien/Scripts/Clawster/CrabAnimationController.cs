@@ -125,10 +125,13 @@ public class CrabAnimationController : MonoBehaviour
         Vector3 v1 = LegTargets[0].transform.position - LegTargets[7].transform.position;
         Vector3 v2 = LegTargets[4].transform.position - LegTargets[3].transform.position;
         Vector3 normal = Vector3.Cross(v1, v2).normalized;
-        Vector3 up = Vector3.Lerp(_lastBodyUp, normal, 1f / bodySmoothing);
-        transform.up = up;
+        
+        transform.rotation = Quaternion.LookRotation(_velocity);
+        
+        //Vector3 up = Vector3.Lerp(_lastBodyUp, normal, 1f / bodySmoothing);
+        //transform.up = up;
 
-        if (!RigidBodyController) transform.rotation = Quaternion.LookRotation(transform.parent.forward, up);
+        //transform.rotation = Quaternion.LookRotation(transform.parent.forward, up);
         _lastBodyUp = transform.up;
     }
     
@@ -159,6 +162,8 @@ public class CrabAnimationController : MonoBehaviour
      private void OnGUI() {
          GUI.skin.label.fontSize = 32; GUI.skin.box.fontSize = 32;
          GUI.Box(new Rect(20, 20, 300, 40), _velocity.magnitude.ToString());
+         
+         Debug.DrawRay(transform.position, _velocity, Color.blue, 1f, false);
      }
 
 }

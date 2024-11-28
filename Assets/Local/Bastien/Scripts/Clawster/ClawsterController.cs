@@ -12,12 +12,12 @@ using UnityEngine.Serialization;
 public class ClawsterController : MonoBehaviour
 {
     public Rigidbody controller; 
-    [SerializeField] private Camera _cam;           //Camera used to launch rays from
-    public PlayerInput playerInput;
-    public CrabAnimationController cac;
-    public float velocityCap;
+    [SerializeField] private Camera _cam;       //Camera used to launch rays from
+    public PlayerInput playerInput;             // Player input asset
+    public CrabAnimationController cac;         // Reference to the main rig. Variable name is ass tho.
+    public float velocityCap;                   // Unused tor the moment
     
-    public float speed = 6;
+    public float speed = 600;
     private Vector2 _movement;
     private Vector3 _velocity;
 
@@ -42,13 +42,12 @@ public class ClawsterController : MonoBehaviour
        if (direction.magnitude >= 0.1f && controller.velocity.magnitude < 4)
        {
            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + _cam.transform.eulerAngles.y;
-           
            Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
            controller.AddForce(direction * speed * Time.deltaTime, ForceMode.Acceleration);
        }
-       
        _grabRay = _cam.ScreenPointToRay(Input.mousePosition);        //Send ray from camera
     }
+    
     private void OnTriggerStay(Collider other)
     {
         if (Input.GetMouseButtonDown(0) == false) return;
