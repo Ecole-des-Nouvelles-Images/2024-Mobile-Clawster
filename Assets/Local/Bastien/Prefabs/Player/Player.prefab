@@ -1681,6 +1681,7 @@ GameObject:
   - component: {fileID: 8976629133266365544}
   - component: {fileID: 5970455455036913022}
   - component: {fileID: 7427957166202959830}
+  - component: {fileID: 3690040986075176693}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1721,6 +1722,7 @@ MonoBehaviour:
   _cam: {fileID: 0}
   playerInput: {fileID: 7427957166202959830}
   cac: {fileID: 7812356395550331328}
+  grabCollider: {fileID: 0}
   velocityCap: 0
   speed: 500
   turnSmoothVelocity: 0
@@ -1819,6 +1821,27 @@ MonoBehaviour:
   m_DefaultActionMap: Movement
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!65 &3690040986075176693
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4203903941628057502}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.25, y: 0.5, z: 1.25}
+  m_Center: {x: 0, y: 0.3, z: 1}
 --- !u!1 &4279962180252647764
 GameObject:
   m_ObjectHideFlags: 0

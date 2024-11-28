@@ -1,21 +1,14 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Animations.Rigging;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 
-/*This code was copied straight from the video just to get the script working
- * We need to rework it ASAP to adapt it to a touch screen, and remove some
- * of the horrid tecnhiques used to make movement possible*/
 public class ClawsterController : MonoBehaviour
 {
     public Rigidbody controller; 
     [SerializeField] private Camera _cam;       //Camera used to launch rays from
-    public PlayerInput playerInput;             // Player input asset
-    public CrabAnimationController cac;         // Reference to the main rig. Variable name is ass tho.
-    public float velocityCap;                   // Unused tor the moment
+    public PlayerInput playerInput;             //Player input asset
+    public CrabAnimationController cac;         //Reference to the main rig. Variable name is ass tho.
+    public Collider grabCollider;               //Frustrum to grab objects 
+    public float velocityCap;                   //Unused tor the moment
     
     public float speed = 600;
     private Vector2 _movement;
@@ -50,6 +43,8 @@ public class ClawsterController : MonoBehaviour
     
     private void OnTriggerStay(Collider other)
     {
+        Debug.Log("OnTriggerStay");
+        
         if (Input.GetMouseButtonDown(0) == false) return;
         
         if (Physics.Raycast(_grabRay, out _grabRch))

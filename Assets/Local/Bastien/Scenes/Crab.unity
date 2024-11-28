@@ -1197,6 +1197,14 @@ PrefabInstance:
       propertyPath: _cam
       value: 
       objectReference: {fileID: 32637750}
+    - target: {fileID: 2069335529900589980, guid: fd62c930db9bb064fa6f0b3a7176ad2c, type: 3}
+      propertyPath: grabCollider
+      value: 
+      objectReference: {fileID: 986933392991021579}
+    - target: {fileID: 3690040986075176693, guid: fd62c930db9bb064fa6f0b3a7176ad2c, type: 3}
+      propertyPath: m_Center.z
+      value: 1.2
+      objectReference: {fileID: 0}
     - target: {fileID: 4203903941628057502, guid: fd62c930db9bb064fa6f0b3a7176ad2c, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1233,6 +1241,11 @@ PrefabInstance:
 --- !u!4 &986933392991021574 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 582405717668008915, guid: fd62c930db9bb064fa6f0b3a7176ad2c, type: 3}
+  m_PrefabInstance: {fileID: 793375077562085364}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &986933392991021579 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 3690040986075176693, guid: fd62c930db9bb064fa6f0b3a7176ad2c, type: 3}
   m_PrefabInstance: {fileID: 793375077562085364}
   m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807

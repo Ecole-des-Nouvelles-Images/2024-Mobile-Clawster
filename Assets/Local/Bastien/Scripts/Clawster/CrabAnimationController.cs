@@ -116,12 +116,14 @@ public class CrabAnimationController : MonoBehaviour
     }
 
     private void MoveOppLeg(int index) {
-        Vector3 targetPosition = LegCubes[index].transform.position + Mathf.Clamp(_velocity.magnitude * overStepFac, 0.0f, 1.5f) * (LegCubes[index].transform.position - LegTargets[index].transform.position) + _velocity * overStepFac;
+        Vector3 targetPosition = LegCubes[index].transform.position + Mathf.Clamp(_velocity.magnitude * overStepFac, 0.0f, 1.5f)
+            * (LegCubes[index].transform.position - LegTargets[index].transform.position) + _velocity * overStepFac;
         StartCoroutine(Step(index, targetPosition, true));
     }
 
     private void RotateBody() {
-        if (!EnableBodyRotation) return;
+        if (!EnableBodyRotation || _velocity == Vector3.zero) return;
+        
         Vector3 v1 = LegTargets[0].transform.position - LegTargets[7].transform.position;
         Vector3 v2 = LegTargets[4].transform.position - LegTargets[3].transform.position;
         Vector3 normal = Vector3.Cross(v1, v2).normalized;
@@ -140,6 +142,7 @@ public class CrabAnimationController : MonoBehaviour
         int id = (Vector3.Magnitude(target.transform.position - ArmTargets[0].transform.position)) <
                  (Vector3.Magnitude(target.transform.position - ArmTargets[1].transform.position)) ? 0 : 1;
         
+        //The following code has a bug when Clawster wants to grab an object behind him
         Vector3 startLocalPos = ArmTargets[id].transform.localPosition;     //Save start position
         Vector3 targetLocalPos = new Vector3(
             target.transform.position.x - ArmTargets[id].transform.position.x,
