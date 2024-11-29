@@ -1442,6 +1442,7 @@ GameObject:
   - component: {fileID: 1103756264063498759}
   - component: {fileID: 5927875194070780365}
   - component: {fileID: 7640139918748104771}
+  - component: {fileID: 3126719229243331496}
   m_Layer: 0
   m_Name: Rig
   m_TagString: Untagged
@@ -1606,6 +1607,27 @@ MonoBehaviour:
   tripodSize: 1
   boneColor: {r: 0, g: 0, b: 1, a: 0.5}
   m_Transforms: []
+--- !u!135 &3126719229243331496
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4045026596851674070}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.7
+  m_Center: {x: 0, y: 0.39, z: 1}
 --- !u!1 &4146129603507136078
 GameObject:
   m_ObjectHideFlags: 0

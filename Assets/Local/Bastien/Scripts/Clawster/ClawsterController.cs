@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -43,7 +44,8 @@ public class ClawsterController : MonoBehaviour
     
     private void OnTriggerStay(Collider other)
     {
-        Debug.Log("OnTriggerStay");
+        if(other.gameObject.CompareTag("Item"))
+            Debug.Log("OnTriggerStay");
         
         if (Input.GetMouseButtonDown(0) == false) return;
         
@@ -55,7 +57,7 @@ public class ClawsterController : MonoBehaviour
             
             _grabTarget = _grabRch.collider.gameObject;
             cac.GrabAndRemoveObject(_grabTarget);
-            GameObject.Destroy(_grabTarget.transform.parent.gameObject);
+            GameObject.Destroy(_grabTarget);
         }
         
     }
