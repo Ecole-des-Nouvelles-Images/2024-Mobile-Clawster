@@ -310,8 +310,10 @@ MonoBehaviour:
   _raycastOrigin: {fileID: 594882287}
   _target: {fileID: 182619727}
   _maxDistance: 1
-  _animationTime: 1
+  _animationTime: 0.5
   _yOffset: 5
+  OnMove: 0
+  CanMove: 0
 --- !u!1 &601408883
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,8 +7,6 @@ public class ClawsterController : MonoBehaviour
     public Rigidbody controller; 
     [SerializeField] private Camera _cam;       //Camera used to launch rays from
     public PlayerInput playerInput;             //Player input asset
-    public CrabAnimationController cac;         //Reference to the main rig. Variable name is ass tho.
-    public Collider grabCollider;               //Frustrum to grab objects 
     public float velocityCap;                   //Unused tor the moment
     
     public float speed = 600;
@@ -39,31 +37,6 @@ public class ClawsterController : MonoBehaviour
            Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
            controller.AddForce(direction * speed * Time.deltaTime, ForceMode.Acceleration);
        }
-       _grabRay = _cam.ScreenPointToRay(Input.mousePosition);        //Send ray from camera
-    }
-    
-    private void OnTriggerStay(Collider other)
-    {
-        if(other.gameObject.CompareTag("Item"))
-            Debug.Log("OnTriggerStay");
-        
-        if (Input.GetMouseButtonDown(0) == false) return;
-        
-        if (Physics.Raycast(_grabRay, out _grabRch))
-        {
-            _grabTarget = _grabRch.collider.gameObject;
-            
-            if (!_grabTarget.CompareTag("Item")) return;
-            
-            _grabTarget = _grabRch.collider.gameObject;
-            cac.GrabAndRemoveObject(_grabTarget);
-            GameObject.Destroy(_grabTarget);
-        }
-        
-    }
-
-    private void DeleteObject(GameObject obj)
-    {
-        GameObject.Destroy(obj);
+       //_grabRay = _cam.ScreenPointToRay(Input.mousePosition);        //Send ray from camera
     }
 }

@@ -91,7 +91,7 @@ public class FootRaycast : MonoBehaviour
     }
 }
 
-public class LegManager : MonoBehaviour
+/*public class LegManager : MonoBehaviour
 {
     [SerializeField] private FootRaycast[] _legs;
     [SerializeField] private int MaxMo
@@ -109,4 +109,4 @@ public class LegManager : MonoBehaviour
             }
         }
     }
-}
+}*/
