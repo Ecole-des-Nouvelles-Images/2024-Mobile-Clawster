@@ -1,17 +1,9 @@
 using System.Collections;
 using UnityEngine;
 
-/*          .
- *         / \                     W  A  R  N  I  N  G
- *        / _ \              It appears that exporting to FBX
- *       / |#| \          using Vincent's technique can slightly
- *      /  |#|  \          offset the origin. It is here fixed
- *     /    V    \        with a saefty margin for the Raycasts
- *    /           \
- *   /     [@]     \    Hoping to find an in-editor soultion to it.
- *  /_______________\
- *  
-*/
+/*  The origin offset issue was fixed today by the discovery of this addon :
+              https://github.com/EdyJ/blender-to-unity-fbx-exporter
+   Thanks to this GOATed dev for the script. NO MORE time wasted on rotations! */
 
 public class LegRaycast : MonoBehaviour
 {
@@ -24,20 +16,20 @@ public class LegRaycast : MonoBehaviour
     private Vector3 _IKPos;                     //Leg position
     private Vector3 _currentHitPos;             //Current point that the raycast hits
     private RaycastHit _hit;                    //Entity containing results of the raycast
-    private float _yMargin = 0.05f;             //Small safety padding for the raycast
+    private float _yMargin = 0.15f;             //Small safety padding for the raycast
+    
     
     // Update is called once per frame
     void Update() {
         //Cast the ray. Using Vector3.down guarantees that transform has no role in the direction.
-        if (Physics.Raycast(transform.position, Vector3.down, out _hit, 2f)) {
+        if (Physics.Raycast(transform.position, Vector3.down, out _hit, Mathf.Infinity)) {
             Debug.Log("RCH");
-            transform.position = new Vector3(_hit.point.x, _hit.point.y + _yMargin, _hit.point.z);
-            _currentHitPos = _hit.point; 
-        };
+            _currentHitPos = _hit.point;
+        }
         
         //Is the raycast far away from the foot? Move
-        if (Vector3.Distance(_IKPos, _currentHitPos) > MaxDistance) {
-            StartCoroutine(Interpolate(InterpolationTime, _IKPos, _currentHitPos)); //Here we go
+        if (Vector3.Distance(IKTarget.position, _currentHitPos) > MaxDistance) {
+            StartCoroutine(Interpolate(InterpolationTime, _IKPos, _hit.point)); //Here we go
         } else {
             IKTarget.position = _IKPos;                         //Keep the foot at the same place
         }
@@ -46,9 +38,9 @@ public class LegRaycast : MonoBehaviour
     //Animation coroutine
     IEnumerator Interpolate(float dt, Vector3 start, Vector3 end)
     {
-        Vector3 tempPos; //Declared as (0,0,0).
-        float pi = Mathf.PI; //Self-explanatory.
-        float dtNorm; //Undeclared impl. NULL impl. (float) 0.
+        Vector3 tempPos;        //Declared as (0,0,0).
+        float pi = Mathf.PI;    //Self-explanatory.
+        float dtNorm;           //Undeclared impl. NULL impl. (float) 0.
 
         //Curve-based interpolation
         for (dt = 0f; dt < InterpolationTime; dt += Time.deltaTime)
@@ -60,7 +52,6 @@ public class LegRaycast : MonoBehaviour
             IKTarget.position = tempPos; //Repeated assignment to apply the motion
             yield return null; //Use this. WaitForEndOfFrame() execs after all game logic, so RIP.
         }
-
         _IKPos = end; //Last assignment -- maybe redundant but ensures values were not modified by FP inaccuracy.
     }
 
