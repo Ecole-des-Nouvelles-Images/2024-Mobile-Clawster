@@ -1,7 +1,6 @@
 using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace Local.Noah.Scripts.GAME
+namespace Local.Noah.Scripts.SCORE
 {
     [CreateAssetMenu(menuName = "Score Data")]
     public class ScoreData : ScriptableObject
