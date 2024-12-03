@@ -1,6 +1,8 @@
-using System;
 using UnityEngine;
 
+/* This class is now deprecated, and only left here for legacy purposes.*/
+
+/*
 public class Item : MonoBehaviour {
     public GameObject UICanvas;
     
@@ -16,3 +18,4 @@ public class Item : MonoBehaviour {
         UICanvas.SetActive(false);
     }
 }
+*/

@@ -6,8 +6,8 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private Rigidbody RBC;             //RigidBody entity to move Clawster 
     [SerializeField] private PlayerInput playerInput;   //Player input asset
     [SerializeField] private Camera PlayerCam;          //Camera used to launch rays from
-    [SerializeField] private Collider _grabCollider;    //Collider used to grab objects
-
+    [SerializeField] private ItemGrab ItemGrab;         //Grab animation control
+    
     public float Speed;         //Placed here for UI editor convenience
     public float SpeedCap;      //Maximum velocity, to avoid animation going out of hand
     public float SlowFactor;    //Factor by which Clawster will slow down if entering water
@@ -23,11 +23,9 @@ public class PlayerController : MonoBehaviour {
     
     
     private void Update() {
-        if (Input.GetMouseButtonDown(0)) _ray = PlayerCam.ScreenPointToRay(Input.mousePosition);
-            
         Vector3 direction = new Vector3(_movement.x, 0f, _movement.y).normalized;
 
-        if (direction.magnitude >= 0.1f && RBC.velocity.magnitude < SpeedCap) {
+        if ((direction.magnitude >= 0.1f && RBC.velocity.magnitude < SpeedCap) && (!ItemGrab.IsGrabbing)) {
             _targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
             Vector3 moveDir = Quaternion.Euler(0f, _targetAngle, 0f) * Vector3.forward;
             transform.rotation = Quaternion.LookRotation(direction, transform.up);

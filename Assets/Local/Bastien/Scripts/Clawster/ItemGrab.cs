@@ -10,10 +10,10 @@ public class ItemGrab : MonoBehaviour {
 
     public float InterpolationTime; //
     public AnimationCurve InterpolationCurve; //Curve used by interpolation
+    public bool IsGrabbing { get; private set; }
 
     private Ray _ray; //Raycast
     private RaycastHit _hit; //Hit info
-    private bool _inRange; //Self-explanatory   
     private GameObject _hand; //Soon to be selected hand
     private GameObject _hitObj; //Object hit by raycast
 
@@ -22,42 +22,44 @@ public class ItemGrab : MonoBehaviour {
     }
 
     private void Update() {
-        if (Input.GetMouseButtonDown(0)) {
-            _inRange = true;
-        }
+        _ray = Camera.main.ScreenPointToRay(Input.mousePosition); //Sets the ray to be fired from the camera
     }
 
     private void OnTriggerStay(Collider other) {
-        if (!_inRange) return; //Forces items to be in the trigger
-        
-        _ray = PlayerCam.ScreenPointToRay(Input.mousePosition); //Sets the ray to be fired from the camera
-
-        if (!_hit.collider.CompareTag("Item")) return;
-
-        if (Physics.Raycast(_ray, out _hit, Mathf.Infinity)) {  //Did a raycast happen ?
-            Debug.Log("Click detected, in range, hit an item");
+        if (Input.GetMouseButtonDown(0)) {
+            Physics.Raycast(_ray, out _hit, Mathf.Infinity);
+            //Did a raycast happen ?
             _hitObj = _hit.collider.gameObject;
+            if (_hitObj.CompareTag("Item")) {
+                IsGrabbing = true;
+                float dist0 = Vector3.Distance(_hitObj.transform.position, HandAim[0].transform.position);
+                float dist1 = Vector3.Distance(_hitObj.transform.position, HandAim[1].transform.position);
 
-            if (!_hitObj.CompareTag("Item")) return;
-            float dist0 = Vector3.Distance(_hitObj.transform.position, HandAim[0].transform.position);
-            float dist1 = Vector3.Distance(_hitObj.transform.position, HandAim[1].transform.position);
+                _hand = (dist0 < dist1) ? HandAim[0] : HandAim[1];
+                Debug.Log(_hand.name);
 
-            _hand = (dist0 < dist1) ? HandAim[0] : HandAim[1];
-
-            StartCoroutine(GrabInterpolate(InterpolationTime, _hitObj.transform.position, _hand.transform.position));
+                StartCoroutine(GrabInterpolate(InterpolationTime, _hitObj.transform.position,
+                    _hand.transform.position));
+            }
         }
     }
 
+    private void OnTriggerExit(Collider other) {
+        
+    }
+
     IEnumerator GrabInterpolate(float dt, Vector3 start, Vector3 end) {
+        Debug.Log("Coroutine started");
         Vector3 tempPos; //Declared as (0,0,0).
         float pi = Mathf.PI; //Self-explanatory.
         float dtNorm; //Undeclared impl. NULL impl. (float) 0.
 
         for (dt = 0f; dt < InterpolationTime; dt += Time.deltaTime) {
             dtNorm = dt / InterpolationTime;
-            tempPos = Vector3.Lerp(start, end, InterpolationCurve.Evaluate(dtNorm));
+            tempPos = Vector3.Lerp(end, start, InterpolationCurve.Evaluate(Mathf.Sin(dtNorm * pi)));
             _hand.transform.position = tempPos;
             yield return null;
         }
+        IsGrabbing = false;
     }
 }

@@ -272,9 +272,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 197667499}
-  - component: {fileID: 197667500}
   - component: {fileID: 197667501}
   - component: {fileID: 197667502}
+  - component: {fileID: 197667503}
   m_Layer: 0
   m_Name: Grabbing
   m_TagString: Player
@@ -299,27 +299,6 @@ Transform:
   - {fileID: 1363451950}
   m_Father: {fileID: 848518764414246351}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &197667500
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 197667498}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.75
-  m_Center: {x: 0, y: 0.4, z: 1.25}
 --- !u!114 &197667501
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -333,9 +312,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HandAim:
-  - {fileID: 680960140}
-  - {fileID: 1363451949}
-  GrabCollider: {fileID: 197667500}
+  - {fileID: 2205814093408352460}
+  - {fileID: 7636813531471363808}
+  GrabCollider: {fileID: 0}
   PlayerCam: {fileID: 1191286893}
   InterpolationTime: 1
   InterpolationCurve:
@@ -344,12 +323,12 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 0
-      outSlope: 0
+      inSlope: 2.560755
+      outSlope: 2.560755
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0
+      outWeight: 0.09578543
     - serializedVersion: 3
       time: 1
       value: 1
@@ -460,6 +439,27 @@ MonoBehaviour:
   m_DefaultActionMap: Mobile
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 1191286893}
+--- !u!135 &197667503
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 197667498}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.1
+  m_Center: {x: 0, y: 0.42, z: 1.1}
 --- !u!1 &212700079
 GameObject:
   m_ObjectHideFlags: 0
@@ -1480,7 +1480,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7179056109651395076, guid: 0940447dc8394c94185013242641d1a1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.748
+      value: 0.74
       objectReference: {fileID: 0}
     - target: {fileID: 7179056109651395076, guid: 0940447dc8394c94185013242641d1a1, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1516,13 +1516,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7216269966745039472, guid: 0940447dc8394c94185013242641d1a1, type: 3}
       propertyPath: m_Radius
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8060574410054636386, guid: 0940447dc8394c94185013242641d1a1, type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag
       value: 25
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6322965638800618284, guid: 0940447dc8394c94185013242641d1a1, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -3559,7 +3560,7 @@ MonoBehaviour:
   RBC: {fileID: 848518764414246357}
   playerInput: {fileID: 848518764414246355}
   PlayerCam: {fileID: 1191286893}
-  _grabCollider: {fileID: 197667500}
+  ItemGrab: {fileID: 197667501}
   Speed: 350
   SpeedCap: 350
   SlowFactor: 0
