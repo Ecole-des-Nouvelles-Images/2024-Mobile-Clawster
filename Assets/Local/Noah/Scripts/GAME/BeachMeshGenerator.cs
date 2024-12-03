@@ -1,9 +1,7 @@
-using System;
 using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace Local.Noah.Scripts
+namespace Local.Noah.Scripts.GAME
 {
     public enum Direction
     {
@@ -80,13 +78,16 @@ namespace Local.Noah.Scripts
             if (_doFade) DoFade();
 
             if (_doDoThresholds) DoThreshold();
-            RecolorGrid();
+            if (_prefabsCell != null) RecolorGrid();
         }
 
         [ContextMenu("Process")]
         public void Process()
         {
-            Initialize();
+            if (_prefabsCell != null)
+            {
+                Initialize();
+            }
             DoPerlinNoise();
             Populate();
         }
@@ -291,11 +292,15 @@ namespace Local.Noah.Scripts
 
         private void Populate()
         {
+            Vector3 offset = new Vector3(GridSize.x / 2f, 0, GridSize.y / 2f);
+
             for (int x = 0; x < GridSize.x; x++)
             {
                 for (int y = 0; y < GridSize.y; y++)
                 {
-                    CellVisual visual = Instantiate(_prefabsCell, new Vector3(x, 0, y), quaternion.identity);
+                    Vector3 position = new Vector3(x, 0, y) - offset;
+
+                    CellVisual visual = Instantiate(_prefabsCell, position, quaternion.identity);
                     visual.transform.SetParent(transform);
 
                     _grid[x, y].visual = visual;
@@ -305,10 +310,14 @@ namespace Local.Noah.Scripts
         }
 
 
+
         private void GenerateMeshFromGrid()
         {
             int width = GridSize.x;
             int height = GridSize.y;
+
+            // Calculate offset to center the grid
+            Vector3 offset = new Vector3(width / 2f, 0, height / 2f);
 
             // Create vertices array with an additional row and column
             Vector3[] vertices = new Vector3[(width + 1) * (height + 1)];
@@ -324,7 +333,7 @@ namespace Local.Noah.Scripts
                     int gridY = Mathf.Clamp(y, 0, height - 1);
 
                     float heightValue = _grid[gridX, gridY].height;
-                    vertices[y * (width + 1) + x] = new Vector3(x, heightValue * _maxHeight, y);
+                    vertices[y * (width + 1) + x] = new Vector3(x, heightValue * _maxHeight, y) - offset;
                 }
             }
 
@@ -360,6 +369,5 @@ namespace Local.Noah.Scripts
 
             _meshFilter.sharedMesh = mesh;
         }
-
     }
 }

@@ -42,7 +42,7 @@ public class LegRaycast : MonoBehaviour {
         for (dt = 0f; dt < InterpolationTime; dt += Time.deltaTime) {
             dtNorm = dt / InterpolationTime;                                        //Normalize dt (0,1) to prevent OF.
             tempPos = Vector3.Lerp(start, end, InterpolationCurve.Evaluate(dtNorm));//Use the curve to interpolate
-            tempPos.y = Mathf.Sin(pi * dtNorm) * LegRaise;                          //Maybe too much, but will do.
+            tempPos.y += Mathf.Sin(pi * dtNorm) * LegRaise;                          //Maybe too much, but will do.
 
             IKTarget.position = tempPos;        //Repeated assignment to apply the motion
             yield return null;                  //Use this. WaitForEndOfFrame() execs after all game logic, so RIP.

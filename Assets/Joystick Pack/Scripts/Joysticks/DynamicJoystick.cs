@@ -1,44 +1,44 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class DynamicJoystick : Joystick
+namespace Joystick_Pack.Scripts.Joysticks
 {
-    public float MoveThreshold { get { return moveThreshold; } set { moveThreshold = Mathf.Abs(value); } }
-    private Vector2 _startPosition;
-
-    [SerializeField] private float moveThreshold = 1;
-
-    protected override void Start()
+    public class DynamicJoystick : Joystick
     {
-        MoveThreshold = moveThreshold;
-        base.Start();
-        _startPosition = background.anchoredPosition;
-        // background.gameObject.SetActive(false);
-    }
+        public float MoveThreshold { get { return moveThreshold; } set { moveThreshold = Mathf.Abs(value); } }
+        private Vector2 _startPosition;
+        [SerializeField] private float moveThreshold = 1;
 
-    public override void OnPointerDown(PointerEventData eventData)
-    {
-        background.anchoredPosition = ScreenPointToAnchoredPosition(eventData.position);
-        // background.gameObject.SetActive(true);
-        base.OnPointerDown(eventData);
-    }
-
-    public override void OnPointerUp(PointerEventData eventData)
-    {
-        // background.gameObject.SetActive(false);
-        base.OnPointerUp(eventData);
-        background.anchoredPosition = _startPosition;
-    }
-
-    protected override void HandleInput(float magnitude, Vector2 normalised, Vector2 radius, Camera cam)
-    {
-        if (magnitude > moveThreshold)
+        protected override void Start()
         {
-            Vector2 difference = normalised * (magnitude - moveThreshold) * radius;
-            background.anchoredPosition += difference;
+            MoveThreshold = moveThreshold;
+            base.Start();
+            _startPosition = background.anchoredPosition;
+            // background.gameObject.SetActive(false);
         }
-        base.HandleInput(magnitude, normalised, radius, cam);
+
+        public override void OnPointerDown(PointerEventData eventData)
+        {
+            background.anchoredPosition = ScreenPointToAnchoredPosition(eventData.position);
+            // background.gameObject.SetActive(true);
+            base.OnPointerDown(eventData);
+        }
+
+        public override void OnPointerUp(PointerEventData eventData)
+        {
+            // background.gameObject.SetActive(false);
+            base.OnPointerUp(eventData);
+            background.anchoredPosition = _startPosition;
+        }
+
+        protected override void HandleInput(float magnitude, Vector2 normalised, Vector2 radius, Camera cam)
+        {
+            if (magnitude > moveThreshold)
+            {
+                Vector2 difference = normalised * (magnitude - moveThreshold) * radius;
+                background.anchoredPosition += difference;
+            }
+            base.HandleInput(magnitude, normalised, radius, cam);
+        }
     }
 }

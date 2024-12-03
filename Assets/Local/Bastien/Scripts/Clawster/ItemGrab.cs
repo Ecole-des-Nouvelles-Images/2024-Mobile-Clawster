@@ -22,7 +22,10 @@ public class ItemGrab : MonoBehaviour {
     }
 
     private void Update() {
-        _ray = Camera.main.ScreenPointToRay(Input.mousePosition); //Sets the ray to be fired from the camera
+        if (PlayerCam != null)
+        {
+            _ray = Camera.main.ScreenPointToRay(Input.mousePosition); //Sets the ray to be fired from the camera
+        }
     }
 
     private void OnTriggerStay(Collider other) {
