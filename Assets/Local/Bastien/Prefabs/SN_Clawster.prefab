@@ -1671,10 +1671,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15770448b46616445a085256d6b55b1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RBC: {fileID: 3579337594964060039}
-  playerInput: {fileID: 3788228836893971332}
-  PlayerCam: {fileID: 0}
-  ItemGrab: {fileID: 4519992249391168768}
+  _rbc: {fileID: 3579337594964060039}
+  _playerInput: {fileID: 3788228836893971332}
+  _itemGrab: {fileID: 4519992249391168768}
   Speed: 350
   SpeedCap: 350
   SlowFactor: 0
@@ -4857,7 +4856,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8588121564829431453}
   - component: {fileID: 4519992249391168768}
-  - component: {fileID: 3621957170192104784}
   - component: {fileID: 6289230093449224231}
   m_Layer: 0
   m_Name: Grabbing
@@ -4898,8 +4896,6 @@ MonoBehaviour:
   HandAim:
   - {fileID: 289224153842698062}
   - {fileID: 3907400201247790585}
-  GrabCollider: {fileID: 0}
-  PlayerCam: {fileID: 0}
   InterpolationTime: 1
   InterpolationCurve:
     serializedVersion: 2
@@ -4925,104 +4921,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &3621957170192104784
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8790473713841231122}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: d5c7d38b2b97a5345a60f58c98308d83, type: 3}
-  m_NotificationBehavior: 2
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents:
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 27000517-a5ce-49e1-a1a0-91a48d802c43
-    m_ActionName: Movement/Move
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8790473713841231122}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 50650db1-3c66-471e-8064-9e74bb1eb16e
-    m_ActionName: Movement/Grab[/Simulated Touchscreen/position]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: aca5ff67-06fa-41eb-8027-149708631219
-    m_ActionName: UI/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 6ed8b3c4-2359-4af2-bd1f-200825500d6a
-    m_ActionName: UI/Submit[/Keyboard/enter]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 0ebcbed8-83cd-417e-a904-2688bcda73b1
-    m_ActionName: UI/Cancel[/Keyboard/escape]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 883698d7-6464-4b0e-92b6-0e69c4e16e5c
-    m_ActionName: UI/Point[/Mouse/position,/Pen/position,/Simulated Touchscreen/touch0/position,/Simulated
-      Touchscreen/touch1/position,/Simulated Touchscreen/touch2/position,/Simulated
-      Touchscreen/touch3/position,/Simulated Touchscreen/touch4/position,/Simulated
-      Touchscreen/touch5/position,/Simulated Touchscreen/touch6/position,/Simulated
-      Touchscreen/touch7/position,/Simulated Touchscreen/touch8/position,/Simulated
-      Touchscreen/touch9/position]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 96ebae55-14aa-4532-9af1-bf75a39d6062
-    m_ActionName: UI/Click[/Mouse/leftButton,/Pen/tip,/Simulated Touchscreen/touch0/press,/Simulated
-      Touchscreen/touch1/press,/Simulated Touchscreen/touch2/press,/Simulated Touchscreen/touch3/press,/Simulated
-      Touchscreen/touch4/press,/Simulated Touchscreen/touch5/press,/Simulated Touchscreen/touch6/press,/Simulated
-      Touchscreen/touch7/press,/Simulated Touchscreen/touch8/press,/Simulated Touchscreen/touch9/press]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: aacf18bf-2297-44da-8b5c-b076d3116e00
-    m_ActionName: UI/ScrollWheel[/Mouse/scroll]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: cb051f79-ba8f-4c12-a58f-5e15643ec220
-    m_ActionName: UI/MiddleClick[/Mouse/middleButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: b351cf57-bb65-4b44-8bd8-dd3ad6ef435a
-    m_ActionName: UI/RightClick[/Mouse/rightButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 0ee04bfa-e9b9-41e8-8e22-515f9113238d
-    m_ActionName: UI/TrackedDevicePosition
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 6a7843e4-76cd-4156-93f2-1329be7d3583
-    m_ActionName: UI/TrackedDeviceOrientation
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Mobile
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!135 &6289230093449224231
 SphereCollider:
   m_ObjectHideFlags: 0

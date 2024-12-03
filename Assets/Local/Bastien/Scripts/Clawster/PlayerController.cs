@@ -1,43 +1,44 @@
+using Joystick_Pack.Scripts.Joysticks;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 
-public class PlayerController : MonoBehaviour {
-    [SerializeField] private Rigidbody RBC;             //RigidBody entity to move Clawster 
-    [SerializeField] private PlayerInput playerInput;   //Player input asset
-    [SerializeField] private Camera PlayerCam;          //Camera used to launch rays from
-    [SerializeField] private ItemGrab ItemGrab;         //Grab animation control
-    
-    public float Speed;         //Placed here for UI editor convenience
-    public float SpeedCap;      //Maximum velocity, to avoid animation going out of hand
-    public float SlowFactor;    //Factor by which Clawster will slow down if entering water
-    
-    //Several of the following variables are delcared here to optimize by caching
-    private Vector2 _movement;  //normalized X and Z movement 
-    private Vector3 _velocity;  //Normalized Vector3 conversion of _movement
-    private float _targetAngle;
-    
-    private Ray _ray;               //Ray sent from camera
-    private RaycastHit _hit;        //Hit information
-    private GameObject _grabTarget; //Grabbed item
-    
-    
-    private void Update() {
-        Vector3 direction = new Vector3(_movement.x, 0f, _movement.y).normalized;
+namespace Local.Bastien.Scripts.Clawster
+{
+    public class PlayerController : MonoBehaviour
+    {
+        [SerializeField] private Rigidbody _rbc; //RigidBody entity to move Clawster 
+        [SerializeField] private ItemGrab _itemGrab; //Grab animation control
+        [SerializeField] private DynamicJoystick _dynamicJoystick; // Référence au joystick dynamique
 
-        if ((direction.magnitude >= 0.1f && RBC.velocity.magnitude < SpeedCap) && (!ItemGrab.IsGrabbing)) {
-            _targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
-            Vector3 moveDir = Quaternion.Euler(0f, _targetAngle, 0f) * Vector3.forward;
-            transform.rotation = Quaternion.LookRotation(direction, transform.up);
-            RBC.AddForce(direction * (Speed * Time.deltaTime), ForceMode.Force);
+        public float Speed; // Vitesse de déplacement
+        public float SpeedCap; // Maximum velocity
+        public float SlowFactor; // Réduction de vitesse dans l'eau
+
+        private Vector2 _movement; // Mouvement X et Z
+        private float _targetAngle; // Angle de rotation
+
+        private void Update()
+        {
+            // Récupère les valeurs du joystick
+            _movement = new Vector2(_dynamicJoystick.Horizontal, _dynamicJoystick.Vertical);
+
+            // Convertit les valeurs du joystick en une direction normalisée
+            Vector3 direction = new Vector3(_movement.x, 0f, _movement.y).normalized;
+
+            // Si une direction est donnée et qu'on ne dépasse pas la vitesse limite
+            if ((direction.magnitude >= 0.1f && _rbc.velocity.magnitude < SpeedCap) && (!_itemGrab.IsGrabbing))
+            {
+                // Calcule l'angle et applique une rotation
+                _targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
+                transform.rotation = Quaternion.LookRotation(direction, transform.up);
+
+                // Ajoute une force au Rigidbody pour déplacer le joueur
+                _rbc.AddForce(direction * (Speed * Time.deltaTime), ForceMode.Acceleration);
+            }
         }
-    }   
-    
-    public void OnJoystickMove(InputAction.CallbackContext context) {
-        _movement = context.ReadValue<Vector2>();
-    }
 
-    void OnGUI() {
-        Debug.DrawRay(_ray.origin, _ray.direction * 1000, Color.yellow);
+        void OnGUI()
+        {
+            Debug.DrawRay(transform.position, transform.forward * 1000, Color.yellow);
+        }
     }
 }

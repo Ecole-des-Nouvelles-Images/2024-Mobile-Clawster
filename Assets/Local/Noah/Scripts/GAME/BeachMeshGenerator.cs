@@ -88,6 +88,7 @@ namespace Local.Noah.Scripts.GAME
             {
                 Initialize();
             }
+
             DoPerlinNoise();
             Populate();
         }
@@ -316,19 +317,14 @@ namespace Local.Noah.Scripts.GAME
             int width = GridSize.x;
             int height = GridSize.y;
 
-            // Calculate offset to center the grid
             Vector3 offset = new Vector3(width / 2f, 0, height / 2f);
-
-            // Create vertices array with an additional row and column
             Vector3[] vertices = new Vector3[(width + 1) * (height + 1)];
             int[] triangles = new int[width * height * 6];
 
-            // Fill vertices array
             for (int y = 0; y <= height; y++)
             {
                 for (int x = 0; x <= width; x++)
                 {
-                    // Avoid wrapping by clamping indices to the grid range
                     int gridX = Mathf.Clamp(x, 0, width - 1);
                     int gridY = Mathf.Clamp(y, 0, height - 1);
 
@@ -337,7 +333,6 @@ namespace Local.Noah.Scripts.GAME
                 }
             }
 
-            // Fill triangles array
             int vert = 0;
             int tris = 0;
             for (int y = 0; y < height; y++)
@@ -359,7 +354,6 @@ namespace Local.Noah.Scripts.GAME
                 vert++;
             }
 
-            // Create the mesh
             Mesh mesh = new Mesh
             {
                 vertices = vertices,
@@ -368,6 +362,15 @@ namespace Local.Noah.Scripts.GAME
             mesh.RecalculateNormals();
 
             _meshFilter.sharedMesh = mesh;
+
+            // Ajouter et configurer le MeshCollider
+            MeshCollider meshCollider = GetComponent<MeshCollider>();
+            if (meshCollider == null)
+            {
+                meshCollider = gameObject.AddComponent<MeshCollider>();
+            }
+
+            meshCollider.sharedMesh = mesh;
         }
     }
 }
