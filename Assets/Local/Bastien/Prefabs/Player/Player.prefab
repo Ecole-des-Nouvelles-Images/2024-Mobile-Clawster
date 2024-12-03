@@ -1721,6 +1721,7 @@ MonoBehaviour:
   _cam: {fileID: 0}
   playerInput: {fileID: 7427957166202959830}
   cac: {fileID: 7812356395550331328}
+  grabCollider: {fileID: 0}
   velocityCap: 0
   speed: 500
   turnSmoothVelocity: 0
