@@ -1,47 +1,50 @@
+using System;
 using System.Collections;
+using System.Security.Cryptography;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-public class Countdown : MonoBehaviour
-{
-    public TMP_Text CountdownText;
-    public int CountdownTime;
+public class Countdown : MonoBehaviour {
+
+    public GameManager gm;
+    
+    [SerializeField] private TMP_Text _gameTimerText;
+    [SerializeField] private TMP_Text _scoreText;
+    [SerializeField] private AnimationCurve _easeInOut;
+    
     public Vector3 InitialScale;
     public Vector3 InitialRotation;
 
-    private string GoText;
+    private IEnumerator CountdownCoroutine(int time, string str) {
+        if (time >= 1) 
+            _gameTimerText.text = time.ToString();
+        else
+            _gameTimerText.text = str;
+        
+        _gameTimerText.transform.localScale = InitialScale;
+        _gameTimerText.transform.DOScale(Vector3.one, 1.1f).SetEase(_easeInOut);
 
-    public void StartCountdown() {
-        if (CountdownTime <= 0) return;
-        
-        StartCoroutine(CountdownCoroutine(CountdownTime));
-    }
-
-    IEnumerator CountdownCoroutine(int time) {
-        
-        CountdownText.transform.localScale = InitialScale;
-        
-        if (time <= 1) {
-            CountdownText.text = GoText;
-            CountdownText.transform.DOScale(Vector3.one, 1f).SetEase(Ease.OutExpo);
-            yield return new WaitForSeconds(1f);
-            CountdownText.gameObject.SetActive(false);
+        if (time == 0) {
+            gm.GameStarted = true;
+            Debug.Log("Game Started");
             yield break;
         }
         
-        time--; CountdownText.text = time.ToString();
-        CountdownText.transform.DOScale(Vector3.one, 1f).SetEase(Ease.OutExpo);
-        yield return new WaitForSeconds(1f);
-        
-        StartCoroutine(CountdownCoroutine(time));
+        yield return new WaitForSeconds(1.1f);
+        time--;
+        StartCoroutine(CountdownCoroutine(time, str));
+    }
+    // Update is called once per frame
+    private void Start() {
+        StartCoroutine(CountdownCoroutine(gm.CountdownTime, gm.StartText));
     }
 
-    // Update is called once per frame
-    void Start() {
-        GoText = CountdownText.text;
-        
-        StartCountdown();
-        
+    private void Update() {
+        if (Input.GetKeyDown(KeyCode.Space)) {
+            
+            StartCoroutine(CountdownCoroutine(gm.EndTime, gm.EndText));
+        }
     }
 }

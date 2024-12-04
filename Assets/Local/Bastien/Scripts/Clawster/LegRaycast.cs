@@ -36,14 +36,8 @@ public class LegRaycast : MonoBehaviour {
         
         //Is the raycast far away from the foot? Move
         if (Vector3.Distance(IKTarget.position, _currentHitPos) > MaxDistance) {
-
-            //TODO : Fix the following
-            Vector3 AdjustedHitPoint = new Vector3(
-                _currentHitPos.x + (transform.localPosition.x * _overshootFac.x),
-                _currentHitPos.y + (transform.localPosition.y * _overshootFac.y),
-                _currentHitPos.z + (transform.localPosition.z * _overshootFac.z));
             
-            StartCoroutine(Walk(InterpolationTime, _IKPos, AdjustedHitPoint)); //Here we go
+            StartCoroutine(Walk(InterpolationTime, _IKPos, _currentHitPos)); //Here we go
         } else {
             IKTarget.position = _IKPos;                     //Keep the foot at the same place
         }

@@ -44,7 +44,6 @@ public class CrabAnimationController : MonoBehaviour
     private List<int> _oppoMoveInd = new List<int>();
 
     private bool _currLeg = true;
-    private float _resetTimer = 0.5f;
 
     private void Start() {
         _lastBodyUp = transform.up;

@@ -219,6 +219,7 @@ RectTransform:
   m_Children:
   - {fileID: 1561041495}
   - {fileID: 324880783}
+  - {fileID: 1818439380}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -238,9 +239,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12646243acceb194191acb879684d997, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CountdownText: {fileID: 324880781}
-  CountdownTime: 6
-  InitialScale: {x: 0.05, y: 0.05, z: 0.05}
+  gm: {fileID: 1082509951}
+  _gameTimerText: {fileID: 324880781}
+  _scoreText: {fileID: 1818439378}
+  _easeInOut:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.0034464598
+      inSlope: 5.673516
+      outSlope: 5.673516
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.06440702
+    - serializedVersion: 3
+      time: 0.5
+      value: 1.0000058
+      inSlope: -0.000014901161
+      outSlope: -0.000014901161
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0.0034315628
+      inSlope: -5.72771
+      outSlope: -5.72771
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.061404943
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  InitialScale: {x: 0, y: 0, z: 0}
   InitialRotation: {x: 0, y: 0, z: 0}
 --- !u!1 &324880780
 GameObject:
@@ -675,6 +710,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1082509950}
+  - component: {fileID: 1082509951}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -691,12 +727,32 @@ Transform:
   m_GameObject: {fileID: 1082509949}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.37601942, y: 1.1321759, z: 0.90030086}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1082509951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1082509949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e97250811ee3476459c31e711373d282, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Level: 1
+  CountdownTime: 3
+  StartText: Bin It!
+  EndTime: 4
+  EndText: Finish!
+  Score: 530
+  HighScore: 3507
+  GameStarted: 0
 --- !u!1 &1191286891
 GameObject:
   m_ObjectHideFlags: 0
@@ -1198,6 +1254,140 @@ Transform:
   - {fileID: 1975913487}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!1 &1818439377
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1818439380}
+  - component: {fileID: 1818439379}
+  - component: {fileID: 1818439378}
+  m_Layer: 5
+  m_Name: Score
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1818439378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1818439377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: New Text
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 36
+  m_fontSizeBase: 36
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 1
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1818439379
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1818439377}
+  m_CullTransparentMesh: 1
+--- !u!224 &1818439380
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1818439377}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 152966325}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 200, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1975913486
 GameObject:
   m_ObjectHideFlags: 3
@@ -1370,6 +1560,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 717559900222409042, guid: 8901e9bb4911c034387ff61f0d7ef8ff, type: 3}
+      propertyPath: MaxDistance
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 717559900222409042, guid: 8901e9bb4911c034387ff61f0d7ef8ff, type: 3}
       propertyPath: _overshoot.x
       value: 1.3
       objectReference: {fileID: 0}
@@ -1384,6 +1578,10 @@ PrefabInstance:
     - target: {fileID: 717559900222409042, guid: 8901e9bb4911c034387ff61f0d7ef8ff, type: 3}
       propertyPath: _overshootFac.z
       value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 717559900222409042, guid: 8901e9bb4911c034387ff61f0d7ef8ff, type: 3}
+      propertyPath: InterpolationTime
+      value: 0.07
       objectReference: {fileID: 0}
     - target: {fileID: 717559900222409042, guid: 8901e9bb4911c034387ff61f0d7ef8ff, type: 3}
       propertyPath: _interpolationCurve.m_Curve.Array.size
@@ -1405,6 +1603,18 @@ PrefabInstance:
       propertyPath: _interpolationCurve.m_Curve.Array.data[0].outSlope
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 952485963273601108, guid: 8901e9bb4911c034387ff61f0d7ef8ff, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.109
+      objectReference: {fileID: 0}
+    - target: {fileID: 959125755888189733, guid: 8901e9bb4911c034387ff61f0d7ef8ff, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.8889996
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867985618780474404, guid: 8901e9bb4911c034387ff61f0d7ef8ff, type: 3}
+      propertyPath: MaxDistance
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1867985618780474404, guid: 8901e9bb4911c034387ff61f0d7ef8ff, type: 3}
       propertyPath: _overshoot.x
       value: 1.3
@@ -1420,6 +1630,10 @@ PrefabInstance:
     - target: {fileID: 1867985618780474404, guid: 8901e9bb4911c034387ff61f0d7ef8ff, type: 3}
       propertyPath: _overshootFac.z
       value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867985618780474404, guid: 8901e9bb4911c034387ff61f0d7ef8ff, type: 3}
+      propertyPath: InterpolationTime
+      value: 0.07
       objectReference: {fileID: 0}
     - target: {fileID: 1867985618780474404, guid: 8901e9bb4911c034387ff61f0d7ef8ff, type: 3}
       propertyPath: _interpolationCurve.m_Curve.Array.size
@@ -1440,6 +1654,10 @@ PrefabInstance:
     - target: {fileID: 1867985618780474404, guid: 8901e9bb4911c034387ff61f0d7ef8ff, type: 3}
       propertyPath: _interpolationCurve.m_Curve.Array.data[0].outSlope
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1919126887499786016, guid: 8901e9bb4911c034387ff61f0d7ef8ff, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.475
       objectReference: {fileID: 0}
     - target: {fileID: 2025281136194323036, guid: 8901e9bb4911c034387ff61f0d7ef8ff, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1482,6 +1700,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2174198432918342195, guid: 8901e9bb4911c034387ff61f0d7ef8ff, type: 3}
+      propertyPath: LegRaise
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2174198432918342195, guid: 8901e9bb4911c034387ff61f0d7ef8ff, type: 3}
+      propertyPath: MaxDistance
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2174198432918342195, guid: 8901e9bb4911c034387ff61f0d7ef8ff, type: 3}
       propertyPath: _overshoot.x
       value: 1.3
       objectReference: {fileID: 0}
@@ -1496,6 +1722,10 @@ PrefabInstance:
     - target: {fileID: 2174198432918342195, guid: 8901e9bb4911c034387ff61f0d7ef8ff, type: 3}
       propertyPath: _overshootFac.z
       value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2174198432918342195, guid: 8901e9bb4911c034387ff61f0d7ef8ff, type: 3}
+      propertyPath: InterpolationTime
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 2174198432918342195, guid: 8901e9bb4911c034387ff61f0d7ef8ff, type: 3}
       propertyPath: _interpolationCurve.m_Curve.Array.size
@@ -1517,9 +1747,41 @@ PrefabInstance:
       propertyPath: _interpolationCurve.m_Curve.Array.data[0].outSlope
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2256265434543613733, guid: 8901e9bb4911c034387ff61f0d7ef8ff, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2256265434543613733, guid: 8901e9bb4911c034387ff61f0d7ef8ff, type: 3}
+      propertyPath: m_SkinWidth
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 2256265434543613733, guid: 8901e9bb4911c034387ff61f0d7ef8ff, type: 3}
+      propertyPath: m_SlopeLimit
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 2256265434543613733, guid: 8901e9bb4911c034387ff61f0d7ef8ff, type: 3}
+      propertyPath: m_StepOffset
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2256265434543613733, guid: 8901e9bb4911c034387ff61f0d7ef8ff, type: 3}
+      propertyPath: m_MinMoveDistance
+      value: 0.01
+      objectReference: {fileID: 0}
     - target: {fileID: 2402432009114938739, guid: 8901e9bb4911c034387ff61f0d7ef8ff, type: 3}
       propertyPath: m_Name
       value: SN_Clawster
+      objectReference: {fileID: 0}
+    - target: {fileID: 2594811571585839549, guid: 8901e9bb4911c034387ff61f0d7ef8ff, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 6c8457bba742fe64faf95f8a2bf7fda2, type: 2}
+    - target: {fileID: 2899649565718877772, guid: 8901e9bb4911c034387ff61f0d7ef8ff, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.889
+      objectReference: {fileID: 0}
+    - target: {fileID: 3579337594964060039, guid: 8901e9bb4911c034387ff61f0d7ef8ff, type: 3}
+      propertyPath: m_Mass
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 3621957170192104784, guid: 8901e9bb4911c034387ff61f0d7ef8ff, type: 3}
       propertyPath: m_Camera
@@ -1530,6 +1792,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1582645099}
     - target: {fileID: 3981709200702404745, guid: 8901e9bb4911c034387ff61f0d7ef8ff, type: 3}
+      propertyPath: MaxDistance
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3981709200702404745, guid: 8901e9bb4911c034387ff61f0d7ef8ff, type: 3}
       propertyPath: _overshoot.x
       value: 1.3
       objectReference: {fileID: 0}
@@ -1544,6 +1810,10 @@ PrefabInstance:
     - target: {fileID: 3981709200702404745, guid: 8901e9bb4911c034387ff61f0d7ef8ff, type: 3}
       propertyPath: _overshootFac.z
       value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3981709200702404745, guid: 8901e9bb4911c034387ff61f0d7ef8ff, type: 3}
+      propertyPath: InterpolationTime
+      value: 0.08
       objectReference: {fileID: 0}
     - target: {fileID: 3981709200702404745, guid: 8901e9bb4911c034387ff61f0d7ef8ff, type: 3}
       propertyPath: _interpolationCurve.m_Curve.Array.size
@@ -1564,11 +1834,27 @@ PrefabInstance:
     - target: {fileID: 3981709200702404745, guid: 8901e9bb4911c034387ff61f0d7ef8ff, type: 3}
       propertyPath: _interpolationCurve.m_Curve.Array.data[0].outSlope
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4221167469489311519, guid: 8901e9bb4911c034387ff61f0d7ef8ff, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.40900055
       objectReference: {fileID: 0}
     - target: {fileID: 4519992249391168768, guid: 8901e9bb4911c034387ff61f0d7ef8ff, type: 3}
       propertyPath: PlayerCam
       value: 
       objectReference: {fileID: 1191286893}
+    - target: {fileID: 4519992249391168768, guid: 8901e9bb4911c034387ff61f0d7ef8ff, type: 3}
+      propertyPath: InterpolationTime
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4553795587570331708, guid: 8901e9bb4911c034387ff61f0d7ef8ff, type: 3}
+      propertyPath: LegRaise
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4553795587570331708, guid: 8901e9bb4911c034387ff61f0d7ef8ff, type: 3}
+      propertyPath: MaxDistance
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 4553795587570331708, guid: 8901e9bb4911c034387ff61f0d7ef8ff, type: 3}
       propertyPath: _overshoot.x
       value: 1.3
@@ -1584,6 +1870,10 @@ PrefabInstance:
     - target: {fileID: 4553795587570331708, guid: 8901e9bb4911c034387ff61f0d7ef8ff, type: 3}
       propertyPath: _overshootFac.z
       value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4553795587570331708, guid: 8901e9bb4911c034387ff61f0d7ef8ff, type: 3}
+      propertyPath: InterpolationTime
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 4553795587570331708, guid: 8901e9bb4911c034387ff61f0d7ef8ff, type: 3}
       propertyPath: _interpolationCurve.m_Curve.Array.size
@@ -1606,6 +1896,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4588290154990495294, guid: 8901e9bb4911c034387ff61f0d7ef8ff, type: 3}
+      propertyPath: MaxDistance
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4588290154990495294, guid: 8901e9bb4911c034387ff61f0d7ef8ff, type: 3}
       propertyPath: _overshoot.x
       value: 1.3
       objectReference: {fileID: 0}
@@ -1620,6 +1914,10 @@ PrefabInstance:
     - target: {fileID: 4588290154990495294, guid: 8901e9bb4911c034387ff61f0d7ef8ff, type: 3}
       propertyPath: _overshootFac.z
       value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4588290154990495294, guid: 8901e9bb4911c034387ff61f0d7ef8ff, type: 3}
+      propertyPath: InterpolationTime
+      value: 0.07
       objectReference: {fileID: 0}
     - target: {fileID: 4588290154990495294, guid: 8901e9bb4911c034387ff61f0d7ef8ff, type: 3}
       propertyPath: _interpolationCurve.m_Curve.Array.size
@@ -1642,10 +1940,18 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5490912858509622917, guid: 8901e9bb4911c034387ff61f0d7ef8ff, type: 3}
+      propertyPath: gm
+      value: 
+      objectReference: {fileID: 1082509951}
+    - target: {fileID: 5490912858509622917, guid: 8901e9bb4911c034387ff61f0d7ef8ff, type: 3}
       propertyPath: PlayerCam
       value: 
       objectReference: {fileID: 1191286893}
     - target: {fileID: 5627464614104718784, guid: 8901e9bb4911c034387ff61f0d7ef8ff, type: 3}
+      propertyPath: MaxDistance
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5627464614104718784, guid: 8901e9bb4911c034387ff61f0d7ef8ff, type: 3}
       propertyPath: _overshoot.x
       value: 1.3
       objectReference: {fileID: 0}
@@ -1660,6 +1966,10 @@ PrefabInstance:
     - target: {fileID: 5627464614104718784, guid: 8901e9bb4911c034387ff61f0d7ef8ff, type: 3}
       propertyPath: _overshootFac.z
       value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5627464614104718784, guid: 8901e9bb4911c034387ff61f0d7ef8ff, type: 3}
+      propertyPath: InterpolationTime
+      value: 0.07
       objectReference: {fileID: 0}
     - target: {fileID: 5627464614104718784, guid: 8901e9bb4911c034387ff61f0d7ef8ff, type: 3}
       propertyPath: _interpolationCurve.m_Curve.Array.size
@@ -1682,6 +1992,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5950737172507734892, guid: 8901e9bb4911c034387ff61f0d7ef8ff, type: 3}
+      propertyPath: MaxDistance
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5950737172507734892, guid: 8901e9bb4911c034387ff61f0d7ef8ff, type: 3}
       propertyPath: _overshoot.x
       value: 1.3
       objectReference: {fileID: 0}
@@ -1696,6 +2010,10 @@ PrefabInstance:
     - target: {fileID: 5950737172507734892, guid: 8901e9bb4911c034387ff61f0d7ef8ff, type: 3}
       propertyPath: _overshootFac.z
       value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5950737172507734892, guid: 8901e9bb4911c034387ff61f0d7ef8ff, type: 3}
+      propertyPath: InterpolationTime
+      value: 0.08
       objectReference: {fileID: 0}
     - target: {fileID: 5950737172507734892, guid: 8901e9bb4911c034387ff61f0d7ef8ff, type: 3}
       propertyPath: _interpolationCurve.m_Curve.Array.size
@@ -1716,6 +2034,18 @@ PrefabInstance:
     - target: {fileID: 5950737172507734892, guid: 8901e9bb4911c034387ff61f0d7ef8ff, type: 3}
       propertyPath: _interpolationCurve.m_Curve.Array.data[0].outSlope
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7185618971186376606, guid: 8901e9bb4911c034387ff61f0d7ef8ff, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.47500047
+      objectReference: {fileID: 0}
+    - target: {fileID: 8474833530780419899, guid: 8901e9bb4911c034387ff61f0d7ef8ff, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.409
+      objectReference: {fileID: 0}
+    - target: {fileID: 8548315117441560370, guid: 8901e9bb4911c034387ff61f0d7ef8ff, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.109000534
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

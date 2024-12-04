@@ -1110,27 +1110,10 @@ MonoBehaviour:
   MaxDistance: 0.5
   InterpolationTime: 0.01
   LegRaise: 0.2
-  InterpolationCurve:
+  _overshootFac: {x: 0, y: 0, z: 0}
+  _interpolationCurve:
     serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
+    m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -1371,27 +1354,10 @@ MonoBehaviour:
   MaxDistance: 0.5
   InterpolationTime: 0.01
   LegRaise: 0.2
-  InterpolationCurve:
+  _overshootFac: {x: 0, y: 0, z: 0}
+  _interpolationCurve:
     serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
+    m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -1464,8 +1430,8 @@ GameObject:
   - component: {fileID: 5429259785879604055}
   - component: {fileID: 7100333144808400841}
   - component: {fileID: 5490912858509622917}
-  - component: {fileID: 3579337594964060039}
-  - component: {fileID: 5065190437972203143}
+  - component: {fileID: 4519269127980821615}
+  - component: {fileID: 2594811571585839549}
   - component: {fileID: 3788228836893971332}
   m_Layer: 0
   m_Name: SN_Clawster
@@ -1671,14 +1637,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15770448b46616445a085256d6b55b1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RBC: {fileID: 3579337594964060039}
+  controller: {fileID: 4519269127980821615}
   playerInput: {fileID: 3788228836893971332}
   PlayerCam: {fileID: 0}
   ItemGrab: {fileID: 4519992249391168768}
+  gm: {fileID: 0}
   Speed: 350
-  SpeedCap: 350
+  SpeedCap: 400
   SlowFactor: 0
---- !u!54 &3579337594964060039
+--- !u!54 &4519269127980821615
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1686,9 +1653,9 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2402432009114938739}
   serializedVersion: 4
-  m_Mass: 0.75
-  m_Drag: 0
-  m_AngularDrag: 0
+  m_Mass: 0.1
+  m_Drag: 12
+  m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -1702,10 +1669,10 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 112
-  m_CollisionDetection: 0
---- !u!135 &5065190437972203143
+  m_CollisionDetection: 2
+--- !u!135 &2594811571585839549
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1905,27 +1872,10 @@ MonoBehaviour:
   MaxDistance: 0.5
   InterpolationTime: 0.01
   LegRaise: 0.2
-  InterpolationCurve:
+  _overshootFac: {x: 0, y: 0, z: 0}
+  _interpolationCurve:
     serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
+    m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -2469,27 +2419,10 @@ MonoBehaviour:
   MaxDistance: 0.5
   InterpolationTime: 0.01
   LegRaise: 0.2
-  InterpolationCurve:
+  _overshootFac: {x: 0, y: 0, z: 0}
+  _interpolationCurve:
     serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
+    m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -2650,27 +2583,10 @@ MonoBehaviour:
   MaxDistance: 0.5
   InterpolationTime: 0.01
   LegRaise: 0.2
-  InterpolationCurve:
+  _overshootFac: {x: 0, y: 0, z: 0}
+  _interpolationCurve:
     serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
+    m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -3057,27 +2973,10 @@ MonoBehaviour:
   MaxDistance: 0.5
   InterpolationTime: 0.01
   LegRaise: 0.2
-  InterpolationCurve:
+  _overshootFac: {x: 0, y: 0, z: 0}
+  _interpolationCurve:
     serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
+    m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -3540,27 +3439,10 @@ MonoBehaviour:
   MaxDistance: 0.5
   InterpolationTime: 0.01
   LegRaise: 0.2
-  InterpolationCurve:
+  _overshootFac: {x: 0, y: 0, z: 0}
+  _interpolationCurve:
     serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
+    m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -5124,27 +5006,10 @@ MonoBehaviour:
   MaxDistance: 0.5
   InterpolationTime: 0.01
   LegRaise: 0.2
-  InterpolationCurve:
+  _overshootFac: {x: 0, y: 0, z: 0}
+  _interpolationCurve:
     serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
+    m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
