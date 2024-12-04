@@ -155,7 +155,7 @@ Shader "Custom/Toon/ToonLightEdit"
                 float rim = smoothstep((1-_RimStep) - _RimStepSmooth * 0.5, (1-_RimStep) + _RimStepSmooth * 0.5, 0.5 - NV);
 
                 //diffuse
-                float3 diffuse = _MainLightColor.rgb * baseMap * _BaseColor * shadowNL * shadow * opacity;
+                float3 diffuse = _MainLightColor.rgb * baseMap * _BaseColor * shadowNL /* shadow */ * opacity;
 
                 //specular
                 float3 specular = _SpecularColor * shadow * shadowNL * specularNH * opacity;

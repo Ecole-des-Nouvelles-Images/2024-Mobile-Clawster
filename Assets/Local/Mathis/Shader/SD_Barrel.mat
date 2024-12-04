@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: SD_Clawster
+  m_Name: SD_Barrel
   m_Shader: {fileID: 4800000, guid: ebd2dda7285c16d4d8d741abc140ba0f, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -24,7 +24,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: 2aa40953146724849955c0515341ff8a, type: 3}
+        m_Texture: {fileID: 2800000, guid: 55dacec01c8742443a428f72c545fba9, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OpacityMap:
