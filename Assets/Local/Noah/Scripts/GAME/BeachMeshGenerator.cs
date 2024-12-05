@@ -24,6 +24,7 @@ namespace Local.Noah.Scripts.GAME
         private bool _doPerlinNoiseInRunTime = true;
 
         [SerializeField, Range(0, 1)] private float _perlinMaxValue = 1;
+        [SerializeField, Range(0, 1)] private float _perlinMinValue = 0f; 
 
         [SerializeField] private Vector2 _perlinNoiseOffset;
         [SerializeField] private float _perlinNoiseScale;
@@ -144,11 +145,14 @@ namespace Local.Noah.Scripts.GAME
                     noiseValue /= maxAmplitude;
                     noiseValue = Mathf.Clamp(noiseValue, 0f, 1f);
 
+                    noiseValue = Mathf.Clamp(noiseValue, _perlinMinValue, 1f); 
+
                     _grid[x, y].height = noiseValue * _perlinMaxValue;
                     _grid[x, y].perlinNoiseheight = _grid[x, y].height;
                 }
             }
         }
+
 
         private void DoBorder(Direction direction)
         {
