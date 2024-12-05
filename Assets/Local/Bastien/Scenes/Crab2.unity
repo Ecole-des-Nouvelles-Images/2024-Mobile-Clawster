@@ -1845,7 +1845,7 @@ PrefabInstance:
       objectReference: {fileID: 1191286893}
     - target: {fileID: 4519992249391168768, guid: 8901e9bb4911c034387ff61f0d7ef8ff, type: 3}
       propertyPath: InterpolationTime
-      value: 0.3
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4553795587570331708, guid: 8901e9bb4911c034387ff61f0d7ef8ff, type: 3}
       propertyPath: LegRaise

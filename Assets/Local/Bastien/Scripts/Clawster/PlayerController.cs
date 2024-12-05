@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour {
     public float SpeedCap; //Maximum velocity, to avoid animation going out of hand
     public float SlowFactor; //Factor by which Clawster will slow down if entering water
 
-    //Several of the following variables are delcared here to optimize by caching
+    //Several of the following variables are declared here to optimize by caching
     private Vector2 _movement; //normalized X and Z movement 
     private Vector3 _velocity; //Normalized Vector3 conversion of _movement
     private float _targetAngle;
@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour {
     private Ray _ray; //Ray sent from camera
     private RaycastHit _hit; //Hit information
     private GameObject _grabTarget; //Grabbed item
-
+    
     private void Update() {
         if (!gm.GameStarted) return;
 
