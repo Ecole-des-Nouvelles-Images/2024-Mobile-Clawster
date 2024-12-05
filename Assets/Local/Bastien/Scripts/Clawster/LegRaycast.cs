@@ -17,12 +17,14 @@ public class LegRaycast : MonoBehaviour {
     public float MaxDistance;                   //Maximum distance between to steps
     public float InterpolationTime;             //Time to interpolate between the 2 positions, in secs
     public float LegRaise;                      //Height of the step animation
-
-    [FormerlySerializedAs("_overshoot")]
+    
     [Header("Fine tuning")] 
     [SerializeField] private Vector3 _overshootFac;             //Supplementary distance during Lerp
     [SerializeField] private AnimationCurve _interpolationCurve;//Curve followed by said interpolation
 
+    [Header("Graphics")]
+    [SerializeField] private ParticleSystem _stepParticles;
+    
     private Vector3 _IKPos;                     //Leg position
     private Vector3 _currentHitPos;             //Current point that the raycast hits
     private RaycastHit _hit;                    //Entity containing results of the raycast
@@ -59,6 +61,7 @@ public class LegRaycast : MonoBehaviour {
             yield return null;                  //Use this. WaitForEndOfFrame() execs after all game logic, so RIP.
         }
         _IKPos = end; //Last assignment -- maybe redundant but ensures values were not modified by FP inaccuracy.
+        _stepParticles.Play();
     }
 
     IEnumerator Walk(float dt, Vector3 start, Vector3 end) {
