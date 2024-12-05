@@ -90,7 +90,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: a979b5a8c7a3ecd47887f3bdb0cfad5b, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 0fd5ee6569f6d7347b4e9e90cdfddb48, type: 2}
+      objectReference: {fileID: 2100000, guid: c1ecc585f4910ac40b1b9e16830718a5, type: 2}
     - target: {fileID: 919132149155446097, guid: a979b5a8c7a3ecd47887f3bdb0cfad5b, type: 3}
       propertyPath: m_Name
       value: S_LowerWoodPart
@@ -160,7 +160,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 43550ad1fc755be4c92b54f5d2c797c1, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 5e6c0f22f1d22064284b53b3e320a1cc, type: 2}
+      objectReference: {fileID: 2100000, guid: 09069e80c9fc23946953a0bb716b2706, type: 2}
     - target: {fileID: 919132149155446097, guid: 43550ad1fc755be4c92b54f5d2c797c1, type: 3}
       propertyPath: m_Name
       value: S_Board
@@ -230,7 +230,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 34ced75b0dd967048b4bb4b21840ff56, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 8e6c2e9ea71d685469f7d92c59ca96c3, type: 2}
+      objectReference: {fileID: 2100000, guid: 71971961af98785439f8e935f237582a, type: 2}
     - target: {fileID: 919132149155446097, guid: 34ced75b0dd967048b4bb4b21840ff56, type: 3}
       propertyPath: m_Name
       value: S_WoodPlank
@@ -366,7 +366,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 63c817b99b3a19b40a65eb1a5a36b4df, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 09621cb36f715e343abd1bac0c4bc9af, type: 2}
+      objectReference: {fileID: 2100000, guid: 323ea4d3d59ad5b4db5324de59b67392, type: 2}
     - target: {fileID: 919132149155446097, guid: 63c817b99b3a19b40a65eb1a5a36b4df, type: 3}
       propertyPath: m_Name
       value: S_Box02
@@ -436,7 +436,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 8619a12f88deddc49a83ca24d5665381, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 1fc13ee1dbc96534eaa767ebc873723f, type: 2}
+      objectReference: {fileID: 2100000, guid: 0b0de097f774c0244a982553b6bdcbdc, type: 2}
     - target: {fileID: 919132149155446097, guid: 8619a12f88deddc49a83ca24d5665381, type: 3}
       propertyPath: m_Name
       value: S_Barrel
@@ -506,7 +506,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 5ec39faacf4c33d48b5d64a31c61e665, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 09621cb36f715e343abd1bac0c4bc9af, type: 2}
+      objectReference: {fileID: 2100000, guid: 323ea4d3d59ad5b4db5324de59b67392, type: 2}
     - target: {fileID: 919132149155446097, guid: 5ec39faacf4c33d48b5d64a31c61e665, type: 3}
       propertyPath: m_Name
       value: S_Box01
@@ -576,7 +576,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 343bc19bb314a63458ec181b31feb677, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: d6447c6d72af49f478ca763d1fb323a8, type: 2}
+      objectReference: {fileID: 2100000, guid: 6b1f8abc83a86a2429445e2f93bce217, type: 2}
     - target: {fileID: 919132149155446097, guid: 343bc19bb314a63458ec181b31feb677, type: 3}
       propertyPath: m_Name
       value: S_Flag 1

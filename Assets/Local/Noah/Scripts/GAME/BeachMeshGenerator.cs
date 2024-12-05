@@ -48,8 +48,7 @@ namespace Local.Noah.Scripts.GAME
         private bool _doDoThresholds;
 
         [SerializeField, Range(0, 1)] private float _thresholdValue = 0.5f;
-
-
+        
         private CellData[,] _grid;
         private MeshFilter _meshFilter;
 
@@ -311,7 +310,6 @@ namespace Local.Noah.Scripts.GAME
         }
 
 
-
         private void GenerateMeshFromGrid()
         {
             int width = GridSize.x;
@@ -319,8 +317,10 @@ namespace Local.Noah.Scripts.GAME
 
             Vector3 offset = new Vector3(width / 2f, 0, height / 2f);
             Vector3[] vertices = new Vector3[(width + 1) * (height + 1)];
+            Vector2[] uvs = new Vector2[vertices.Length];
             int[] triangles = new int[width * height * 6];
 
+            // Génération des sommets et UVs
             for (int y = 0; y <= height; y++)
             {
                 for (int x = 0; x <= width; x++)
@@ -330,9 +330,13 @@ namespace Local.Noah.Scripts.GAME
 
                     float heightValue = _grid[gridX, gridY].height;
                     vertices[y * (width + 1) + x] = new Vector3(x, heightValue * _maxHeight, y) - offset;
+
+                    // Génération des UVs
+                    uvs[y * (width + 1) + x] = new Vector2((float)x / width, (float)y / height);
                 }
             }
 
+            // Génération des triangles
             int vert = 0;
             int tris = 0;
             for (int y = 0; y < height; y++)
@@ -354,16 +358,19 @@ namespace Local.Noah.Scripts.GAME
                 vert++;
             }
 
+            // Création et assignation du mesh
             Mesh mesh = new Mesh
             {
                 vertices = vertices,
-                triangles = triangles
+                triangles = triangles,
+                uv = uvs // Assignation des UVs au mesh
             };
             mesh.RecalculateNormals();
+            mesh.RecalculateTangents(); // Calcul des tangentes pour les shaders utilisant des Normal Maps
 
             _meshFilter.sharedMesh = mesh;
 
-            // Ajouter et configurer le MeshCollider
+            // Configuration du MeshCollider
             MeshCollider meshCollider = GetComponent<MeshCollider>();
             if (meshCollider == null)
             {
@@ -371,6 +378,8 @@ namespace Local.Noah.Scripts.GAME
             }
 
             meshCollider.sharedMesh = mesh;
+
+
         }
     }
 }

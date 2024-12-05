@@ -302,6 +302,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   _doDoThresholds: 0
   _thresholdValue: 0.5
+  _sandMaterial: {fileID: 2100000, guid: 32c57e1259a63714eb9d9503149f5f44, type: 2}
 --- !u!33 &168489635
 MeshFilter:
   m_ObjectHideFlags: 0
