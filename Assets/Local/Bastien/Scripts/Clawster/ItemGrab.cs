@@ -57,9 +57,9 @@ public class ItemGrab : MonoBehaviour {
         Debug.Log("DOTween Coroutine started");
         
         Sequence seq = DOTween.Sequence();      //The whole coroutine process has been replaced by DOTween
-        seq.Join(_hand.transform.DOPunchPosition(end, InterpolationTime - .1f,  8, 0.5f));
-        seq.Join(_hand.transform.DOPunchRotation(end, InterpolationTime - .1f, 10, 0.7f));
-        seq.Join(_hand.transform.DOPunchScale(   end, InterpolationTime - .1f,  4, 0.3f));
+        seq.Join(_hand.transform.DOPunchPosition(end, InterpolationTime - .1f,  0, 0f));
+        seq.Join(_hand.transform.DOPunchRotation(end, InterpolationTime - .1f, 0, 0f));
+        seq.Join(_hand.transform.DOPunchScale(   end, InterpolationTime - .1f,  0, 0f));
         seq.Play();
         for (dt = 0f; dt < InterpolationTime; dt += Time.deltaTime) yield return null; //Stalling behaviour
         
