@@ -5,7 +5,6 @@ namespace Local.Noah.Scripts.SCORE
     public class ScoreManager : MonoBehaviour
     {
         public ScoreData ScoreData;
-
         private static ScoreManager Instance { get; set; }
 
         private void Awake()

@@ -65,7 +65,7 @@ namespace Local.Noah.Scripts.GAME
 
         void Update()
         {
-            if (_doPerlinNoiseInRunTime) DoPerlinNoise(_seed);
+            if (_doPerlinNoiseInRunTime) DoPerlinNoise();
             if (_doBorders) DoBorder(_borderDirection);
             if (_doFade) DoFade();
             if (_doDoThresholds) DoThreshold();
@@ -76,7 +76,7 @@ namespace Local.Noah.Scripts.GAME
         {
             _seed = UnityEngine.Random.Range(int.MinValue, int.MaxValue);
             Initialize();
-            DoPerlinNoise(_seed);
+            DoPerlinNoise();
             DoBorder(_borderDirection);
             GenerateMeshFromGrid();
         }
@@ -85,7 +85,7 @@ namespace Local.Noah.Scripts.GAME
         public void Process()
         {
             Initialize();
-            DoPerlinNoise(_seed);
+            DoPerlinNoise();
             Populate();
         }
 
@@ -107,7 +107,7 @@ namespace Local.Noah.Scripts.GAME
             }
         }
 
-        private void DoPerlinNoise(int seed)
+        private void DoPerlinNoise()
         {
             System.Random random = new System.Random(_seed);
             Vector2[] octaveOffsets = new Vector2[_octaves];

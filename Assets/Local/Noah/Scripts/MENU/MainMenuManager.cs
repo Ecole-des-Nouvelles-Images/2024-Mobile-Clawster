@@ -1,9 +1,7 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Local.Noah.Scripts.MENU
@@ -29,7 +27,8 @@ namespace Local.Noah.Scripts.MENU
         {
             HideMenu();
             _loadingBarObject.SetActive(true);
-            _scenesToLoad.Add(SceneManager.LoadSceneAsync(_gameScene));
+            SceneManager.LoadSceneAsync(_gameScene);
+            StartCoroutine(ProgressLoadingBar());
         }
 
         private void HideMenu()
