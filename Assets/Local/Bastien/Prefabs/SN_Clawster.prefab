@@ -17489,6 +17489,37 @@ Transform:
   - {fileID: 5017358613164679466}
   m_Father: {fileID: 5262911710431853764}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4480678671198692669
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6785889409771109506}
+  m_Layer: 0
+  m_Name: StackedItems
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6785889409771109506
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4480678671198692669}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.744, z: -0.04}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8588121564829431453}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4699001129539201549
 GameObject:
   m_ObjectHideFlags: 0
@@ -48964,6 +48995,7 @@ Transform:
   m_Children:
   - {fileID: 1629465032422679292}
   - {fileID: 3869991789106430927}
+  - {fileID: 6785889409771109506}
   m_Father: {fileID: 2025281136194323036}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4519992249391168768
@@ -48983,6 +49015,7 @@ MonoBehaviour:
   - {fileID: 3907400201247790585}
   GrabCollider: {fileID: 0}
   PlayerCam: {fileID: 0}
+  GrabButton: {fileID: 0}
   InterpolationTime: 1
   InterpolationCurve:
     serializedVersion: 2
