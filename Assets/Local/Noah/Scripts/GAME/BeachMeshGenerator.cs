@@ -60,36 +60,32 @@ namespace Local.Noah.Scripts.GAME
 
         private void Start()
         {
-            Initialize();
+            CreateRandomMap();
         }
 
         void Update()
         {
-            if (_doPerlinNoiseInRunTime)
-            {
-                DoPerlinNoise();
-            }
-
-            if (_doBorders)
-            {
-                DoBorder(_borderDirection);
-            }
-
+            if (_doPerlinNoiseInRunTime) DoPerlinNoise(_seed);
+            if (_doBorders) DoBorder(_borderDirection);
             if (_doFade) DoFade();
-
             if (_doDoThresholds) DoThreshold();
-            if (_prefabsCell != null) RecolorGrid();
+            // if (_prefabsCell != null) RecolorGrid();
+        }
+
+        private void CreateRandomMap()
+        {
+            _seed = UnityEngine.Random.Range(int.MinValue, int.MaxValue);
+            Initialize();
+            DoPerlinNoise(_seed);
+            DoBorder(_borderDirection);
+            GenerateMeshFromGrid();
         }
 
         [ContextMenu("Process")]
         public void Process()
         {
-            if (_prefabsCell != null)
-            {
-                Initialize();
-            }
-
-            DoPerlinNoise();
+            Initialize();
+            DoPerlinNoise(_seed);
             Populate();
         }
 
@@ -111,7 +107,7 @@ namespace Local.Noah.Scripts.GAME
             }
         }
 
-        private void DoPerlinNoise()
+        private void DoPerlinNoise(int seed)
         {
             System.Random random = new System.Random(_seed);
             Vector2[] octaveOffsets = new Vector2[_octaves];
@@ -324,7 +320,6 @@ namespace Local.Noah.Scripts.GAME
             Vector2[] uvs = new Vector2[vertices.Length];
             int[] triangles = new int[width * height * 6];
 
-            // Génération des sommets et UVs
             for (int y = 0; y <= height; y++)
             {
                 for (int x = 0; x <= width; x++)
@@ -335,12 +330,10 @@ namespace Local.Noah.Scripts.GAME
                     float heightValue = _grid[gridX, gridY].height;
                     vertices[y * (width + 1) + x] = new Vector3(x, heightValue * _maxHeight, y) - offset;
 
-                    // Génération des UVs
                     uvs[y * (width + 1) + x] = new Vector2((float)x / width, (float)y / height);
                 }
             }
 
-            // Génération des triangles
             int vert = 0;
             int tris = 0;
             for (int y = 0; y < height; y++)
@@ -362,15 +355,14 @@ namespace Local.Noah.Scripts.GAME
                 vert++;
             }
 
-            // Création et assignation du mesh
             Mesh mesh = new Mesh
             {
                 vertices = vertices,
                 triangles = triangles,
-                uv = uvs // Assignation des UVs au mesh
+                uv = uvs 
             };
             mesh.RecalculateNormals();
-            mesh.RecalculateTangents(); // Calcul des tangentes pour les shaders utilisant des Normal Maps
+            mesh.RecalculateTangents(); 
 
             _meshFilter.sharedMesh = mesh;
 
