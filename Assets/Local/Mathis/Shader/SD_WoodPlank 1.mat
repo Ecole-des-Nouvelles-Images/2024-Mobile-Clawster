@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: SD_Clawster
+  m_Name: SD_WoodPlank 1
   m_Shader: {fileID: 4800000, guid: ebd2dda7285c16d4d8d741abc140ba0f, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -24,7 +24,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: 2aa40953146724849955c0515341ff8a, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OpacityMap:
@@ -34,15 +34,15 @@ Material:
     m_Ints: []
     m_Floats:
     - _Opacity: 1
-    - _OutlineWidth: 0.18
-    - _RimStep: 0.65
+    - _OutlineWidth: 0.2
+    - _RimStep: 0.8
     - _RimStepSmooth: 0.4
-    - _ShadowStep: 0.5
+    - _ShadowStep: 0.6
     - _ShadowStepSmooth: 0.04
     - _SpecularStep: 0.6
-    - _SpecularStepSmooth: 0.05
+    - _SpecularStepSmooth: 0.096
     m_Colors:
-    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
+    - _BaseColor: {r: 0.77874684, g: 0.9022339, b: 0.9433962, a: 1}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _RimColor: {r: 1, g: 1, b: 1, a: 1}
     - _ShadowColor: {r: 0, g: 0, b: 0, a: 1}
