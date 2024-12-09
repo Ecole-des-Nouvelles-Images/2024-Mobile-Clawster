@@ -7,15 +7,18 @@ using UnityEngine.UI;
 /* Moving all of the grabbing logic to this script */
 
 public class ItemGrab : MonoBehaviour {
+    [Header("Essential Settings")]
     public GameObject[] HandAim;    //Hands with index 0 and 1
     public Collider GrabCollider;   //Actual collision of the grab zone
     public Camera PlayerCam;        //Main game camera
     public Button GrabButton;       //UI Button to grab
 
+    [Header("Stacked Objects (Not Implemented)")]
     public List<GameObject> Stack;  //Stack that Clawster has on his back
     
+    [Header("Animation")]
+    public Animator _handAnimator;
     public float InterpolationTime; //
-    public AnimationCurve InterpolationCurve; //Curve used by interpolation
     public bool IsGrabbing { get; private set; }
     
     
@@ -30,11 +33,13 @@ public class ItemGrab : MonoBehaviour {
         GrabButton.gameObject.SetActive(true);
         _hitObj = other.gameObject;                 //Get the object that is parent of the collider
         _hitItem = _hitObj.GetComponent<Item>();    //Get the stacked version of the item
+        _hitItem.GetComponent<Renderer>().sharedMaterial.SetVector("_OutlineColor", Vector4.one);
     }
 
     private void OnTriggerExit(Collider other) {
         GrabButton.gameObject.SetActive(false);
         _hitObj = null;
+        _hitItem.GetComponent<Renderer>().sharedMaterial.SetVector("_OutlineColor", new Vector4(0,0,0,1));
     }
 
     public void Grab() {
@@ -45,9 +50,10 @@ public class ItemGrab : MonoBehaviour {
 
             _hand = (dist0 < dist1) ? HandAim[0] : HandAim[1];
             Debug.Log(_hand.name);
-
-            StartCoroutine(GrabInterpolateDT(InterpolationTime, _hitObj.transform.position,
-                _hand.transform.position));
+            
+            _handAnimator.SetTrigger("Grab");
+            
+            StartCoroutine(GrabAnimate(InterpolationTime));
         }
         StackItem(_hitItem, Stack); //Stack the "fake" item in the reference on clawster's back
         Destroy(_hitObj);           //Delete item
@@ -66,8 +72,14 @@ public class ItemGrab : MonoBehaviour {
         IsGrabbing = false; //Maintains Clawster in position
     }
 
+    IEnumerator GrabAnimate(float dt) {
+        for (dt = 0f; dt < InterpolationTime; dt += Time.deltaTime) yield return null; //Stalling behaviour
+        IsGrabbing = false; //Maintains Clawster in position
+    }
+
     private void StackItem(Item i, List<GameObject> stack) {
         stack.Add(i.StackedCounterpart);
+        
     }
     
     

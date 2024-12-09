@@ -1637,31 +1637,8 @@ MonoBehaviour:
   PlayerCam: {fileID: 1191286893}
   GrabButton: {fileID: 630381324}
   Stack: []
-  InterpolationTime: 0.5
-  InterpolationCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2.560755
-      outSlope: 2.560755
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.09578543
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: -2.7519343
-      outSlope: -2.7519343
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.032567143
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+  _handAnimator: {fileID: 731191644970758515}
+  InterpolationTime: 0.7
 --- !u!4 &962733473
 Transform:
   m_ObjectHideFlags: 0
@@ -2718,6 +2695,63 @@ MonoBehaviour:
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
+--- !u!1001 &1609337104
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1858491788017305610, guid: 241ebed6d5b71124b90743c55a21737f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.17224026
+      objectReference: {fileID: 0}
+    - target: {fileID: 1858491788017305610, guid: 241ebed6d5b71124b90743c55a21737f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.39450812
+      objectReference: {fileID: 0}
+    - target: {fileID: 1858491788017305610, guid: 241ebed6d5b71124b90743c55a21737f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.7098067
+      objectReference: {fileID: 0}
+    - target: {fileID: 1858491788017305610, guid: 241ebed6d5b71124b90743c55a21737f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1858491788017305610, guid: 241ebed6d5b71124b90743c55a21737f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1858491788017305610, guid: 241ebed6d5b71124b90743c55a21737f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1858491788017305610, guid: 241ebed6d5b71124b90743c55a21737f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1858491788017305610, guid: 241ebed6d5b71124b90743c55a21737f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1858491788017305610, guid: 241ebed6d5b71124b90743c55a21737f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1858491788017305610, guid: 241ebed6d5b71124b90743c55a21737f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2353212134181629794, guid: 241ebed6d5b71124b90743c55a21737f, type: 3}
+      propertyPath: m_Name
+      value: Bottle
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 241ebed6d5b71124b90743c55a21737f, type: 3}
 --- !u!1 &1690416529
 GameObject:
   m_ObjectHideFlags: 0
@@ -7428,3 +7462,4 @@ SceneRoots:
   - {fileID: 1082509950}
   - {fileID: 4601288340692197113}
   - {fileID: 103132274316766161}
+  - {fileID: 1609337104}

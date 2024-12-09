@@ -1,0 +1,147 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Clawster_Avatar
+  m_Mask: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: Body_Main
+    m_Weight: 0
+  - m_Path: Eye_L
+    m_Weight: 0
+  - m_Path: Eye_R
+    m_Weight: 0
+  - m_Path: Hand_L
+    m_Weight: 1
+  - m_Path: Hand_R
+    m_Weight: 1
+  - m_Path: LegA_L
+    m_Weight: 0
+  - m_Path: LegA_R
+    m_Weight: 0
+  - m_Path: LegB_L
+    m_Weight: 0
+  - m_Path: LegB_R
+    m_Weight: 0
+  - m_Path: LegC_L
+    m_Weight: 0
+  - m_Path: LegC_R
+    m_Weight: 0
+  - m_Path: LegD_L
+    m_Weight: 0
+  - m_Path: LegD_R
+    m_Weight: 0
+  - m_Path: Rig
+    m_Weight: 0
+  - m_Path: Rig/Hand_IK_L
+    m_Weight: 1
+  - m_Path: Rig/Hand_IK_R
+    m_Weight: 1
+  - m_Path: Rig/LegA_IK_L
+    m_Weight: 0
+  - m_Path: Rig/LegA_IK_R
+    m_Weight: 0
+  - m_Path: Rig/LegB_IK_L
+    m_Weight: 0
+  - m_Path: Rig/LegB_IK_R
+    m_Weight: 0
+  - m_Path: Rig/LegC_IK_L
+    m_Weight: 0
+  - m_Path: Rig/LegC_IK_R
+    m_Weight: 0
+  - m_Path: Rig/LegD_IK_L
+    m_Weight: 0
+  - m_Path: Rig/LegD_IK_R
+    m_Weight: 0
+  - m_Path: Rig/Origin
+    m_Weight: 0
+  - m_Path: Rig/Origin/Arm_L
+    m_Weight: 1
+  - m_Path: Rig/Origin/Arm_L/Forearm_L
+    m_Weight: 1
+  - m_Path: Rig/Origin/Arm_L/Forearm_L/Hand_Thumb_L
+    m_Weight: 1
+  - m_Path: Rig/Origin/Arm_L/Forearm_L/HandBase_L
+    m_Weight: 1
+  - m_Path: Rig/Origin/Arm_R
+    m_Weight: 1
+  - m_Path: Rig/Origin/Arm_R/Forearm_R
+    m_Weight: 1
+  - m_Path: Rig/Origin/Arm_R/Forearm_R/Hand_Thumb_R
+    m_Weight: 1
+  - m_Path: Rig/Origin/Arm_R/Forearm_R/HandBase_R
+    m_Weight: 1
+  - m_Path: Rig/Origin/Eye_L
+    m_Weight: 0
+  - m_Path: Rig/Origin/Eye_R
+    m_Weight: 0
+  - m_Path: Rig/Origin/LegA_Root_L
+    m_Weight: 0
+  - m_Path: Rig/Origin/LegA_Root_L/LegA_Femur_L
+    m_Weight: 0
+  - m_Path: Rig/Origin/LegA_Root_L/LegA_Femur_L/LegA_Tibia_L
+    m_Weight: 0
+  - m_Path: Rig/Origin/LegA_Root_L/LegA_Femur_L/LegA_Tibia_L/LegA_Toe_L
+    m_Weight: 0
+  - m_Path: Rig/Origin/LegA_Root_R
+    m_Weight: 0
+  - m_Path: Rig/Origin/LegA_Root_R/LegA_Femur_R
+    m_Weight: 0
+  - m_Path: Rig/Origin/LegA_Root_R/LegA_Femur_R/LegA_Tibia_R
+    m_Weight: 0
+  - m_Path: Rig/Origin/LegA_Root_R/LegA_Femur_R/LegA_Tibia_R/LegA_Toe_R
+    m_Weight: 0
+  - m_Path: Rig/Origin/LegB_Root_L
+    m_Weight: 0
+  - m_Path: Rig/Origin/LegB_Root_L/LegB_Femur_L
+    m_Weight: 0
+  - m_Path: Rig/Origin/LegB_Root_L/LegB_Femur_L/LegB_Tibia_L
+    m_Weight: 0
+  - m_Path: Rig/Origin/LegB_Root_L/LegB_Femur_L/LegB_Tibia_L/LegB_Toe_L
+    m_Weight: 0
+  - m_Path: Rig/Origin/LegB_Root_R
+    m_Weight: 0
+  - m_Path: Rig/Origin/LegB_Root_R/LegB_Femur_R
+    m_Weight: 0
+  - m_Path: Rig/Origin/LegB_Root_R/LegB_Femur_R/LegB_Tibia_R
+    m_Weight: 0
+  - m_Path: Rig/Origin/LegB_Root_R/LegB_Femur_R/LegB_Tibia_R/LegB_Toe_R
+    m_Weight: 0
+  - m_Path: Rig/Origin/LegC_Root_L
+    m_Weight: 0
+  - m_Path: Rig/Origin/LegC_Root_L/LegC_Femur_L
+    m_Weight: 0
+  - m_Path: Rig/Origin/LegC_Root_L/LegC_Femur_L/LegC_Tibia_L
+    m_Weight: 0
+  - m_Path: Rig/Origin/LegC_Root_L/LegC_Femur_L/LegC_Tibia_L/LegC_Toe_L
+    m_Weight: 0
+  - m_Path: Rig/Origin/LegC_Root_R
+    m_Weight: 0
+  - m_Path: Rig/Origin/LegC_Root_R/LegC_Femur_R
+    m_Weight: 0
+  - m_Path: Rig/Origin/LegC_Root_R/LegC_Femur_R/LegC_Tibia_R
+    m_Weight: 0
+  - m_Path: Rig/Origin/LegC_Root_R/LegC_Femur_R/LegC_Tibia_R/LegC_Toe_R
+    m_Weight: 0
+  - m_Path: Rig/Origin/LegD_Root_L
+    m_Weight: 0
+  - m_Path: Rig/Origin/LegD_Root_L/LegD_Femur_L
+    m_Weight: 0
+  - m_Path: Rig/Origin/LegD_Root_L/LegD_Femur_L/LegD_Tibia_L
+    m_Weight: 0
+  - m_Path: Rig/Origin/LegD_Root_L/LegD_Femur_L/LegD_Tibia_L/LegD_Toe_L
+    m_Weight: 0
+  - m_Path: Rig/Origin/LegD_Root_R
+    m_Weight: 0
+  - m_Path: Rig/Origin/LegD_Root_R/LegD_Femur_R
+    m_Weight: 0
+  - m_Path: Rig/Origin/LegD_Root_R/LegD_Femur_R/LegD_Tibia_R
+    m_Weight: 0
+  - m_Path: Rig/Origin/LegD_Root_R/LegD_Femur_R/LegD_Tibia_R/LegD_Toe_R
+    m_Weight: 0
