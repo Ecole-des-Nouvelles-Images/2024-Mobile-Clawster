@@ -1,7 +1,5 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 
 public class PlayerController : MonoBehaviour {
     [SerializeField] private Rigidbody controller;
@@ -33,7 +31,7 @@ public class PlayerController : MonoBehaviour {
             _targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
             Vector3 moveDir = (Quaternion.Euler(1f, _targetAngle, 1f) * Vector3.forward).normalized;
             transform.rotation = Quaternion.LookRotation(direction, transform.up);
-            controller.AddForce(moveDir * Speed * Time.deltaTime, ForceMode.Force);
+            controller.AddForce(moveDir * ((Speed / SlowFactor + 1) * Time.deltaTime), ForceMode.Force);
         }
     }
 

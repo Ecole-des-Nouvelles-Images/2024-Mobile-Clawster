@@ -15,9 +15,9 @@ public class GameManager : MonoBehaviour {
     public int Score;               //Self-explanatory
     public int HighScore;           //Highest score of the session (or the device)
     
-    public bool GameStarted;         //Has the game started ?
+    public bool GameStarted;        //Has the game started ?
 
-    public List<GameObject> Stack;   //Items transported by Clawster
+    public List<GameObject> Stack;  //Items transported by Clawster
     
     public static GameManager gm;   //SINGLETON BABY
 }

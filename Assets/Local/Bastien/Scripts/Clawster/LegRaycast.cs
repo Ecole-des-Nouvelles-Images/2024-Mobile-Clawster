@@ -1,8 +1,5 @@
 using System.Collections;
-using System.Numerics;
-using OpenCover.Framework.Model;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Vector3 = UnityEngine.Vector3;
 
 /*  The origin offset issue was fixed today by the discovery of this addon :
