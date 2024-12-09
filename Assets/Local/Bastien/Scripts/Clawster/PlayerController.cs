@@ -4,7 +4,6 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour {
     [SerializeField] private Rigidbody controller;
     [SerializeField] private PlayerInput playerInput; //Player input asset
-    [SerializeField] private Camera PlayerCam; //Camera used to launch rays from
     [SerializeField] private ItemGrab ItemGrab; //Grab animation control
 
     [SerializeField] public GameManager gm;

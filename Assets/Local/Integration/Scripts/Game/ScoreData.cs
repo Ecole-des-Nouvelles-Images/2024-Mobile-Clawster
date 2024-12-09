@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Local.Noah.Scripts.SCORE
+namespace Local.Integration.Scripts.SCORE
 {
     [CreateAssetMenu(menuName = "Score Data")]
     public class ScoreData : ScriptableObject

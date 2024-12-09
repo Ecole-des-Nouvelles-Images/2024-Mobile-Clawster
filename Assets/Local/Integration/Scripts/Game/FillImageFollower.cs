@@ -1,20 +1,22 @@
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-public class FillImageFollower : MonoBehaviour
+namespace Local.Integration.Scripts.Game
 {
-    [SerializeField] private Image _fillImage; 
-    [SerializeField] private RectTransform _followerImage; 
-
-    void Update()
+    public class FillImageFollower : MonoBehaviour
     {
-        if (_fillImage != null && _followerImage != null)
+        [SerializeField] private Image _fillImage; 
+        [SerializeField] private RectTransform _followerImage; 
+
+        void Update()
         {
-            RectTransform fillRect = _fillImage.GetComponent<RectTransform>();
-            float fillWidth = fillRect.rect.width;
-            float positionX = fillRect.rect.xMin + (fillWidth * _fillImage.fillAmount);
-            _followerImage.localPosition = new Vector3(positionX, _followerImage.localPosition.y, _followerImage.localPosition.z);
+            if (_fillImage != null && _followerImage != null)
+            {
+                RectTransform fillRect = _fillImage.GetComponent<RectTransform>();
+                float fillWidth = fillRect.rect.width;
+                float positionX = fillRect.rect.xMin + (fillWidth * _fillImage.fillAmount);
+                _followerImage.localPosition = new Vector3(positionX, _followerImage.localPosition.y, _followerImage.localPosition.z);
+            }
         }
     }
 }

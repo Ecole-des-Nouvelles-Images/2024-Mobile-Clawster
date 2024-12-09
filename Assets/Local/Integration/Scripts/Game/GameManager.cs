@@ -1,17 +1,27 @@
+using Local.Integration.Scripts.SCORE;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-namespace Local.Noah.Scripts.SCORE
+namespace Local.Integration.Scripts.Game
 {
-    public class ScoreManager : MonoBehaviour
+    public class GameManager : MonoBehaviour
     {
         public ScoreData ScoreData;
-        private static ScoreManager Instance { get; set; }
+        public static GameManager instance;
+        
+        [Header("Game Start / End Variables")]
+        public int CountdownTime;       //Time before game starts
+        public string StartText;        //Go! or Bin It!
+        public int EndTime;             //Time before game ends
+        public string EndText;          //Finish! or Stop!
+
+        public bool HasStarted;
 
         private void Awake()
         {
-            if (Instance == null)
+            if (instance == null)
             {
-                Instance = this;
+                instance = this;
                 DontDestroyOnLoad(gameObject);
             }
             else

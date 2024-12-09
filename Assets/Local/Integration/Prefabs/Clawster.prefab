@@ -115,7 +115,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7005309487558544762}
-  - component: {fileID: 2190907817290216586}
+  - component: {fileID: 4043775423196160702}
   m_Layer: 0
   m_Name: LegA_R
   m_TagString: Untagged
@@ -138,7 +138,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1310890653456540086}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2190907817290216586
+--- !u!114 &4043775423196160702
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -147,7 +147,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 219782369455610306}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 512f70459e18e0f8092dd075a6004268, type: 3}
+  m_Script: {fileID: 11500000, guid: 8ca78080627017444ad151bebce880b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   IKTarget: {fileID: 2682180232906436267}
@@ -663,7 +663,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 60933123624214319}
-  - component: {fileID: 7591342491229348211}
+  - component: {fileID: 1344979070203473025}
   m_Layer: 0
   m_Name: LegB_R
   m_TagString: Untagged
@@ -686,7 +686,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1310890653456540086}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7591342491229348211
+--- !u!114 &1344979070203473025
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -695,7 +695,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1622262659288433404}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 512f70459e18e0f8092dd075a6004268, type: 3}
+  m_Script: {fileID: 11500000, guid: 8ca78080627017444ad151bebce880b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   IKTarget: {fileID: 4618988176157288716}
@@ -1154,7 +1154,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 85370cfdc4840434db4dafdc71ceda6a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1457,7 +1457,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 435763578776800097}
-  - component: {fileID: 586067865244373842}
+  - component: {fileID: 6235184864181731813}
   m_Layer: 0
   m_Name: LegC_R
   m_TagString: Untagged
@@ -1480,7 +1480,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1310890653456540086}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &586067865244373842
+--- !u!114 &6235184864181731813
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1489,7 +1489,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3261815877030148770}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 512f70459e18e0f8092dd075a6004268, type: 3}
+  m_Script: {fileID: 11500000, guid: 8ca78080627017444ad151bebce880b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   IKTarget: {fileID: 640240202390849681}
@@ -1531,7 +1531,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7628306214604545407}
-  - component: {fileID: 8944948017449189502}
+  - component: {fileID: 8827359967077571307}
   m_Layer: 0
   m_Name: LegD_R
   m_TagString: Untagged
@@ -1554,7 +1554,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1310890653456540086}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8944948017449189502
+--- !u!114 &8827359967077571307
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1563,7 +1563,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3307832119315317079}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 512f70459e18e0f8092dd075a6004268, type: 3}
+  m_Script: {fileID: 11500000, guid: 8ca78080627017444ad151bebce880b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   IKTarget: {fileID: 3166581940298925130}
@@ -1648,7 +1648,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 85370cfdc4840434db4dafdc71ceda6a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1851,7 +1851,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 85370cfdc4840434db4dafdc71ceda6a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2115,7 +2115,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 85370cfdc4840434db4dafdc71ceda6a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2273,7 +2273,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5260029133402508481}
-  - component: {fileID: 1495148012853612094}
+  - component: {fileID: 4762688059880884378}
   m_Layer: 0
   m_Name: LegD_L
   m_TagString: Untagged
@@ -2296,7 +2296,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1310890653456540086}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1495148012853612094
+--- !u!114 &4762688059880884378
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2305,7 +2305,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4052412151764105164}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 512f70459e18e0f8092dd075a6004268, type: 3}
+  m_Script: {fileID: 11500000, guid: 8ca78080627017444ad151bebce880b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   IKTarget: {fileID: 5180982837755805405}
@@ -2455,7 +2455,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 85370cfdc4840434db4dafdc71ceda6a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2800,7 +2800,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 85370cfdc4840434db4dafdc71ceda6a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2959,7 +2959,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7438384832239131480}
-  - component: {fileID: 4242258457779997257}
+  - component: {fileID: 2344652035815822488}
   m_Layer: 0
   m_Name: LegA_L
   m_TagString: Untagged
@@ -2982,7 +2982,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1310890653456540086}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4242258457779997257
+--- !u!114 &2344652035815822488
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2991,7 +2991,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5217928698817177056}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 512f70459e18e0f8092dd075a6004268, type: 3}
+  m_Script: {fileID: 11500000, guid: 8ca78080627017444ad151bebce880b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   IKTarget: {fileID: 7962178010497833275}
@@ -3171,7 +3171,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 85370cfdc4840434db4dafdc71ceda6a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3372,7 +3372,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 85370cfdc4840434db4dafdc71ceda6a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3924,7 +3924,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 85370cfdc4840434db4dafdc71ceda6a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4083,7 +4083,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 973632930691565509}
-  - component: {fileID: 2610180617293539281}
+  - component: {fileID: 2045951721410178880}
   m_Layer: 0
   m_Name: LegC_L
   m_TagString: Untagged
@@ -4106,7 +4106,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1310890653456540086}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2610180617293539281
+--- !u!114 &2045951721410178880
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4115,7 +4115,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7310977394790307577}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 512f70459e18e0f8092dd075a6004268, type: 3}
+  m_Script: {fileID: 11500000, guid: 8ca78080627017444ad151bebce880b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   IKTarget: {fileID: 2362781096865650751}
@@ -4405,7 +4405,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 85370cfdc4840434db4dafdc71ceda6a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4543,7 +4543,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 85370cfdc4840434db4dafdc71ceda6a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4694,7 +4694,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3019748704595511236}
-  - component: {fileID: 950886077891969096}
+  - component: {fileID: 1458903974668541338}
   m_Layer: 0
   m_Name: LegB_L
   m_TagString: Untagged
@@ -4717,7 +4717,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1310890653456540086}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &950886077891969096
+--- !u!114 &1458903974668541338
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4726,7 +4726,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8200377387923119155}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 512f70459e18e0f8092dd075a6004268, type: 3}
+  m_Script: {fileID: 11500000, guid: 8ca78080627017444ad151bebce880b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   IKTarget: {fileID: 9198095610091379024}
@@ -4811,7 +4811,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 85370cfdc4840434db4dafdc71ceda6a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4980,7 +4980,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 85370cfdc4840434db4dafdc71ceda6a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5171,8 +5171,7 @@ GameObject:
   - component: {fileID: 6131495294893809037}
   - component: {fileID: 8643526595938216550}
   - component: {fileID: 3126593500988880749}
-  - component: {fileID: 3398626723820625318}
-  - component: {fileID: 1264428599615241631}
+  - component: {fileID: 4132175604036049100}
   - component: {fileID: 5654663772189066681}
   - component: {fileID: 5286629276477700128}
   - component: {fileID: 3957534218013770574}
@@ -5321,7 +5320,7 @@ MonoBehaviour:
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0}
     m_Visible: 1
---- !u!114 &3398626723820625318
+--- !u!114 &4132175604036049100
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5330,86 +5329,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 9021562472261455225}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2d8418b0b9634b1892b0268dd9c2743, type: 3}
+  m_Script: {fileID: 11500000, guid: 9de9cf0c38bd96343b5fa9fd3bcf6914, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boneShape: 1
-  drawBones: 1
-  drawTripods: 0
-  boneSize: 1
-  tripodSize: 1
-  boneColor: {r: 0, g: 0, b: 1, a: 0.5}
-  m_Transforms:
-  - {fileID: 5141907165354342631}
-  - {fileID: 8190507752043685301}
-  - {fileID: 6420949276314701672}
-  - {fileID: 7023832906844373774}
-  - {fileID: 6540762653066771551}
-  - {fileID: 8336280848160582702}
-  - {fileID: 4922371344524551356}
-  - {fileID: 4964050203535676841}
-  - {fileID: 6818768092887637380}
-  - {fileID: 2211076083446254650}
-  - {fileID: 6531411681259079987}
-  - {fileID: 3759082309577271985}
-  - {fileID: 280409503320488721}
-  - {fileID: 6506418736637269040}
-  - {fileID: 6732633611058595152}
-  - {fileID: 6159585432795433962}
-  - {fileID: 8428189865011669281}
-  - {fileID: 4338989021460926784}
-  - {fileID: 8840825401507156059}
-  - {fileID: 6283095182021389971}
-  - {fileID: 3982339664054309470}
-  - {fileID: 1366091308242047468}
-  - {fileID: 1833798370874942781}
-  - {fileID: 5014726478681374635}
-  - {fileID: 7032926824292987664}
-  - {fileID: 5236756785605720958}
-  - {fileID: 1273077100406949728}
-  - {fileID: 2578098675695728585}
-  - {fileID: 5060932219346872862}
-  - {fileID: 6892445646585383996}
-  - {fileID: 196651638122578136}
-  - {fileID: 8609235919751002979}
-  - {fileID: 3593773612974965492}
-  - {fileID: 5981862550935403773}
-  - {fileID: 5686053258888586996}
-  - {fileID: 732788349593342632}
-  - {fileID: 971140823012521851}
-  - {fileID: 4028756200443691764}
-  - {fileID: 3046841038699918487}
-  - {fileID: 2068818998022003239}
-  - {fileID: 4252362615810727430}
-  - {fileID: 2566496977221435836}
-  - {fileID: 5316811940376042734}
-  - {fileID: 5390148379321698148}
-  - {fileID: 2682180232906436267}
-  - {fileID: 4618988176157288716}
-  - {fileID: 640240202390849681}
-  - {fileID: 3166581940298925130}
-  - {fileID: 1660646426326242533}
-  - {fileID: 7962178010497833275}
-  - {fileID: 9198095610091379024}
-  - {fileID: 2362781096865650751}
-  - {fileID: 5180982837755805405}
---- !u!114 &1264428599615241631
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9021562472261455225}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15770448b46616445a085256d6b55b1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller: {fileID: 5654663772189066681}
-  playerInput: {fileID: 3957534218013770574}
-  PlayerCam: {fileID: 0}
-  ItemGrab: {fileID: 8140340149014149755}
-  gm: {fileID: 1660567890831681116, guid: 26369bbb10a184246a7de703cad9a484, type: 3}
+  _rigidbody: {fileID: 5654663772189066681}
+  _dynamicJoystick: {fileID: 0}
+  _itemGrab: {fileID: 8140340149014149755}
   Speed: 150
   SpeedCap: 180
   SlowFactor: 2
@@ -5488,8 +5413,9 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1264428599615241631}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+      - m_Target: {fileID: 4132175604036049100}
+        m_TargetAssemblyTypeName: Local.Integration.Scripts.Game.ClawsterController,
+          Assembly-CSharp
         m_MethodName: OnJoystickMove
         m_Mode: 0
         m_Arguments:
