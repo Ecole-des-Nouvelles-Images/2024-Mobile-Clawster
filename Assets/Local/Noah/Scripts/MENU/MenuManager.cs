@@ -19,49 +19,14 @@ namespace Local.Noah.Scripts.MENU
 
         [SerializeField] private GameObject _settingsMenuFirst;
         [SerializeField] private GameObject _volumeMenuFirst;
-
-        [SerializeField] private string _levelScene;
-
-
-        private bool _isPaused;
-
+        
         private void Start()
         {
-            _mainMenuCanvasGo.SetActive(false);
+            _mainMenuCanvasGo.SetActive(true);
             _settingsMenuCanvasGo.SetActive(false);
             _volumeMenuCanvasGo.SetActive(false);
         }
-
-        private void Update()
-        {
-            if (!_isPaused)
-            {
-                Pause();
-            }
-            else
-            {
-                Unpause();
-            }
-        }
-
-        #region Pause/Unpause Functions
-
-        private void Pause()
-        {
-            _isPaused = true;
-            Time.timeScale = 0f;
-            OpenMainMenu();
-        }
-
-        private void Unpause()
-        {
-            _isPaused = false;
-            Time.timeScale = 1f;
-            CloseAllMenus();
-        }
-
-        #endregion
-
+        
         #region Canvas Activations
 
         private void OpenMainMenu()
@@ -103,17 +68,6 @@ namespace Local.Noah.Scripts.MENU
         {
             OpenSettingsMenuHandle();
         }
-
-        public void OnResumePress()
-        {
-            Unpause();
-        }
-
-        public void OnBackToMenuQuit()
-        {
-            SceneManager.LoadSceneAsync(_levelScene);
-        }
-
         #endregion
 
         #region Settings Menu Button Actions
