@@ -2085,8 +2085,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: Clawster
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 3398626723820625318, guid: 909625a6483d51d40b4962ea3de6b327, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
