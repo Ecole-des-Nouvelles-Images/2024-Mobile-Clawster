@@ -35,13 +35,13 @@ public class ItemGrab : MonoBehaviour {
         GrabButton.gameObject.SetActive(true);
         _hitObj = other.gameObject;                 //Get the object that is parent of the collider
         _hitItem = _hitObj.GetComponent<Item>();    //Get the stacked version of the item
-        _hitItem.GetComponent<Renderer>().sharedMaterial.SetVector("_OutlineColor", Vector4.one);
+        _hitItem.GetComponent<Renderer>().sharedMaterial.SetVector("_OutlineColor", Vector4.one);//Set outline to white
     }
 
     private void OnTriggerExit(Collider other) {
         GrabButton.gameObject.SetActive(false);
         _hitObj = null;
-        _hitItem.GetComponent<Renderer>().material.SetVector("_OutlineColor", new Vector4(0,0,0,1));
+        _hitItem.GetComponent<Renderer>().material.SetVector("_OutlineColor", new Vector4(0,0,0,1));//Back to black
     }
 
     public void Grab() {

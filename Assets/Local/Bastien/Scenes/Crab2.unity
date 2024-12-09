@@ -4402,8 +4402,8 @@ MonoBehaviour:
   PlayerCam: {fileID: 1191286893}
   ItemGrab: {fileID: 962733472}
   gm: {fileID: 1082509951}
-  Speed: 200
-  SpeedCap: 200
+  Speed: 150
+  SpeedCap: 180
   SlowFactor: 2
 --- !u!114 &731191644970758513
 MonoBehaviour:
