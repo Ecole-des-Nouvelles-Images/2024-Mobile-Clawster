@@ -1,7 +1,5 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 
 public class PlayerController : MonoBehaviour {
     [SerializeField] private Rigidbody controller;

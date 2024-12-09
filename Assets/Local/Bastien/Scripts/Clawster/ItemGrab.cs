@@ -1,10 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
-
-/* Moving all of the grabbing logic to this script */
 
 public class ItemGrab : MonoBehaviour {
     [Header("Essential Settings")]
@@ -12,19 +10,23 @@ public class ItemGrab : MonoBehaviour {
     public Collider GrabCollider;   //Actual collision of the grab zone
     public Camera PlayerCam;        //Main game camera
     public Button GrabButton;       //UI Button to grab
-
+    
     [Header("Stacked Objects (Not Implemented)")]
     public List<GameObject> Stack;  //Stack that Clawster has on his back
     
     [Header("Animation")]
-    public Animator _handAnimator;
+    public Animator HandAnimator;
     public float InterpolationTime; //
     public bool IsGrabbing { get; private set; }
-    
+    [SerializeField] private float _despawnTime;
     
     private GameObject _hand;   //Soon to be selected hand
     private GameObject _hitObj; //Object hit by raycast
     private Item _hitItem;      //Item class belonging to the prefab
+
+    private void Start() {
+        HandAnimator = GetComponentInParent<Animator>();
+    }
 
     private void Update() {     //Useless LMAO
     }
@@ -39,27 +41,40 @@ public class ItemGrab : MonoBehaviour {
     private void OnTriggerExit(Collider other) {
         GrabButton.gameObject.SetActive(false);
         _hitObj = null;
-        _hitItem.GetComponent<Renderer>().sharedMaterial.SetVector("_OutlineColor", new Vector4(0,0,0,1));
+        _hitItem.GetComponent<Renderer>().material.SetVector("_OutlineColor", new Vector4(0,0,0,1));
     }
 
     public void Grab() {
         if (_hitObj.CompareTag("Item")) {   //Raycast part is gone, as we now use the UI to grab
             IsGrabbing = true;
+            HandAnimator.SetBool("IsGrabbing", true);
+
             float dist0 = Vector3.Distance(_hitObj.transform.position, HandAim[0].transform.position);
             float dist1 = Vector3.Distance(_hitObj.transform.position, HandAim[1].transform.position);
 
             _hand = (dist0 < dist1) ? HandAim[0] : HandAim[1];
             Debug.Log(_hand.name);
             
-            _handAnimator.SetTrigger("Grab");
-            
             StartCoroutine(GrabAnimate(InterpolationTime));
         }
-        StackItem(_hitItem, Stack); //Stack the "fake" item in the reference on clawster's back
-        Destroy(_hitObj);           //Delete item
+        StackItem(_hitItem, Stack);     //Stack the "fake" item in the reference on clawster's back
+        Destroy(_hitObj, _despawnTime); //Delete item
+        IsGrabbing = false;
     }
     
-    IEnumerator GrabInterpolateDT(float dt, Vector3 start, Vector3 end) {
+    IEnumerator GrabAnimate(float dt) {
+        for (dt = 0f; dt < InterpolationTime; dt += Time.deltaTime) yield return null; //Stalling behaviour
+        HandAnimator.SetBool("IsGrabbing", false);
+        IsGrabbing = false; //Maintains Clawster in position
+    }
+
+    private void StackItem(Item i, List<GameObject> stack) {
+        stack.Add(i.StackedCounterpart);
+        
+    } 
+    
+    //Deprecated function, do not uncomment unless necessary
+    /*IEnumerator GrabInterpolateDT(float dt, Vector3 start, Vector3 end) {
         Debug.Log("DOTween Coroutine started");
         
         Sequence seq = DOTween.Sequence();      //The whole coroutine process has been replaced by DOTween
@@ -70,20 +85,8 @@ public class ItemGrab : MonoBehaviour {
         for (dt = 0f; dt < InterpolationTime; dt += Time.deltaTime) yield return null; //Stalling behaviour
         
         IsGrabbing = false; //Maintains Clawster in position
-    }
-
-    IEnumerator GrabAnimate(float dt) {
-        for (dt = 0f; dt < InterpolationTime; dt += Time.deltaTime) yield return null; //Stalling behaviour
-        IsGrabbing = false; //Maintains Clawster in position
-    }
-
-    private void StackItem(Item i, List<GameObject> stack) {
-        stack.Add(i.StackedCounterpart);
-        
-    }
+    }*/
     
-    
-    //Deprecated function, do not uncomment unless necessary
     /*IEnumerator GrabInterpolate(float dt, Vector3 start, Vector3 end) {
         Debug.Log("Coroutine started");
         Vector3 tempPos; //Declared as (0,0,0).
