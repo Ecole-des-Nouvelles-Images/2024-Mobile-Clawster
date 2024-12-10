@@ -42,7 +42,9 @@ namespace Local.Integration.Scripts.Game
 
         private void Update()
         {
+            Debug.Log("no started");
             if (!GameManager.instance.HasStarted) return;
+            Debug.Log("go");
 
             Vector3 direction = new Vector3(_dynamicJoystick.Horizontal, 0f, _dynamicJoystick.Vertical).normalized;
             isMoving = direction.magnitude >= 0.1f;
@@ -50,6 +52,8 @@ namespace Local.Integration.Scripts.Game
 
             if (Input.GetKey(KeyCode.Space) && !_staminaExhausted)
             {
+                Debug.Log("space");
+
                 if (_stamina > 0)
                 {
                     _stamina -= 30 * Time.deltaTime;
