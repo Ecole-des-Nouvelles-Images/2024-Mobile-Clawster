@@ -5335,7 +5335,8 @@ MonoBehaviour:
   _rigidbody: {fileID: 5654663772189066681}
   _dynamicJoystick: {fileID: 0}
   _itemGrab: {fileID: 8140340149014149755}
-  _speed: 150
+  _speed: 120
+  _sprintSpeedMultiplier: 1.5
   _speedCap: 180
   _slowFactor: 2
   _maxStamina: 100
