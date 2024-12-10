@@ -10,10 +10,10 @@ namespace Local.Integration.Scripts.Game
         public static GameManager instance;
         
         [Header("Game Start / End Variables")]
-        public int CountdownTime;       //Time before game starts
-        public string StartText;        //Go! or Bin It!
-        public int EndTime;             //Time before game ends
-        public string EndText;          //Finish! or Stop!
+        public int CountdownTime;
+        public string StartText;
+        public int EndTime;
+        public string EndText;
 
         public bool HasStarted;
 
@@ -48,12 +48,12 @@ namespace Local.Integration.Scripts.Game
             ScoreData.CurrentScore = 0;
         }
 
-        public void LoadBestScore()
+        private void LoadBestScore()
         {
             ScoreData.BestScore = PlayerPrefs.GetInt("BestScore", 0);
         }
 
-        public void SaveBestScore()
+        private void SaveBestScore()
         {
             PlayerPrefs.SetInt("BestScore", ScoreData.BestScore);
             PlayerPrefs.Save();

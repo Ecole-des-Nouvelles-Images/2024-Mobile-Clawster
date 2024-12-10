@@ -1,12 +1,13 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
-namespace Local.Noah.Scripts.MENU
+namespace Local.Integration.Scripts.MainMenu
 {
     public class SoundFXManager : MonoBehaviour
     {
         public static SoundFXManager instance;
 
-        [SerializeField] private AudioSource soundFXObject;
+        [SerializeField] private AudioSource _soundFXObject;
 
         private void Awake()
         {
@@ -18,7 +19,7 @@ namespace Local.Noah.Scripts.MENU
 
         public void PlaySoundFXClip(AudioClip audioClip, Transform spawnTransform, float volume)
         {
-            AudioSource audioSource = Instantiate(soundFXObject, spawnTransform.position, Quaternion.identity);
+            AudioSource audioSource = Instantiate(_soundFXObject, spawnTransform.position, Quaternion.identity);
             audioSource.clip = audioClip;
             audioSource.volume = volume;
             audioSource.Play();

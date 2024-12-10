@@ -1,15 +1,12 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 
-namespace Local.Noah.Scripts.MENU
+namespace Local.Integration.Scripts.MainMenu
 {
     public class MenuManager : MonoBehaviour
     {
-        [Header("Menu Objects")] [SerializeField]
-        private GameObject _mainMenuCanvasGo;
-
+        [Header("Menu Objects")]
+        [SerializeField] private GameObject _mainMenuCanvasGo;
         [SerializeField] private GameObject _settingsMenuCanvasGo;
         [SerializeField] private GameObject _volumeMenuCanvasGo;
 
