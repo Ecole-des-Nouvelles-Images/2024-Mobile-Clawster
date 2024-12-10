@@ -30,19 +30,24 @@ public class ItemGrab : MonoBehaviour {
 
     private void Update() {     //Useless LMAO
     }
+    /*
 
     private void OnTriggerEnter(Collider other) { 
         GrabButton.gameObject.SetActive(true);
         _hitObj = other.gameObject;                 //Get the object that is parent of the collider
         _hitItem = _hitObj.GetComponent<Item>();    //Get the stacked version of the item
+        if (_hitItem == null) return;
         _hitItem.GetComponent<Renderer>().sharedMaterial.SetVector("_OutlineColor", Vector4.one);//Set outline to white
     }
 
     private void OnTriggerExit(Collider other) {
         GrabButton.gameObject.SetActive(false);
         _hitObj = null;
+        if (_hitItem == null) return;
+
         _hitItem.GetComponent<Renderer>().material.SetVector("_OutlineColor", new Vector4(0,0,0,1));//Back to black
     }
+    */
 
     public void Grab() {
         if (_hitObj.CompareTag("Item")) {   //Raycast part is gone, as we now use the UI to grab
