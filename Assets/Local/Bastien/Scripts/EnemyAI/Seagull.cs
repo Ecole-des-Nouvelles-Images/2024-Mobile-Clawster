@@ -81,22 +81,13 @@ public class Seagull : MonoBehaviour {
         
         _seagullAnimator.SetBool("IsSoaring", false);
         anim.Join(_seagull.transform.DOPath(waypoints, 3f, PathType.CatmullRom, gizmoColor:Color.red).SetEase(Ease.InOutSine));
-        // anim.Join(_seagull.transform.DOMoveZ(_targetPosition.z, 1.5f).SetEase(Ease.InQuart));
-        // anim.Join(_seagull.transform.DOMoveX(_targetPosition.x, 1.5f).SetEase(Ease.InQuart));
-        // anim.Join(_seagull.transform.DOMoveY(_targetPosition.y, 1.5f).SetEase(Ease.Linear));
-        // anim.Append(_seagull.transform.DOMoveZ(_end.transform.position.z, 1.5f).SetEase(Ease.OutQuart));
-        // anim.Join(_seagull.transform.DOMoveX(_end.transform.position.x, 1.5f).SetEase(Ease.OutQuart));
-        // anim.Join(_seagull.transform.DOMoveY(_end.transform.position.y, 1.5f).SetEase(Ease.Linear));
-        // anim.Append(_seagull.transform.DOLocalRotate((Quaternion.LookRotation(_endPos, transform.up).eulerAngles), 1.5f).SetEase(Ease.Linear));
         anim.Play();
         yield return new WaitForSeconds(1f);
         _seagullAnimator.SetBool("IsSoaring", true);
         yield return new WaitForSeconds(2.5f);
-        
         yield return StartCoroutine(Wait());
     }
 
-    //Simply wait a random amount of time for the next move
     IEnumerator Wait() {
         _attackTimer = Random.Range(_minWaitTime, _maxWaitTime);
         yield return new WaitForSeconds(_attackTimer);
