@@ -5335,9 +5335,12 @@ MonoBehaviour:
   _rigidbody: {fileID: 5654663772189066681}
   _dynamicJoystick: {fileID: 0}
   _itemGrab: {fileID: 8140340149014149755}
-  Speed: 150
-  SpeedCap: 180
-  SlowFactor: 2
+  _speed: 150
+  _speedCap: 180
+  _slowFactor: 2
+  _maxStamina: 100
+  _redWheel: {fileID: 0}
+  _greenWheel: {fileID: 0}
 --- !u!54 &5654663772189066681
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5360,7 +5363,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
