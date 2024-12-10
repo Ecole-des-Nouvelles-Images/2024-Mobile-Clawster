@@ -1,7 +1,7 @@
 using Unity.Mathematics;
 using UnityEngine;
 
-namespace Local.Noah.Scripts.GAME
+namespace Local.Integration.Scripts.Game
 {
     public enum Direction
     {
@@ -65,10 +65,10 @@ namespace Local.Noah.Scripts.GAME
 
         void Update()
         {
-            if (_doPerlinNoiseInRunTime) DoPerlinNoise();
-            if (_doBorders) DoBorder(_borderDirection);
-            if (_doFade) DoFade();
-            if (_doDoThresholds) DoThreshold();
+            // if (_doPerlinNoiseInRunTime) DoPerlinNoise();
+            // if (_doBorders) DoBorder(_borderDirection);
+            // if (_doFade) DoFade();
+            // if (_doDoThresholds) DoThreshold();
             // if (_prefabsCell != null) RecolorGrid();
         }
 
@@ -246,7 +246,7 @@ namespace Local.Noah.Scripts.GAME
             }
         }
 
-
+        #region Non used functions
         private void DoFade()
         {
             for (int x = 0; x < GridSize.x; x++)
@@ -288,8 +288,9 @@ namespace Local.Noah.Scripts.GAME
                 }
             }
         }
+        #endregion
 
-
+        
         private void Populate()
         {
             Vector3 offset = new Vector3(GridSize.x / 2f, 0, GridSize.y / 2f);

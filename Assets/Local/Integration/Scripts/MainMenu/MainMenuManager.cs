@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-namespace Local.Noah.Scripts.MENU
+namespace Local.Integration.Scripts.MainMenu
 {
     public class MainMenuManager : MonoBehaviour
     {
