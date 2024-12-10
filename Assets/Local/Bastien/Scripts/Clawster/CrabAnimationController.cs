@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class CrabAnimationController : MonoBehaviour
 {
@@ -44,7 +42,6 @@ public class CrabAnimationController : MonoBehaviour
     private List<int> _oppoMoveInd = new List<int>();
 
     private bool _currLeg = true;
-    private float _resetTimer = 0.5f;
 
     private void Start() {
         _lastBodyUp = transform.up;

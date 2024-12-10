@@ -1,9 +1,7 @@
-using System;
 using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace Local.Noah.Scripts
+namespace Local.Noah.Scripts.GAME
 {
     public enum Direction
     {
@@ -26,6 +24,7 @@ namespace Local.Noah.Scripts
         private bool _doPerlinNoiseInRunTime = true;
 
         [SerializeField, Range(0, 1)] private float _perlinMaxValue = 1;
+        [SerializeField, Range(0, 1)] private float _perlinMinValue = 0f; 
 
         [SerializeField] private Vector2 _perlinNoiseOffset;
         [SerializeField] private float _perlinNoiseScale;
@@ -50,8 +49,7 @@ namespace Local.Noah.Scripts
         private bool _doDoThresholds;
 
         [SerializeField, Range(0, 1)] private float _thresholdValue = 0.5f;
-
-
+        
         private CellData[,] _grid;
         private MeshFilter _meshFilter;
 
@@ -62,25 +60,25 @@ namespace Local.Noah.Scripts
 
         private void Start()
         {
-            Initialize();
+            CreateRandomMap();
         }
 
         void Update()
         {
-            if (_doPerlinNoiseInRunTime)
-            {
-                DoPerlinNoise();
-            }
-
-            if (_doBorders)
-            {
-                DoBorder(_borderDirection);
-            }
-
+            if (_doPerlinNoiseInRunTime) DoPerlinNoise();
+            if (_doBorders) DoBorder(_borderDirection);
             if (_doFade) DoFade();
-
             if (_doDoThresholds) DoThreshold();
-            RecolorGrid();
+            // if (_prefabsCell != null) RecolorGrid();
+        }
+
+        private void CreateRandomMap()
+        {
+            _seed = UnityEngine.Random.Range(int.MinValue, int.MaxValue);
+            Initialize();
+            DoPerlinNoise();
+            DoBorder(_borderDirection);
+            GenerateMeshFromGrid();
         }
 
         [ContextMenu("Process")]
@@ -143,11 +141,14 @@ namespace Local.Noah.Scripts
                     noiseValue /= maxAmplitude;
                     noiseValue = Mathf.Clamp(noiseValue, 0f, 1f);
 
+                    noiseValue = Mathf.Clamp(noiseValue, _perlinMinValue, 1f); 
+
                     _grid[x, y].height = noiseValue * _perlinMaxValue;
                     _grid[x, y].perlinNoiseheight = _grid[x, y].height;
                 }
             }
         }
+
 
         private void DoBorder(Direction direction)
         {
@@ -291,11 +292,15 @@ namespace Local.Noah.Scripts
 
         private void Populate()
         {
+            Vector3 offset = new Vector3(GridSize.x / 2f, 0, GridSize.y / 2f);
+
             for (int x = 0; x < GridSize.x; x++)
             {
                 for (int y = 0; y < GridSize.y; y++)
                 {
-                    CellVisual visual = Instantiate(_prefabsCell, new Vector3(x, 0, y), quaternion.identity);
+                    Vector3 position = new Vector3(x, 0, y) - offset;
+
+                    CellVisual visual = Instantiate(_prefabsCell, position, quaternion.identity);
                     visual.transform.SetParent(transform);
 
                     _grid[x, y].visual = visual;
@@ -310,25 +315,25 @@ namespace Local.Noah.Scripts
             int width = GridSize.x;
             int height = GridSize.y;
 
-            // Create vertices array with an additional row and column
+            Vector3 offset = new Vector3(width / 2f, 0, height / 2f);
             Vector3[] vertices = new Vector3[(width + 1) * (height + 1)];
+            Vector2[] uvs = new Vector2[vertices.Length];
             int[] triangles = new int[width * height * 6];
 
-            // Fill vertices array
             for (int y = 0; y <= height; y++)
             {
                 for (int x = 0; x <= width; x++)
                 {
-                    // Avoid wrapping by clamping indices to the grid range
                     int gridX = Mathf.Clamp(x, 0, width - 1);
                     int gridY = Mathf.Clamp(y, 0, height - 1);
 
                     float heightValue = _grid[gridX, gridY].height;
-                    vertices[y * (width + 1) + x] = new Vector3(x, heightValue * _maxHeight, y);
+                    vertices[y * (width + 1) + x] = new Vector3(x, heightValue * _maxHeight, y) - offset;
+
+                    uvs[y * (width + 1) + x] = new Vector2((float)x / width, (float)y / height);
                 }
             }
 
-            // Fill triangles array
             int vert = 0;
             int tris = 0;
             for (int y = 0; y < height; y++)
@@ -350,16 +355,27 @@ namespace Local.Noah.Scripts
                 vert++;
             }
 
-            // Create the mesh
             Mesh mesh = new Mesh
             {
                 vertices = vertices,
-                triangles = triangles
+                triangles = triangles,
+                uv = uvs 
             };
             mesh.RecalculateNormals();
+            mesh.RecalculateTangents(); 
 
             _meshFilter.sharedMesh = mesh;
-        }
 
+            // Configuration du MeshCollider
+            MeshCollider meshCollider = GetComponent<MeshCollider>();
+            if (meshCollider == null)
+            {
+                meshCollider = gameObject.AddComponent<MeshCollider>();
+            }
+
+            meshCollider.sharedMesh = mesh;
+
+
+        }
     }
 }
