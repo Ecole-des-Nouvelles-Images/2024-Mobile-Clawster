@@ -34,9 +34,9 @@ Material:
     m_Ints: []
     m_Floats:
     - _Opacity: 1
-    - _OutlineWidth: 0.15
-    - _RimStep: 0.65
-    - _RimStepSmooth: 0.4
+    - _OutlineWidth: 0.25
+    - _RimStep: 0.5
+    - _RimStepSmooth: 0.5
     - _ShadowStep: 0.5
     - _ShadowStepSmooth: 0.04
     - _SpecularStep: 0.6
