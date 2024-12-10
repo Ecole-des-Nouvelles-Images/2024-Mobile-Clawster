@@ -15,7 +15,8 @@ public class Seagull : MonoBehaviour {
     [SerializeField] private GameObject _target;
     [SerializeField] private GameObject _seagull;
     [SerializeField] private GameObject _start, _end;
-    
+
+    [SerializeField] private float _attackTime;
     [SerializeField] private float _attackAngle;
     [SerializeField] private float _seagullHeight;
     [SerializeField] private float _minWaitTime, _maxWaitTime;
@@ -24,7 +25,7 @@ public class Seagull : MonoBehaviour {
     private Vector3 _startPos, _endPos;
     private Vector3 _targetPos;
     private Vector3 _seagullAimPosition;
-    private float defaultXRotation;
+    private Vector3 _prevPos, _currPos, _posDelta;
     
     [Header("Attack Animation")]
     [SerializeField] private Animator _seagullAnimator;
@@ -54,8 +55,6 @@ public class Seagull : MonoBehaviour {
         
         _attackAngle = Random.Range(0f, 360f);                          //Choose a random Y angle
         transform.rotation = Quaternion.Euler(0, _attackAngle, 0);      //Apply said angle
-
-        defaultXRotation = _seagull.transform.rotation.eulerAngles.x;   //Save rotation from the editor
         
         _seagull.transform.position = _startPos;        //Reset Seagull
         _seagull.transform.rotation = quaternion.LookRotation(_targetPos, transform.up);
@@ -67,6 +66,7 @@ public class Seagull : MonoBehaviour {
     }
 
     IEnumerator Attack() {
+        
         //First DOTween, draws the danger circle around the player
         _bezierLineRenderer.SplineSampleRange = new Vector2(0f, 0f);    //Mask the spline
         DOTween.To(()=> _bezierLineRenderer.SplineSampleRange, x =>     //Draw said spline
@@ -80,14 +80,30 @@ public class Seagull : MonoBehaviour {
         DG.Tweening.Sequence anim = DOTween.Sequence();
         
         _seagullAnimator.SetBool("IsSoaring", false);
+        _seagullAnimator.SetBool("IsAttacking",true);
         anim.Join(_seagull.transform.DOPath(waypoints, 3f, PathType.CatmullRom, gizmoColor:Color.red).SetEase(Ease.InOutSine));
+        // anim.Join(_seagull.transform.DOMoveZ(_targetPosition.z, 1.5f).SetEase(Ease.InQuart));
+        // anim.Join(_seagull.transform.DOMoveX(_targetPosition.x, 1.5f).SetEase(Ease.InQuart));
+        // anim.Join(_seagull.transform.DOMoveY(_targetPosition.y, 1.5f).SetEase(Ease.Linear));
+        // anim.Append(_seagull.transform.DOMoveZ(_end.transform.position.z, 1.5f).SetEase(Ease.OutQuart));
+        // anim.Join(_seagull.transform.DOMoveX(_end.transform.position.x, 1.5f).SetEase(Ease.OutQuart));
+        // anim.Join(_seagull.transform.DOMoveY(_end.transform.position.y, 1.5f).SetEase(Ease.Linear));
+        // anim.Append(_seagull.transform.DOLocalRotate((Quaternion.LookRotation(_endPos, transform.up).eulerAngles), 1.5f).SetEase(Ease.Linear));
         anim.Play();
+
+        for (float i = 0; i < _attackTime; i += Time.deltaTime) {
+           _seagull.transform.rotation = Quaternion.LookRotation(_seagullAimPosition, Vector3.right);
+            yield return new WaitForEndOfFrame();
+
+        }
+        _seagullAnimator.SetBool("IsAttacking", false);
+        _seagullAnimator.SetBool("IsSoaring",    true);
         yield return new WaitForSeconds(1f);
-        _seagullAnimator.SetBool("IsSoaring", true);
-        yield return new WaitForSeconds(2.5f);
+        
         yield return StartCoroutine(Wait());
     }
 
+    //Simply wait a random amount of time for the next move
     IEnumerator Wait() {
         _attackTimer = Random.Range(_minWaitTime, _maxWaitTime);
         yield return new WaitForSeconds(_attackTimer);
