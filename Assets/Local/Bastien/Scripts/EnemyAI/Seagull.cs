@@ -74,7 +74,8 @@ public class Seagull : MonoBehaviour {
         //While this is completing, define the seagull trajectory
         Vector3[] waypoints = {_startPos, _seagullAimPosition, _endPos};
         
-        //Seagull movement. It follows a path passing by the player's location
+        _seagull.SetActive(true);
+        
         DG.Tweening.Sequence anim = DOTween.Sequence();
         _seagullAnimator.SetBool("IsAttacking",true);
         
@@ -97,8 +98,13 @@ public class Seagull : MonoBehaviour {
 
     //Simply wait a random amount of time for the next move
     IEnumerator Wait() {
+        _seagull.SetActive(false);
         _truceTimer = Random.Range(_minWaitTime, _maxWaitTime);
         yield return new WaitForSeconds(_truceTimer);
         yield return StartCoroutine(Setup());
+    }
+
+    private void OnEnable() {
+        StartCoroutine(Setup());
     }
 }
