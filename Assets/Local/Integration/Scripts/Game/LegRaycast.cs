@@ -25,7 +25,7 @@ namespace Local.Integration.Scripts.Game
         private RaycastHit _hit;  
     
         void Update() {
-            if (Physics.Raycast(transform.position, Vector3.down, out _hit, Mathf.Infinity)) {
+            if (Physics.Raycast(transform.position, Vector3.down, out _hit, Mathf.Infinity) && _hit.collider.CompareTag("Floor")) {
                 _currentHitPos = _hit.point;
             }
         
