@@ -58,10 +58,7 @@ public class LegRaycast : MonoBehaviour {
             yield return null;                  //Use this. WaitForEndOfFrame() execs after all game logic, so RIP.
         }
         _IKPos = end; //Last assignment -- maybe redundant but ensures values were not modified by FP inaccuracy.
-        if (_stepParticles != null)
-        {
-            _stepParticles.Play();
-        }
+        if(_stepParticles != null) _stepParticles.Play();
     }
 
     IEnumerator Walk(float dt, Vector3 start, Vector3 end) {

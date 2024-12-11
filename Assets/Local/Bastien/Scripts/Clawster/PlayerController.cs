@@ -33,8 +33,7 @@ public class PlayerController : MonoBehaviour {
             controller.AddForce(moveDir * ((Speed / SlowFactor + 1) * Time.deltaTime), ForceMode.Force);
         }
     }
-
-
+    
     public void OnJoystickMove(InputAction.CallbackContext context) {
         _movement = context.ReadValue<Vector2>();
     }
