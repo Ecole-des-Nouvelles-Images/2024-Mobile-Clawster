@@ -36,10 +36,10 @@ Material:
     - _Opacity: 1
     - _OutlineWidth: 0.2
     - _RimStep: 0.05
-    - _RimStepSmooth: 0.4
+    - _RimStepSmooth: 0.09
     - _ShadowStep: 0.6
     - _ShadowStepSmooth: 0.04
-    - _SpecularStep: 0.6
+    - _SpecularStep: 0
     - _SpecularStepSmooth: 0
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
