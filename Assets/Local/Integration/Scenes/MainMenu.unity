@@ -185,8 +185,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Local.Noah.Scripts.MENU.MainMenuManager, Assembly-CSharp
+      - m_Target: {fileID: 711127582}
+        m_TargetAssemblyTypeName: Local.Integration.Scripts.MainMenu.MainMenuManager,
+          Assembly-CSharp
         m_MethodName: StartGame
         m_Mode: 1
         m_Arguments:
