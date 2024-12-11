@@ -1022,37 +1022,11 @@ Transform:
   - {fileID: 1105982848}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &306237595
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 306237596}
-  m_Layer: 0
-  m_Name: LookForwardEmpty
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &306237596
+--- !u!4 &306237596 stripped
 Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 4842466552948568411, guid: 909625a6483d51d40b4962ea3de6b327, type: 3}
+  m_PrefabInstance: {fileID: 9178500916697772585}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 306237595}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1.5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 9178500916697772597}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -1811,11 +1785,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5732158ec8ba8344690421dd01e9eeb8, type: 3}
---- !u!1 &581865553 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9021562472261455225, guid: 909625a6483d51d40b4962ea3de6b327, type: 3}
-  m_PrefabInstance: {fileID: 9178500916697772585}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &669076292
 GameObject:
   m_ObjectHideFlags: 0
@@ -5072,6 +5041,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 678499683890828525, guid: 909625a6483d51d40b4962ea3de6b327, type: 3}
+      propertyPath: _primaryCamera
+      value: 
+      objectReference: {fileID: 722185050}
+    - target: {fileID: 678499683890828525, guid: 909625a6483d51d40b4962ea3de6b327, type: 3}
+      propertyPath: _virtualCameras.Array.data[0]
+      value: 
+      objectReference: {fileID: 27315098}
     - target: {fileID: 4132175604036049100, guid: 909625a6483d51d40b4962ea3de6b327, type: 3}
       propertyPath: _joystick
       value: 
@@ -5086,6 +5063,10 @@ PrefabInstance:
       objectReference: {fileID: 208743244}
     - target: {fileID: 4132175604036049100, guid: 909625a6483d51d40b4962ea3de6b327, type: 3}
       propertyPath: cameraTransform
+      value: 
+      objectReference: {fileID: 330585546}
+    - target: {fileID: 4132175604036049100, guid: 909625a6483d51d40b4962ea3de6b327, type: 3}
+      propertyPath: _cameraTransform
       value: 
       objectReference: {fileID: 330585546}
     - target: {fileID: 6131495294893809037, guid: 909625a6483d51d40b4962ea3de6b327, type: 3}
@@ -5134,36 +5115,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 6131495294893809037, guid: 909625a6483d51d40b4962ea3de6b327, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 306237596}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 9021562472261455225, guid: 909625a6483d51d40b4962ea3de6b327, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 9178500916697772604}
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 909625a6483d51d40b4962ea3de6b327, type: 3}
 --- !u!4 &9178500916697772597 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6131495294893809037, guid: 909625a6483d51d40b4962ea3de6b327, type: 3}
   m_PrefabInstance: {fileID: 9178500916697772585}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &9178500916697772604
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 581865553}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09e3b6f26b543d6438b054ff18f8f510, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  triggerTag: CameraZone
-  _primaryCamera: {fileID: 722185050}
-  _virtualCameras:
-  - {fileID: 27315098}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
