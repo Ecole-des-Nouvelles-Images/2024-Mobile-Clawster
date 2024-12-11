@@ -7,6 +7,8 @@ TagManager:
   - Item
   - Floor
   - CameraZone
+  - Ground
+  - Wall
   layers:
   - Default
   - TransparentFX

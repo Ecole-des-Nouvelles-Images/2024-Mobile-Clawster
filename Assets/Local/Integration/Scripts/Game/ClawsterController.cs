@@ -10,9 +10,9 @@ namespace Local.Integration.Scripts.Game
         [Header("Components")]
         [SerializeField] private Rigidbody _rigidbody;
         [SerializeField] private Joystick _joystick;
-        [SerializeField] private ItemGrab _itemGrab;
-        [SerializeField] private Transform cameraTransform; // Référence à la caméra
-
+        [SerializeField] private Transform cameraTransform;
+        [SerializeField] private Collider _grabCollider;
+        
         [Header("Movement Settings")]
         [SerializeField] private float _speed;
         [SerializeField] private float _sprintSpeedMultiplier = 1.5f;
@@ -29,7 +29,15 @@ namespace Local.Integration.Scripts.Game
         [SerializeField] private Image _greenWheel;
 
         private float _targetAngle;
-        private bool isMoving = false;
+        private GameObject _hitObj;
+        private Animator _handAnimator;
+
+
+        private void Awake()
+        {
+            _handAnimator = GetComponent<Animator>();
+        }
+
 
         private void Start()
         {
@@ -40,9 +48,29 @@ namespace Local.Integration.Scripts.Game
         {
             if (!GameManager.instance.HasStarted) return;
 
-            Vector3 direction = new Vector3(_joystick.Horizontal, 0f, _joystick.Vertical).normalized;
-            isMoving = direction.magnitude >= 0.1f;
+            HandleInput();
+            HandleStamina();
+        }
 
+        private void FixedUpdate()
+        {
+            if (!GameManager.instance.HasStarted) return;
+
+            HandleMovement();
+        }
+
+        private void HandleInput()
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                HandleGrab();
+                _handAnimator.SetTrigger("Grab");
+
+            }
+        }
+
+        private void HandleStamina()
+        {
             if (Input.GetKey(KeyCode.Space) && !_staminaExhausted)
             {
                 if (_stamina > 0)
@@ -75,44 +103,64 @@ namespace Local.Integration.Scripts.Game
             _greenWheel.fillAmount = (_stamina / _maxStamina);
         }
 
-        private void FixedUpdate()
+        private void HandleMovement()
         {
-            if (!GameManager.instance.HasStarted) return;
+            Vector3 inputDirection = new Vector3(_joystick.Horizontal, 0f, _joystick.Vertical).normalized;
 
-            if (isMoving && !_itemGrab.IsGrabbing)
+            Vector3 cameraForward = Vector3.ProjectOnPlane(cameraTransform.forward, Vector3.up).normalized;
+            Vector3 cameraRight = Vector3.ProjectOnPlane(cameraTransform.right, Vector3.up).normalized;
+
+            Vector3 moveDirection = inputDirection.z * cameraForward + inputDirection.x * cameraRight;
+            moveDirection.Normalize();
+
+            if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 1.5f))
             {
-                Vector3 inputDirection = new Vector3(_joystick.Horizontal, 0f, _joystick.Vertical).normalized;
-
-                Vector3 cameraForward = Vector3.ProjectOnPlane(cameraTransform.forward, Vector3.up).normalized;
-                Vector3 cameraRight = Vector3.ProjectOnPlane(cameraTransform.right, Vector3.up).normalized;
-
-                Vector3 moveDirection = inputDirection.z * cameraForward + inputDirection.x * cameraRight;
-                moveDirection.Normalize();
-
-                if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 1.5f))
+                if (hit.collider.CompareTag("Wall"))
                 {
-                    moveDirection = Vector3.ProjectOnPlane(moveDirection, hit.normal).normalized;
+                    return; 
                 }
-
-                if (moveDirection.magnitude > 0.1f)
-                {
-                    _targetAngle = Mathf.Atan2(moveDirection.x, moveDirection.z) * Mathf.Rad2Deg;
-                    Quaternion targetRotation = Quaternion.Euler(0f, _targetAngle, 0f);
-                    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 0.2f);
-                }
-
-                float currentSpeed = _speed;
-                if (Input.GetKey(KeyCode.Space) && !_staminaExhausted)
-                {
-                    currentSpeed *= _sprintSpeedMultiplier;
-                }
-
-                Vector3 move = moveDirection * currentSpeed * Time.fixedDeltaTime;
-                _rigidbody.MovePosition(_rigidbody.position + move);
             }
-            else if (!isMoving)
+
+            if (moveDirection.magnitude > 0.1f)
             {
-                _rigidbody.velocity = Vector3.zero;
+                _targetAngle = Mathf.Atan2(moveDirection.x, moveDirection.z) * Mathf.Rad2Deg;
+                Quaternion targetRotation = Quaternion.Euler(0f, _targetAngle, 0f);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 0.2f);
+            }
+
+            float currentSpeed = _speed;
+            if (Input.GetKey(KeyCode.Space) && !_staminaExhausted)
+            {
+                currentSpeed *= _sprintSpeedMultiplier;
+            }
+
+            Vector3 move = moveDirection * currentSpeed * Time.fixedDeltaTime;
+            _rigidbody.MovePosition(_rigidbody.position + move);
+        }
+        
+        private void HandleGrab()
+        {
+            if (_hitObj != null && _hitObj.CompareTag("Item"))
+            {
+                _handAnimator.SetTrigger("Grab");
+                _hitObj.SetActive(false);
+            }
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.CompareTag("Item"))
+            {
+                _hitObj = other.gameObject;
+            }
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+
+            if (other.CompareTag("Item"))
+            {
+                _hitObj = null;
             }
         }
     }
