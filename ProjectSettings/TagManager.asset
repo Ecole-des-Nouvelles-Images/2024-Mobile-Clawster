@@ -6,7 +6,7 @@ TagManager:
   tags:
   - Item
   - Floor
-  - Water
+  - CameraZone
   layers:
   - Default
   - TransparentFX

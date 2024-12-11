@@ -17,12 +17,7 @@ public class LineRaycast : MonoBehaviour {
     void Update()
     {
         foreach (GameObject curvePoint in _splinePoints) {
-            
-            Vector3 castPosition = new Vector3( curvePoint.transform.position.x,
-                                                transform.position.y, 
-                                                curvePoint.transform.position.z);
-            
-            if (Physics.Raycast(castPosition, Vector3.down, out RaycastHit hit, Mathf.Infinity)) {
+            if (Physics.Raycast(curvePoint.transform.position, Vector3.down, out RaycastHit hit, Mathf.Infinity)) {
                 
                 if(hit.collider.CompareTag("Floor") == false) return;
                 
@@ -32,5 +27,4 @@ public class LineRaycast : MonoBehaviour {
         }
         
     }
-    
 }

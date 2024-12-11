@@ -50,29 +50,27 @@ public class ItemGrab : MonoBehaviour {
     */
 
     public void Grab() {
-        //if (_hitObj.CompareTag("Item")) {   //Raycast part is gone, as we now use the UI to grab
-            
+        if (_hitObj.CompareTag("Item")) {   //Raycast part is gone, as we now use the UI to grab
+            IsGrabbing = true;
+            HandAnimator.SetBool("IsGrabbing", true);
 
-            // float dist0 = Vector3.Distance(_hitObj.transform.position, HandAim[0].transform.position);
-            // float dist1 = Vector3.Distance(_hitObj.transform.position, HandAim[1].transform.position);
+            float dist0 = Vector3.Distance(_hitObj.transform.position, HandAim[0].transform.position);
+            float dist1 = Vector3.Distance(_hitObj.transform.position, HandAim[1].transform.position);
 
-            // _hand = (dist0 < dist1) ? HandAim[0] : HandAim[1];
-            // Debug.Log(_hand.name);
+            _hand = (dist0 < dist1) ? HandAim[0] : HandAim[1];
+            Debug.Log(_hand.name);
             
             StartCoroutine(GrabAnimate(InterpolationTime));
-        //}
-        // StackItem(_hitItem, Stack);     //Stack the "fake" item in the reference on clawster's back
-        // Destroy(_hitObj, _despawnTime); //Delete item
-        
+        }
+        StackItem(_hitItem, Stack);     //Stack the "fake" item in the reference on clawster's back
+        Destroy(_hitObj, _despawnTime); //Delete item
+        IsGrabbing = false;
     }
     
     IEnumerator GrabAnimate(float dt) {
-        IsGrabbing = true;
-        HandAnimator.SetBool("IsGrabbing", true);
-        yield return new WaitForEndOfFrame();
-        IsGrabbing = false;
+        for (dt = 0f; dt < InterpolationTime; dt += Time.deltaTime) yield return null; //Stalling behaviour
         HandAnimator.SetBool("IsGrabbing", false);
-        yield return null;
+        IsGrabbing = false; //Maintains Clawster in position
     }
 
     private void StackItem(Item i, List<GameObject> stack) {

@@ -30,12 +30,10 @@ namespace Local.Integration.Scripts.Game
 
         private float _targetAngle;
         private bool isMoving = false;
-        private float _sf;
 
         private void Start()
         {
             _stamina = _maxStamina;
-            _sf = 1f;
         }
 
         private void Update()
@@ -77,8 +75,8 @@ namespace Local.Integration.Scripts.Game
             _greenWheel.fillAmount = (_stamina / _maxStamina);
         }
 
-        private void FixedUpdate() {
-            
+        private void FixedUpdate()
+        {
             if (!GameManager.instance.HasStarted) return;
 
             if (isMoving && !_itemGrab.IsGrabbing)
@@ -109,27 +107,13 @@ namespace Local.Integration.Scripts.Game
                     currentSpeed *= _sprintSpeedMultiplier;
                 }
 
-                Vector3 move = moveDirection * (currentSpeed / _sf) * Time.fixedDeltaTime;
+                Vector3 move = moveDirection * currentSpeed * Time.fixedDeltaTime;
                 _rigidbody.MovePosition(_rigidbody.position + move);
             }
             else if (!isMoving)
             {
                 _rigidbody.velocity = Vector3.zero;
             }
-        }
-
-        private void OnTriggerStay(Collider water) {
-
-            if (water.gameObject.CompareTag("Water")) {
-                _sf = _slowFactor;
-            }
-            else {
-                return;
-            }
-        }
-
-        private void OnTriggerExit(Collider other) {
-            _sf = 1f;
         }
     }
 }
