@@ -2570,6 +2570,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 19965512024092942, guid: 7fa9b4832d9d21e42956c9b97b998dac, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2001204494827072019, guid: 7fa9b4832d9d21e42956c9b97b998dac, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369944421297122545, guid: 7fa9b4832d9d21e42956c9b97b998dac, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369944421297122545, guid: 7fa9b4832d9d21e42956c9b97b998dac, type: 3}
+      propertyPath: m_TagString
+      value: Floor
+      objectReference: {fileID: 0}
     - target: {fileID: 4704562257070899964, guid: 7fa9b4832d9d21e42956c9b97b998dac, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2610,9 +2626,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5164296782995000716, guid: 7fa9b4832d9d21e42956c9b97b998dac, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5186536497110729223, guid: 7fa9b4832d9d21e42956c9b97b998dac, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5770430036610834298, guid: 7fa9b4832d9d21e42956c9b97b998dac, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6375569596771076360, guid: 7fa9b4832d9d21e42956c9b97b998dac, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017345032962200353, guid: 7fa9b4832d9d21e42956c9b97b998dac, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8215105729859455673, guid: 7fa9b4832d9d21e42956c9b97b998dac, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8265109076781568699, guid: 7fa9b4832d9d21e42956c9b97b998dac, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 9194351713126593961, guid: 7fa9b4832d9d21e42956c9b97b998dac, type: 3}
       propertyPath: m_Name
       value: Bungalow
+      objectReference: {fileID: 0}
+    - target: {fileID: 9194351713126593961, guid: 7fa9b4832d9d21e42956c9b97b998dac, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 9194351713126593961, guid: 7fa9b4832d9d21e42956c9b97b998dac, type: 3}
       propertyPath: m_TagString
