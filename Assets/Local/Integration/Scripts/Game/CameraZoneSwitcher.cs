@@ -1,30 +1,37 @@
-using System;
 using UnityEngine;
 using Cinemachine;
-using UnityEngine.Serialization;
 
 namespace Local.Integration.Scripts.Game
 {
     public class CameraZoneSwitcher : MonoBehaviour
     {
-        [SerializeField] private CinemachineVirtualCamera _playZoneCamera;
-        [SerializeField] private CinemachineVirtualCamera _safeZoneCamera;
+        [SerializeField] private string triggerTag;
+        
+        [SerializeField] private CinemachineVirtualCamera _primaryCamera;
+        [SerializeField] private CinemachineVirtualCamera[] _virtualCameras;
         
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("Player"))
+            if (other.CompareTag(triggerTag))
             {
-                _safeZoneCamera.enabled = true;
-                _playZoneCamera.enabled = false;
+                CinemachineVirtualCamera targetCamera = other.GetComponentInChildren<CinemachineVirtualCamera>();
+                SwitchToCamera(targetCamera);
             }
         }
 
         private void OnTriggerExit(Collider other)
         {
-            if (other.CompareTag("Player"))
+            if (other.CompareTag(triggerTag))
             {
-                _playZoneCamera.enabled = true;
-                _safeZoneCamera.enabled = false;
+                SwitchToCamera(_primaryCamera);
+            }
+        }
+
+        private void SwitchToCamera(CinemachineVirtualCamera targetCamera)
+        {
+            foreach (CinemachineVirtualCamera camera in _virtualCameras)
+            {
+                camera.enabled = camera == targetCamera;
             }
         }
     }
