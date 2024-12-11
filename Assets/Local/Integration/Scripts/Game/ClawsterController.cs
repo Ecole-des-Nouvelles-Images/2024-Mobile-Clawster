@@ -9,9 +9,9 @@ namespace Local.Integration.Scripts.Game
     {
         [Header("Components")]
         [SerializeField] private Rigidbody _rigidbody;
-        [SerializeField] private DynamicJoystick _dynamicJoystick;
+        [SerializeField] private Joystick _joystick;
         [SerializeField] private ItemGrab _itemGrab;
-        
+        [SerializeField] private Transform cameraTransform; // Référence à la caméra
 
         [Header("Movement Settings")]
         [SerializeField] private float _speed;
@@ -28,11 +28,7 @@ namespace Local.Integration.Scripts.Game
         [SerializeField] private Image _redWheel;
         [SerializeField] private Image _greenWheel;
 
-        private Vector3 _velocity;
         private float _targetAngle;
-        private Ray _ray;
-        private RaycastHit _hit;
-        private GameObject _grabTarget;
         private bool isMoving = false;
 
         private void Start()
@@ -44,9 +40,8 @@ namespace Local.Integration.Scripts.Game
         {
             if (!GameManager.instance.HasStarted) return;
 
-            Vector3 direction = new Vector3(_dynamicJoystick.Horizontal, 0f, _dynamicJoystick.Vertical).normalized;
+            Vector3 direction = new Vector3(_joystick.Horizontal, 0f, _joystick.Vertical).normalized;
             isMoving = direction.magnitude >= 0.1f;
-            _rigidbody.useGravity = isMoving;
 
             if (Input.GetKey(KeyCode.Space) && !_staminaExhausted)
             {
@@ -84,12 +79,27 @@ namespace Local.Integration.Scripts.Game
         {
             if (!GameManager.instance.HasStarted) return;
 
-            if (isMoving && _rigidbody.velocity.magnitude < _speedCap && !_itemGrab.IsGrabbing)
+            if (isMoving && !_itemGrab.IsGrabbing)
             {
-                Vector3 direction = new Vector3(_dynamicJoystick.Horizontal, 0f, _dynamicJoystick.Vertical).normalized;
-                _targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
-                Vector3 moveDir = (Quaternion.Euler(0f, _targetAngle, 0f) * Vector3.forward).normalized;
-                transform.rotation = Quaternion.LookRotation(direction, transform.up);
+                Vector3 inputDirection = new Vector3(_joystick.Horizontal, 0f, _joystick.Vertical).normalized;
+
+                Vector3 cameraForward = Vector3.ProjectOnPlane(cameraTransform.forward, Vector3.up).normalized;
+                Vector3 cameraRight = Vector3.ProjectOnPlane(cameraTransform.right, Vector3.up).normalized;
+
+                Vector3 moveDirection = inputDirection.z * cameraForward + inputDirection.x * cameraRight;
+                moveDirection.Normalize();
+
+                if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 1.5f))
+                {
+                    moveDirection = Vector3.ProjectOnPlane(moveDirection, hit.normal).normalized;
+                }
+
+                if (moveDirection.magnitude > 0.1f)
+                {
+                    _targetAngle = Mathf.Atan2(moveDirection.x, moveDirection.z) * Mathf.Rad2Deg;
+                    Quaternion targetRotation = Quaternion.Euler(0f, _targetAngle, 0f);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 0.2f);
+                }
 
                 float currentSpeed = _speed;
                 if (Input.GetKey(KeyCode.Space) && !_staminaExhausted)
@@ -97,7 +107,8 @@ namespace Local.Integration.Scripts.Game
                     currentSpeed *= _sprintSpeedMultiplier;
                 }
 
-                _rigidbody.AddForce(moveDir * ((currentSpeed / _slowFactor + 1) * Time.fixedDeltaTime), ForceMode.Force);
+                Vector3 move = moveDirection * currentSpeed * Time.fixedDeltaTime;
+                _rigidbody.MovePosition(_rigidbody.position + move);
             }
             else if (!isMoving)
             {

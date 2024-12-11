@@ -5333,9 +5333,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 5654663772189066681}
-  _dynamicJoystick: {fileID: 0}
+  _joystick: {fileID: 0}
   _itemGrab: {fileID: 8140340149014149755}
-  _speed: 120
+  cameraTransform: {fileID: 0}
+  _speed: 2.5
   _sprintSpeedMultiplier: 1.5
   _speedCap: 180
   _slowFactor: 2
