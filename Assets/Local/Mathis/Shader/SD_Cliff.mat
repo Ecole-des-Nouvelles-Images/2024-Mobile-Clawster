@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: SD_WoodPlank 1
+  m_Name: SD_Cliff
   m_Shader: {fileID: 4800000, guid: ebd2dda7285c16d4d8d741abc140ba0f, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -34,7 +34,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _Opacity: 1
-    - _OutlineWidth: 0.15
+    - _OutlineWidth: 1
     - _RimStep: 0.65
     - _RimStepSmooth: 0.4
     - _ShadowStep: 0.5
