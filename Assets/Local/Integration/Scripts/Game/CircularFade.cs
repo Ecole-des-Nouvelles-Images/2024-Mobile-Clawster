@@ -6,7 +6,8 @@ namespace Local.Integration.Scripts.Game
 {
     public class CircularFade : Image
     {
-        public override Material materialForRendering
+        /*
+        public Material materialForRendering
         {
             get
             {
@@ -15,6 +16,7 @@ namespace Local.Integration.Scripts.Game
                 return material;
             }
         }
+        */
         
     }
 }
