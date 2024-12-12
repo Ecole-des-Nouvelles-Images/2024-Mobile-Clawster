@@ -43,8 +43,7 @@ namespace Local.Integration.Scripts.Game
         {
             _handAnimator = GetComponent<Animator>();
         }
-
-
+        
         private void Start()
         {
             _stamina = _maxStamina;
