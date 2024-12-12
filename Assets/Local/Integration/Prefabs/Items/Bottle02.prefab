@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 7043514199479417250}
   - component: {fileID: 6680449600684459200}
   - component: {fileID: -7293045090326245294}
-  - component: {fileID: 6801244679617840634}
-  m_Layer: 0
+  - component: {fileID: 731951360881005472}
+  m_Layer: 6
   m_Name: Bottle02
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -107,9 +107,9 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7700245793200039514}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 0.1
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -125,9 +125,9 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!64 &6801244679617840634
-MeshCollider:
+  m_CollisionDetection: 2
+--- !u!136 &731951360881005472
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -144,7 +144,8 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 2534964839176971238, guid: 8670359c616f35c4887147fd8176001a, type: 3}
+  serializedVersion: 2
+  m_Radius: 0.14
+  m_Height: 0.98
+  m_Direction: 0
+  m_Center: {x: 0.035348713, y: 0.14999996, z: 0}
