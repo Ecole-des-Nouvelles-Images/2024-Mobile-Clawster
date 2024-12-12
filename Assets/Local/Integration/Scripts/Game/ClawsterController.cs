@@ -1,4 +1,5 @@
 using System;
+using DG.Tweening;
 using Joystick_Pack.Scripts.Joysticks;
 using UnityEngine;
 using UnityEngine.UI;
@@ -23,6 +24,11 @@ namespace Local.Integration.Scripts.Game
         [SerializeField] private float _maxStamina;
         private float _stamina;
         private bool _staminaExhausted;
+        
+        [Header("Weight Settings")]
+        [SerializeField] private float _weightMaxCapacity;
+        [SerializeField] private Image _weightFillImage;
+        private float _weightHold = 0;
 
         [Header("UI Elements")]
         [SerializeField] private Image _redWheel;
@@ -42,12 +48,12 @@ namespace Local.Integration.Scripts.Game
         private void Start()
         {
             _stamina = _maxStamina;
+            _weightFillImage.fillAmount = _weightHold;
         }
 
         private void Update()
         {
             if (!GameManager.instance.HasStarted) return;
-
             HandleInput();
             HandleStamina();
         }
@@ -65,7 +71,6 @@ namespace Local.Integration.Scripts.Game
             {
                 HandleGrab();
                 _handAnimator.SetTrigger("Grab");
-
             }
         }
 
@@ -142,8 +147,33 @@ namespace Local.Integration.Scripts.Game
         {
             if (_hitObj != null && _hitObj.CompareTag("Item"))
             {
-                _handAnimator.SetTrigger("Grab");
-                _hitObj.SetActive(false);
+                ItemStats itemStats = _hitObj.GetComponent<ItemStats>();
+                if (itemStats != null && itemStats.Item != null)
+                {
+                    float itemWeight = itemStats.Item.Weight;
+
+                    if (_weightHold + itemWeight <= _weightMaxCapacity)
+                    {
+                        _weightHold += itemWeight;
+
+                        float targetFillAmount = _weightHold / _weightMaxCapacity;
+                        _weightFillImage.DOFillAmount(targetFillAmount, 0.5f).SetEase(Ease.InOutQuad);
+
+                        Debug.Log($"Poids ajouté : {itemWeight}, Poids total : {_weightHold}/{_weightMaxCapacity}");
+
+                        _handAnimator.SetTrigger("Grab");
+                        _hitObj.SetActive(false);
+                        _hitObj = null;
+                    }
+                    else
+                    {
+                        Debug.Log("Capacité maximale atteinte! Impossible de ramasser cet objet.");
+                    }
+                }
+                else
+                {
+                    Debug.LogWarning("L'objet n'a pas de poids défini.");
+                }
             }
         }
 
@@ -152,15 +182,16 @@ namespace Local.Integration.Scripts.Game
             if (other.CompareTag("Item"))
             {
                 _hitObj = other.gameObject;
+                other.GetComponent<Renderer>().sharedMaterial.SetVector("_OutlineColor", Vector4.one); 
             }
         }
 
         private void OnTriggerExit(Collider other)
         {
-
             if (other.CompareTag("Item"))
             {
                 _hitObj = null;
+                other.GetComponent<Renderer>().material.SetVector("_OutlineColor", new Vector4(0, 0, 0, 1));
             }
         }
     }
