@@ -1,5 +1,6 @@
 using System;
 using DG.Tweening;
+using JetBrains.Annotations;
 using Joystick_Pack.Scripts.Joysticks;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,7 +18,6 @@ namespace Local.Integration.Scripts.Game
         [Header("Movement Settings")]
         [SerializeField] private float _speed;
         [SerializeField] private float _sprintSpeedMultiplier = 1.5f;
-        [SerializeField] private float _speedCap;
         [SerializeField] private float _slowFactor;
 
         [Header("Stamina Settings")]
@@ -50,12 +50,14 @@ namespace Local.Integration.Scripts.Game
             _weightFillImage.fillAmount = _weightHold;
         }
 
-        private void Update()
+        private void Test()
         {
-            if (!GameManager.instance.HasStarted) return;
-            HandleInput();
-            HandleStamina();
+            if (Input.GetKey(KeyCode.Space))
+            {
+                HandleSprint();
+            }
         }
+        
 
         private void FixedUpdate()
         {
@@ -64,18 +66,18 @@ namespace Local.Integration.Scripts.Game
             HandleMovement();
         }
 
-        private void HandleInput()
+        [UsedImplicitly]
+        public void HandleGrab()
         {
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                HandleGrab();
-                _handAnimator.SetTrigger("Grab");
-            }
+            if (!GameManager.instance.HasStarted) return;
+
+            Grab();
+            _handAnimator.SetTrigger("Grab");
         }
 
-        private void HandleStamina()
+        public void HandleSprint()
         {
-            if (Input.GetKey(KeyCode.Space) && !_staminaExhausted)
+            if (!_staminaExhausted)
             {
                 if (_stamina > 0)
                 {
@@ -142,7 +144,7 @@ namespace Local.Integration.Scripts.Game
             _rigidbody.MovePosition(_rigidbody.position + move);
         }
         
-        private void HandleGrab()
+        private void Grab()
         {
             if (_hitObj != null && _hitObj.CompareTag("Item"))
             {
@@ -160,18 +162,9 @@ namespace Local.Integration.Scripts.Game
 
                         Debug.Log($"Poids ajouté : {itemWeight}, Poids total : {_weightHold}/{_weightMaxCapacity}");
 
-                        _handAnimator.SetTrigger("Grab");
                         _hitObj.SetActive(false);
                         _hitObj = null;
                     }
-                    else
-                    {
-                        Debug.Log("Capacité maximale atteinte! Impossible de ramasser cet objet.");
-                    }
-                }
-                else
-                {
-                    Debug.LogWarning("L'objet n'a pas de poids défini.");
                 }
             }
         }

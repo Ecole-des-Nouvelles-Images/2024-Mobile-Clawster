@@ -4905,6 +4905,59 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.43236285, y: -0.12134707, z: 0.31605142}
     m_Extent: {x: 0.40691507, y: 0.34466395, z: 0.24667026}
   m_DirtyAABB: 0
+--- !u!1 &8508545298773738841
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9127285407049876601}
+  - component: {fileID: 8608470577164561819}
+  m_Layer: 0
+  m_Name: HeadPlayer
+  m_TagString: HeadPlayer
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9127285407049876601
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8508545298773738841}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.648, z: 0.211}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6131495294893809037}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &8608470577164561819
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8508545298773738841}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.1, y: 0.1, z: 0.1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8581297357401743184
 GameObject:
   m_ObjectHideFlags: 0
@@ -5210,6 +5263,7 @@ Transform:
   - {fileID: 330755582037735169}
   - {fileID: 5943543166208578636}
   - {fileID: 1188389912546688899}
+  - {fileID: 9127285407049876601}
   - {fileID: 1684322734852000825}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5222,7 +5276,7 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9021562472261455225}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 48d38000a2f01a145abc0255f97366d7, type: 3}
+  m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 78bbd7079a29f404990d76b5d0e7f0cd, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
@@ -5489,7 +5543,7 @@ Rigidbody:
   m_GameObject: {fileID: 9021562472261455225}
   serializedVersion: 4
   m_Mass: 0.0000001
-  m_Drag: 20
+  m_Drag: 15
   m_AngularDrag: 0
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
