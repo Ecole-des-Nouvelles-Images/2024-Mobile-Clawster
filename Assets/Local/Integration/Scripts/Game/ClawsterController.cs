@@ -144,6 +144,7 @@ namespace Local.Integration.Scripts.Game
             {
                 _handAnimator.SetTrigger("Grab");
                 _hitObj.SetActive(false);
+                Debug.Log(_hitObj.GetComponent<ItemStats>().Item.Weight);
             }
         }
 
@@ -152,15 +153,16 @@ namespace Local.Integration.Scripts.Game
             if (other.CompareTag("Item"))
             {
                 _hitObj = other.gameObject;
+                other.GetComponent<Renderer>().sharedMaterial.SetVector("_OutlineColor", Vector4.one); 
             }
         }
 
         private void OnTriggerExit(Collider other)
         {
-
             if (other.CompareTag("Item"))
             {
                 _hitObj = null;
+                other.GetComponent<Renderer>().material.SetVector("_OutlineColor", new Vector4(0, 0, 0, 1));
             }
         }
     }
