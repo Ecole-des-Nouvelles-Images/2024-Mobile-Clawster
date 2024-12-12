@@ -23,6 +23,11 @@ namespace Local.Integration.Scripts.Game
         [SerializeField] private float _maxStamina;
         private float _stamina;
         private bool _staminaExhausted;
+        
+        [Header("Weight Settings")]
+        [SerializeField] private float _weightMaxCapacity;
+        [SerializeField] private Image _weightFillImage;
+        private float _weightHold = 0;
 
         [Header("UI Elements")]
         [SerializeField] private Image _redWheel;
@@ -42,6 +47,7 @@ namespace Local.Integration.Scripts.Game
         private void Start()
         {
             _stamina = _maxStamina;
+            _weightFillImage.fillAmount = _weightHold;
         }
 
         private void Update()
@@ -145,6 +151,8 @@ namespace Local.Integration.Scripts.Game
                 _handAnimator.SetTrigger("Grab");
                 _hitObj.SetActive(false);
                 Debug.Log(_hitObj.GetComponent<ItemStats>().Item.Weight);
+                _weightFillImage.fillAmount = _weightHold + _hitObj.GetComponent<ItemStats>().Item.Weight; ;
+
             }
         }
 
