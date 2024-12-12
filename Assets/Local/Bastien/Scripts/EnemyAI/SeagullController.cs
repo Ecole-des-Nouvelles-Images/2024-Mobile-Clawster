@@ -55,8 +55,6 @@ public class SeagullController : MonoBehaviour {
     }
 
     private IEnumerator Attack() {
-        if (!PlayerPresence) yield return null;
-        
         //First DOTween, draws the danger circle around the player
         _bezierLineRenderer.SplineSampleRange = new Vector2(0f, 0f);    //Mask the spline
         DOTween.To(()=> _bezierLineRenderer.SplineSampleRange, x =>     //Draw said spline
