@@ -1,4 +1,5 @@
 using System;
+using DG.Tweening;
 using Joystick_Pack.Scripts.Joysticks;
 using UnityEngine;
 using UnityEngine.UI;
@@ -53,10 +54,6 @@ namespace Local.Integration.Scripts.Game
         private void Update()
         {
             if (!GameManager.instance.HasStarted) return;
-
-            Debug.Log(_weightMaxCapacity);
-            Debug.Log(_weightHold);
-
             HandleInput();
             HandleStamina();
         }
@@ -74,7 +71,6 @@ namespace Local.Integration.Scripts.Game
             {
                 HandleGrab();
                 _handAnimator.SetTrigger("Grab");
-
             }
         }
 
@@ -159,7 +155,9 @@ namespace Local.Integration.Scripts.Game
                     if (_weightHold + itemWeight <= _weightMaxCapacity)
                     {
                         _weightHold += itemWeight;
-                        _weightFillImage.fillAmount = _weightHold / _weightMaxCapacity;
+
+                        float targetFillAmount = _weightHold / _weightMaxCapacity;
+                        _weightFillImage.DOFillAmount(targetFillAmount, 0.5f).SetEase(Ease.InOutQuad);
 
                         Debug.Log($"Poids ajouté : {itemWeight}, Poids total : {_weightHold}/{_weightMaxCapacity}");
 

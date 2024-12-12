@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2156145424193157020}
   - component: {fileID: 7760567835802612868}
   - component: {fileID: 8993138035976570155}
-  - component: {fileID: 2204773235043107604}
+  - component: {fileID: 7799216567285944668}
   m_Layer: 0
   m_Name: CigButt
   m_TagString: Item
@@ -126,8 +126,8 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &2204773235043107604
-MeshCollider:
+--- !u!65 &7799216567285944668
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -144,7 +144,6 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -125435165217083709, guid: 767cddd31179b7e4a8a32ab219736b25, type: 3}
+  serializedVersion: 3
+  m_Size: {x: 0.2272829, y: 0.096673325, z: 0.36802495}
+  m_Center: {x: 0.011185937, y: 0.045811467, z: -0.010996453}
