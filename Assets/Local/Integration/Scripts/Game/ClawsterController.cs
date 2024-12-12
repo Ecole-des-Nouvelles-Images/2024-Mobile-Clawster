@@ -54,6 +54,9 @@ namespace Local.Integration.Scripts.Game
         {
             if (!GameManager.instance.HasStarted) return;
 
+            Debug.Log(_weightMaxCapacity);
+            Debug.Log(_weightHold);
+
             HandleInput();
             HandleStamina();
         }
@@ -148,11 +151,31 @@ namespace Local.Integration.Scripts.Game
         {
             if (_hitObj != null && _hitObj.CompareTag("Item"))
             {
-                _handAnimator.SetTrigger("Grab");
-                _hitObj.SetActive(false);
-                Debug.Log(_hitObj.GetComponent<ItemStats>().Item.Weight);
-                _weightFillImage.fillAmount = _weightHold + _hitObj.GetComponent<ItemStats>().Item.Weight; ;
+                ItemStats itemStats = _hitObj.GetComponent<ItemStats>();
+                if (itemStats != null && itemStats.Item != null)
+                {
+                    float itemWeight = itemStats.Item.Weight;
 
+                    if (_weightHold + itemWeight <= _weightMaxCapacity)
+                    {
+                        _weightHold += itemWeight;
+                        _weightFillImage.fillAmount = _weightHold / _weightMaxCapacity;
+
+                        Debug.Log($"Poids ajouté : {itemWeight}, Poids total : {_weightHold}/{_weightMaxCapacity}");
+
+                        _handAnimator.SetTrigger("Grab");
+                        _hitObj.SetActive(false);
+                        _hitObj = null;
+                    }
+                    else
+                    {
+                        Debug.Log("Capacité maximale atteinte! Impossible de ramasser cet objet.");
+                    }
+                }
+                else
+                {
+                    Debug.LogWarning("L'objet n'a pas de poids défini.");
+                }
             }
         }
 

@@ -382,7 +382,7 @@ GameObject:
   - component: {fileID: 79383863}
   - component: {fileID: 79383862}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2336,6 +2336,26 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 112f9fa9359e9e440b696059cb73afcd, type: 3}
+--- !u!1 &995841881 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2928012516959706649, guid: 26369bbb10a184246a7de703cad9a484, type: 3}
+  m_PrefabInstance: {fileID: 3835704567994759270}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &995841885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 995841881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b92e4afe9b72e8e40915dc383620c0a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spawnPoint: {fileID: 0}
+  _itemPrefabs: []
+  _numberOfItemsToSpawn: 1
 --- !u!1001 &1014838878
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4616,7 +4636,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2928012516959706649, guid: 26369bbb10a184246a7de703cad9a484, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 995841885}
   m_SourcePrefab: {fileID: 100100000, guid: 26369bbb10a184246a7de703cad9a484, type: 3}
 --- !u!1001 &9178500916697772585
 PrefabInstance:
