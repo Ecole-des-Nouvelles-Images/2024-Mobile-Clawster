@@ -3,6 +3,7 @@ using DG.Tweening;
 using JetBrains.Annotations;
 using Joystick_Pack.Scripts.Joysticks;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Local.Integration.Scripts.Game
@@ -12,13 +13,14 @@ namespace Local.Integration.Scripts.Game
         [Header("Components")]
         [SerializeField] private Rigidbody _rigidbody;
         [SerializeField] private Joystick _joystick;
-        [SerializeField] private Transform cameraTransform;
+        [SerializeField] private Transform _cameraTransform;
         [SerializeField] private Collider _grabCollider;
         
         [Header("Movement Settings")]
         [SerializeField] private float _speed;
         [SerializeField] private float _sprintSpeedMultiplier = 1.5f;
         [SerializeField] private float _slowFactor;
+        private float _currentSpeed;
 
         [Header("Stamina Settings")]
         [SerializeField] private float _maxStamina;
@@ -28,7 +30,11 @@ namespace Local.Integration.Scripts.Game
         [Header("Weight Settings")]
         [SerializeField] private float _weightMaxCapacity;
         [SerializeField] private Image _weightFillImage;
-        private float _weightHold = 0;
+        private int _holdWeight = 0;
+        private int _numberOfHoldItem;
+        
+        [Header("Score Settings")]
+        [SerializeField] private int _holdScore;
 
         [Header("UI Elements")]
         [SerializeField] private Image _redWheel;
@@ -37,6 +43,7 @@ namespace Local.Integration.Scripts.Game
         private float _targetAngle;
         private GameObject _hitObj;
         private Animator _handAnimator;
+        private bool _isSprinting;
 
 
         private void Awake()
@@ -47,18 +54,9 @@ namespace Local.Integration.Scripts.Game
         private void Start()
         {
             _stamina = _maxStamina;
-            _weightFillImage.fillAmount = _weightHold;
-        }
-
-        private void Test()
-        {
-            if (Input.GetKey(KeyCode.Space))
-            {
-                HandleSprint();
-            }
+            _weightFillImage.fillAmount = _holdWeight;
         }
         
-
         private void FixedUpdate()
         {
             if (!GameManager.instance.HasStarted) return;
@@ -70,12 +68,17 @@ namespace Local.Integration.Scripts.Game
         public void HandleGrab()
         {
             if (!GameManager.instance.HasStarted) return;
-
             Grab();
             _handAnimator.SetTrigger("Grab");
         }
 
         public void HandleSprint()
+        {
+            if (!GameManager.instance.HasStarted) return;
+            _isSprinting = true;
+        }
+
+        public void HandleStamina()
         {
             if (!_staminaExhausted)
             {
@@ -113,8 +116,8 @@ namespace Local.Integration.Scripts.Game
         {
             Vector3 inputDirection = new Vector3(_joystick.Horizontal, 0f, _joystick.Vertical).normalized;
 
-            Vector3 cameraForward = Vector3.ProjectOnPlane(cameraTransform.forward, Vector3.up).normalized;
-            Vector3 cameraRight = Vector3.ProjectOnPlane(cameraTransform.right, Vector3.up).normalized;
+            Vector3 cameraForward = Vector3.ProjectOnPlane(_cameraTransform.forward, Vector3.up).normalized;
+            Vector3 cameraRight = Vector3.ProjectOnPlane(_cameraTransform.right, Vector3.up).normalized;
 
             Vector3 moveDirection = inputDirection.z * cameraForward + inputDirection.x * cameraRight;
             moveDirection.Normalize();
@@ -139,6 +142,10 @@ namespace Local.Integration.Scripts.Game
             {
                 currentSpeed *= _sprintSpeedMultiplier;
             }
+            else
+            {
+                _isSprinting = false;
+            }
 
             Vector3 move = moveDirection * currentSpeed * Time.fixedDeltaTime;
             _rigidbody.MovePosition(_rigidbody.position + move);
@@ -151,22 +158,27 @@ namespace Local.Integration.Scripts.Game
                 ItemStats itemStats = _hitObj.GetComponent<ItemStats>();
                 if (itemStats != null && itemStats.Item != null)
                 {
-                    float itemWeight = itemStats.Item.Weight;
-
-                    if (_weightHold + itemWeight <= _weightMaxCapacity)
+                    int itemWeight = itemStats.Item.Weight;
+                    int itemScore = itemStats.Item.Score;
+                    if (_holdWeight + itemWeight <= _weightMaxCapacity)
                     {
-                        _weightHold += itemWeight;
-
-                        float targetFillAmount = _weightHold / _weightMaxCapacity;
+                        _holdWeight += itemWeight;
+                        _holdScore += itemScore;
+                        
+                        float targetFillAmount = _holdWeight / _weightMaxCapacity;
                         _weightFillImage.DOFillAmount(targetFillAmount, 0.5f).SetEase(Ease.InOutQuad);
-
-                        Debug.Log($"Poids ajouté : {itemWeight}, Poids total : {_weightHold}/{_weightMaxCapacity}");
-
                         _hitObj.SetActive(false);
                         _hitObj = null;
                     }
                 }
             }
+        }
+
+        public void ValidateScore()
+        {
+            GameManager.instance.AddScore(_holdScore);
+            _holdWeight = 0;
+            _currentSpeed = _speed;
         }
 
         private void OnTriggerEnter(Collider other)
