@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 2156145424193157020}
   - component: {fileID: 7760567835802612868}
   - component: {fileID: 8993138035976570155}
-  - component: {fileID: 7799216567285944668}
-  m_Layer: 0
+  - component: {fileID: 318885576572435891}
+  m_Layer: 6
   m_Name: CigButt
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -107,9 +107,9 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5780739362500668114}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 0.1
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -125,9 +125,9 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!65 &7799216567285944668
-BoxCollider:
+  m_CollisionDetection: 2
+--- !u!136 &318885576572435891
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -144,6 +144,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.2272829, y: 0.096673325, z: 0.36802495}
-  m_Center: {x: 0.011185937, y: 0.045811467, z: -0.010996453}
+  serializedVersion: 2
+  m_Radius: 0.04
+  m_Height: 0.28
+  m_Direction: 2
+  m_Center: {x: -0.02, y: 0.045811467, z: -0.010996453}
