@@ -3959,6 +3959,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _waterPlane: {fileID: 1909116586}
+  drowningTime: 5
+  vignetteMaxIntensity: 1
+  blackScreen: {fileID: 0}
 --- !u!4 &1946342634 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1460724098440453104, guid: 112f9fa9359e9e440b696059cb73afcd, type: 3}
@@ -4740,6 +4743,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _waterPlane: {fileID: 4756917532378621383}
+  drowningTime: 5
+  vignetteMaxIntensity: 1
+  blackScreen: {fileID: 0}
 --- !u!95 &8479201537293183588
 Animator:
   serializedVersion: 5
