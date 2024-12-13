@@ -27,9 +27,11 @@ namespace Local.Integration.Scripts.MainMenu
         {
             HideMenu();
             _loadingBarObject.SetActive(true);
-            SceneManager.LoadSceneAsync(_gameScene);
+            AsyncOperation sceneLoadOperation = SceneManager.LoadSceneAsync(_gameScene);
+            _scenesToLoad.Add(sceneLoadOperation);
             StartCoroutine(ProgressLoadingBar());
         }
+
 
         private void HideMenu()
         {
@@ -46,8 +48,8 @@ namespace Local.Integration.Scripts.MainMenu
             {
                 while (!_scenesToLoad[i].isDone)
                 {
-                    loadProgress += _scenesToLoad[i].progress;
-                    _loadingBar.fillAmount = loadProgress / _scenesToLoad.Count;
+                    loadProgress = Mathf.Lerp(loadProgress, _scenesToLoad[i].progress, Time.deltaTime);
+                    _loadingBar.fillAmount = loadProgress;
                     yield return null;
                 }
             }

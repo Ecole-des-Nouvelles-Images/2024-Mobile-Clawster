@@ -9,13 +9,15 @@ namespace Local.Integration.Scripts.Game
         public ScoreData ScoreData;
         public static GameManager instance;
         
-        [Header("Game Start / End Variables")]
         public int CountdownTime;
         public string StartText;
         public int EndTime;
         public string EndText;
 
         public bool HasStarted;
+        
+        private int _holdScore;
+        private int _holdWeight;
 
         private void Awake()
         {
@@ -31,11 +33,11 @@ namespace Local.Integration.Scripts.Game
 
             LoadBestScore();
         }
+        
 
         public void AddScore(int points)
         {
             ScoreData.CurrentScore += points;
-
             if (ScoreData.CurrentScore > ScoreData.BestScore)
             {
                 ScoreData.BestScore = ScoreData.CurrentScore;

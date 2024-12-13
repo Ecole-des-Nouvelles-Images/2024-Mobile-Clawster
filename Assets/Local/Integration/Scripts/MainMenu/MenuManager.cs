@@ -9,6 +9,8 @@ namespace Local.Integration.Scripts.MainMenu
         [SerializeField] private GameObject _mainMenuCanvasGo;
         [SerializeField] private GameObject _settingsMenuCanvasGo;
         [SerializeField] private GameObject _volumeMenuCanvasGo;
+        [SerializeField] private GameObject _creditsMenuCanvasGo;
+
 
 
         [Header("First Selected Options")] [SerializeField]
@@ -22,6 +24,8 @@ namespace Local.Integration.Scripts.MainMenu
             _mainMenuCanvasGo.SetActive(true);
             _settingsMenuCanvasGo.SetActive(false);
             _volumeMenuCanvasGo.SetActive(false);
+            _creditsMenuCanvasGo.SetActive(false);
+
         }
         
         #region Canvas Activations
@@ -31,22 +35,34 @@ namespace Local.Integration.Scripts.MainMenu
             _mainMenuCanvasGo.SetActive(true);
             _settingsMenuCanvasGo.SetActive(false);
             _volumeMenuCanvasGo.SetActive(false);
+            _creditsMenuCanvasGo.SetActive(false);
 
             EventSystem.current.SetSelectedGameObject(_mainMenuFirst);
         }
 
         private void OpenSettingsMenuHandle()
         {
-            _settingsMenuCanvasGo.SetActive(true);
             _mainMenuCanvasGo.SetActive(false);
+            _settingsMenuCanvasGo.SetActive(true);
             _volumeMenuCanvasGo.SetActive(false);
+            _creditsMenuCanvasGo.SetActive(false);
         }
 
         private void OpenVolumeMenuHandle()
         {
-            _volumeMenuCanvasGo.SetActive(true);
             _mainMenuCanvasGo.SetActive(false);
             _settingsMenuCanvasGo.SetActive(false);
+            _volumeMenuCanvasGo.SetActive(true);
+            _creditsMenuCanvasGo.SetActive(false);
+        }
+        
+        
+        private void OpenCreditsMenuHandle()
+        {
+            _mainMenuCanvasGo.SetActive(false);
+            _settingsMenuCanvasGo.SetActive(false);
+            _volumeMenuCanvasGo.SetActive(false);
+            _creditsMenuCanvasGo.SetActive(true);
         }
 
 
@@ -55,6 +71,7 @@ namespace Local.Integration.Scripts.MainMenu
             _mainMenuCanvasGo.SetActive(false);
             _settingsMenuCanvasGo.SetActive(false);
             _volumeMenuCanvasGo.SetActive(false);
+            _creditsMenuCanvasGo.SetActive(false);
         }
 
         #endregion
@@ -72,6 +89,11 @@ namespace Local.Integration.Scripts.MainMenu
         public void OnSettingsVolumePress()
         {
             OpenVolumeMenuHandle();
+        }
+        
+        public void OnSettingsCreditsPress()
+        {
+            OpenCreditsMenuHandle();
         }
 
         public void OnSettingsBackPress()

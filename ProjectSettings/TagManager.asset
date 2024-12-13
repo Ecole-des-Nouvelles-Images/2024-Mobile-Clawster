@@ -7,6 +7,9 @@ TagManager:
   - Item
   - Floor
   - CameraZone
+  - Ground
+  - Wall
+  - HeadPlayer
   layers:
   - Default
   - TransparentFX
