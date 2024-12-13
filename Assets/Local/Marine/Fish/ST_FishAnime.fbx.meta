@@ -33,7 +33,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Armature|ArmatureAction
+      name: Fish_Wiggle
       takeName: Armature|ArmatureAction
       internalID: 4781951162920444690
       firstFrame: 0
