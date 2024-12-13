@@ -1,3 +1,4 @@
+using System;
 using Local.Integration.Scripts.SCORE;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -8,13 +9,14 @@ namespace Local.Integration.Scripts.Game
     {
         public ScoreData ScoreData;
         public static GameManager instance;
-        
         public int CountdownTime;
         public string StartText;
         public int EndTime;
         public string EndText;
-
         public bool HasStarted;
+
+       [SerializeField] private GameObject _bungalowUIGo;
+       
         
         private int _holdScore;
         private int _holdWeight;
@@ -30,11 +32,10 @@ namespace Local.Integration.Scripts.Game
             {
                 Destroy(gameObject);
             }
-
+            CloseBungalowCanvas();
             LoadBestScore();
         }
         
-
         public void AddScore(int points)
         {
             ScoreData.CurrentScore += points;
@@ -59,6 +60,24 @@ namespace Local.Integration.Scripts.Game
         {
             PlayerPrefs.SetInt("BestScore", ScoreData.BestScore);
             PlayerPrefs.Save();
+        }
+
+        private void OpenBungalowCanvas()
+        {
+            _bungalowUIGo.gameObject.SetActive(true);
+        }
+        
+        public void CloseBungalowCanvas()
+        {
+            _bungalowUIGo.gameObject.SetActive(false);
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.CompareTag("Player")) ;
+            {
+                OpenBungalowCanvas();
+            }
         }
     }
 }

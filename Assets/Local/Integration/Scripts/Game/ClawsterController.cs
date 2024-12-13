@@ -63,7 +63,7 @@ namespace Local.Integration.Scripts.Game
 
             HandleMovement();
         }
-
+        
         [UsedImplicitly]
         public void HandleGrab()
         {
@@ -138,7 +138,7 @@ namespace Local.Integration.Scripts.Game
             }
 
             float currentSpeed = _speed;
-            if (Input.GetKey(KeyCode.Space) && !_staminaExhausted)
+            if (_isSprinting && !_staminaExhausted)
             {
                 currentSpeed *= _sprintSpeedMultiplier;
             }
@@ -179,6 +179,7 @@ namespace Local.Integration.Scripts.Game
             GameManager.instance.AddScore(_holdScore);
             _holdWeight = 0;
             _currentSpeed = _speed;
+            _weightFillImage.DOFillAmount(0, 0.2f).SetEase(Ease.InOutQuad);
         }
 
         private void OnTriggerEnter(Collider other)

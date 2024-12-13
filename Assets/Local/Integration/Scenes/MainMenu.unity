@@ -952,7 +952,7 @@ MonoBehaviour:
   _loadingBar: {fileID: 300461610}
   _objectsToHide:
   - {fileID: 150106826}
-  _gameScene: Game
+  _gameScene: GameFinal
 --- !u!4 &711127583
 Transform:
   m_ObjectHideFlags: 0

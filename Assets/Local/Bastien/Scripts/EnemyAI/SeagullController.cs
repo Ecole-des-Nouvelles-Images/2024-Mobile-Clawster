@@ -37,9 +37,7 @@ public class SeagullController : MonoBehaviour {
     private Vector3 _startPos, _endPos, _targetPos;
     private Vector3 _seagullAimPosition;
     
-    //Setup everything for the next move
     private void Setup() {
-        Debug.Log("Setup");
         transform.position = _target.transform.position;            //Center animation on Clawster
         _attackAngle = Random.Range(0f, 360f);                      //Choose a random Y angle
         transform.rotation = Quaternion.Euler(0, _attackAngle, 0);  //Apply said angle
