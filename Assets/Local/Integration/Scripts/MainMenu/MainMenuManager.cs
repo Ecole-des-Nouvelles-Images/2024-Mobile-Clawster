@@ -25,8 +25,6 @@ namespace Local.Integration.Scripts.MainMenu
 
         public void StartGame()
         {
-            Debug.Log("StartGame called");
-
             HideMenu();
             _loadingBarObject.SetActive(true);
             AsyncOperation sceneLoadOperation = SceneManager.LoadSceneAsync(_gameScene);
