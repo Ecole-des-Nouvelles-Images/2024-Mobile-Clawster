@@ -14,7 +14,7 @@ public class ItemGenerator : MonoBehaviour {
     
     private void Update() {
         if (Input.GetKeyDown(KeyCode.I)) {
-            StartCoroutine(GenerateItems());
+            GenerateItems();
         }
     }
 
@@ -26,7 +26,7 @@ public class ItemGenerator : MonoBehaviour {
         }
     }*/
 
-    public IEnumerator GenerateItems() {
+    public void GenerateItems() {
         for (int i = 0; i < _totalItems; i++) {
             float offx = Random.Range(_minOffset, _maxOffset);
 			Vector3 itemPos = (_origin.position + new Vector3(offx, 0, 0));
@@ -38,7 +38,6 @@ public class ItemGenerator : MonoBehaviour {
             GameObject randomItem = _itemPrefabs[randomIndex];
 
             Instantiate(randomItem, itemPos, itemRot);
-            yield return new WaitForSeconds(1f);
         }
     }
 }

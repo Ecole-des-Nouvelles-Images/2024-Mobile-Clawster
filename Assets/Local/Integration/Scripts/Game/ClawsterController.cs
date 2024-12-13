@@ -186,7 +186,7 @@ namespace Local.Integration.Scripts.Game
             if (other.CompareTag("Item"))
             {
                 _hitObj = other.gameObject;
-                other.GetComponent<Renderer>().sharedMaterial.SetVector("_OutlineColor", Vector4.one); 
+                other.GetComponent<Renderer>().material.SetVector("_OutlineColor", Vector4.one); 
             }
         }
 
