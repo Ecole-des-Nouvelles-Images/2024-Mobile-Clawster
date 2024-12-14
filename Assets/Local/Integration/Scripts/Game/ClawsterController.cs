@@ -1,7 +1,6 @@
-using System;
+using System.Collections;
 using DG.Tweening;
 using JetBrains.Annotations;
-using Joystick_Pack.Scripts.Joysticks;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -30,6 +29,10 @@ namespace Local.Integration.Scripts.Game
         [SerializeField] private Image _weightFillImage;
         private float _weightHold = 0;
 
+        [Header("QTE Settings")] 
+        [SerializeField] private float _maxQTETime;
+        [SerializeField] private int _maxTouchCount;
+
         [Header("UI Elements")]
         [SerializeField] private Image _redWheel;
         [SerializeField] private Image _greenWheel;
@@ -37,6 +40,9 @@ namespace Local.Integration.Scripts.Game
         private float _targetAngle;
         private GameObject _hitObj;
         private Animator _handAnimator;
+        private bool _isAFish;              //Self-explanatory
+        private bool _isInQTE;              //Is the QTE running ?
+        private int _currentTouchCount;
 
 
         private void Awake()
@@ -57,7 +63,7 @@ namespace Local.Integration.Scripts.Game
                 HandleSprint();
             }
         }
-        
+
 
         private void FixedUpdate()
         {
@@ -71,8 +77,24 @@ namespace Local.Integration.Scripts.Game
         {
             if (!GameManager.instance.HasStarted) return;
 
-            Grab();
-            _handAnimator.SetTrigger("Grab");
+            if (_isAFish)
+            {
+                if (_isInQTE)
+                {
+                    _currentTouchCount++;
+                }
+                else
+                {
+                    _currentTouchCount = 0;
+                    StartCoroutine(QTEGrab());
+                }
+            }
+            else
+            {
+                Grab();
+                _handAnimator.SetTrigger("Grab");
+            }
+            
         }
 
         public void HandleSprint()
@@ -112,7 +134,6 @@ namespace Local.Integration.Scripts.Game
         private void HandleMovement()
         {
             Vector3 inputDirection = new Vector3(_joystick.Horizontal, 0f, _joystick.Vertical).normalized;
-
             Vector3 cameraForward = Vector3.ProjectOnPlane(cameraTransform.forward, Vector3.up).normalized;
             Vector3 cameraRight = Vector3.ProjectOnPlane(cameraTransform.right, Vector3.up).normalized;
 
@@ -169,21 +190,70 @@ namespace Local.Integration.Scripts.Game
             }
         }
 
+        private IEnumerator QTEGrab()
+        {
+            _isInQTE = true;
+            
+            for(float dt = 0f; dt < _maxQTETime; dt += Time.deltaTime)
+            {
+                if (_currentTouchCount >= _maxTouchCount)
+                {
+                    Debug.Log("QTE Successful!");
+                    ItemStats itemStats = _hitObj.GetComponent<ItemStats>();
+                    if (itemStats != null && itemStats.Item != null)
+                    {
+                        float itemWeight = itemStats.Item.Weight;
+
+                        if (_weightHold + itemWeight <= _weightMaxCapacity)
+                        {
+                            _weightHold += itemWeight;
+
+                            float targetFillAmount = _weightHold / _weightMaxCapacity;
+                            _weightFillImage.DOFillAmount(targetFillAmount, 0.5f).SetEase(Ease.InOutQuad);
+
+                            Debug.Log($"Poids ajouté : {itemWeight}, Poids total : {_weightHold}/{_weightMaxCapacity}");
+
+                            _hitObj.SetActive(false);
+                            _hitObj = null;
+                        }
+                    }
+                    yield break;
+                }
+                yield return new WaitForEndOfFrame();
+            }
+
+            if (_currentTouchCount < _maxTouchCount)
+            {
+                Debug.Log("QTE Failed");
+            }
+            _isInQTE = false;
+        }
+
         private void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag("Item"))
             {
                 _hitObj = other.gameObject;
+                other.GetComponent<Renderer>().material.SetVector("_OutlineColor", Vector4.one);
+                _isAFish = false;
+            }
+
+            if (other.CompareTag("Fish"))
+            {
+                _hitObj = other.gameObject;
                 other.GetComponent<Renderer>().material.SetVector("_OutlineColor", Vector4.one); 
+                _isAFish = true;
             }
         }
 
         private void OnTriggerExit(Collider other)
         {
-            if (other.CompareTag("Item"))
+            if (other.CompareTag("Item") || other.CompareTag("Fish"))
             {
                 _hitObj = null;
                 other.GetComponent<Renderer>().material.SetVector("_OutlineColor", new Vector4(0, 0, 0, 1));
+                _isAFish = false;
+                _currentTouchCount = 0;
             }
         }
     }
