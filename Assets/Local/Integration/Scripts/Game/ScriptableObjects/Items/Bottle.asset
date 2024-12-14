@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d289fd772ca609842bf1276739996434, type: 3}
   m_Name: Bottle
   m_EditorClassIdentifier: 
+  Name: Bouteille
   Weight: 3
-  Score: 0
+  Score: 60

@@ -5398,15 +5398,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 5654663772189066681}
   _joystick: {fileID: 0}
-  cameraTransform: {fileID: 0}
+  _cameraTransform: {fileID: 0}
   _grabCollider: {fileID: 5214618743536043051}
   _speed: 2.5
-  _sprintSpeedMultiplier: 1.5
-  _speedCap: 180
+  _sprintSpeedMultiplier: 3
   _slowFactor: 2
   _maxStamina: 100
   _weightMaxCapacity: 10
   _weightFillImage: {fileID: 0}
+  _holdScore: 0
   _redWheel: {fileID: 0}
   _greenWheel: {fileID: 0}
 --- !u!114 &678499683890828525
