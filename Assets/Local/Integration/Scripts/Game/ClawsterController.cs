@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using DG.Tweening;
 using JetBrains.Annotations;
 using Joystick_Pack.Scripts.Joysticks;
@@ -44,6 +45,8 @@ namespace Local.Integration.Scripts.Game
         private GameObject _hitObj;
         private Animator _handAnimator;
         private bool _isSprinting;
+        private Dictionary<string, CollectedItemData> _collectedItems = new Dictionary<string, CollectedItemData>();
+
 
 
         private void Awake()
@@ -158,29 +161,50 @@ namespace Local.Integration.Scripts.Game
                 ItemStats itemStats = _hitObj.GetComponent<ItemStats>();
                 if (itemStats != null && itemStats.Item != null)
                 {
+                    string itemName = itemStats.Item.Name;
                     int itemWeight = itemStats.Item.Weight;
                     int itemScore = itemStats.Item.Score;
+
                     if (_holdWeight + itemWeight <= _weightMaxCapacity)
                     {
                         _holdWeight += itemWeight;
                         _holdScore += itemScore;
-                        
+
+                        if (_collectedItems.ContainsKey(itemName))
+                        {
+                            _collectedItems[itemName].Quantity++;
+                        }
+                        else
+                        {
+                            _collectedItems[itemName] = new CollectedItemData(itemName, itemWeight, itemScore);
+                        }
+
                         float targetFillAmount = _holdWeight / _weightMaxCapacity;
                         _weightFillImage.DOFillAmount(targetFillAmount, 0.5f).SetEase(Ease.InOutQuad);
                         _hitObj.SetActive(false);
                         _hitObj = null;
                     }
+
+                    if ((_holdWeight + itemWeight > _weightMaxCapacity))
+                    {
+                        if (_hitObj != null) GameManager.instance.ShowFloatingText(_hitObj.transform.position, 1f);
+                    }
                 }
             }
         }
 
+
         public void ValidateScore()
         {
             GameManager.instance.AddScore(_holdScore);
+            GameManager.instance.DisplayCollectedItems(_collectedItems); 
+            _holdScore = 0;
             _holdWeight = 0;
-            _currentSpeed = _speed;
+            _collectedItems.Clear();
             _weightFillImage.DOFillAmount(0, 0.2f).SetEase(Ease.InOutQuad);
+            GameManager.instance.UpdateScoreUI();
         }
+
 
         private void OnTriggerEnter(Collider other)
         {
@@ -201,3 +225,20 @@ namespace Local.Integration.Scripts.Game
         }
     }
 }
+
+public class CollectedItemData
+{
+    public string Name { get; set; }
+    public int Weight { get; set; }
+    public int Score { get; set; }
+    public int Quantity { get; set; }
+
+    public CollectedItemData(string name, int weight, int score, int quantity = 1)
+    {
+        Name = name;
+        Weight = weight;
+        Score = score;
+        Quantity = quantity;
+    }
+}
+

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1105787332250553480}
   - component: {fileID: 2568707329220548029}
   - component: {fileID: 8363188145325053323}
+  - component: {fileID: 3137005206759209718}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -53,6 +54,9 @@ MonoBehaviour:
   EndText: 
   HasStarted: 0
   _bungalowUIGo: {fileID: 0}
+  _scoreText: {fileID: 0}
+  _collectedItemsText: {fileID: 0}
+  _floatingTextPrefab: {fileID: 1670952906825007081, guid: 5d64db5f64c3cd14f89009c12f1673ea, type: 3}
 --- !u!114 &2568707329220548029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -122,3 +126,16 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 8.793644, y: 1.7154455, z: 6.437149}
   m_Center: {x: 0.1473484, y: 5.380985, z: -46.41562}
+--- !u!114 &3137005206759209718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2928012516959706649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 301ebe5424b9cdb4db734b8ebd134814, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fpsText: {fileID: 0}
