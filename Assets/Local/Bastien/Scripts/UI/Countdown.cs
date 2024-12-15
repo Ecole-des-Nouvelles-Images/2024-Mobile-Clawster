@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Security.Cryptography;
 using DG.Tweening;
+using Local.Integration.Scripts.Game;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -27,7 +28,7 @@ public class Countdown : MonoBehaviour {
         _gameTimerText.transform.DOScale(Vector3.one, 1.1f).SetEase(_easeInOut);
 
         if (time == 0) {
-            gm.GameStarted = true;
+            gm.HasStarted = true;
             Debug.Log("Game Started");
             yield break;
         }

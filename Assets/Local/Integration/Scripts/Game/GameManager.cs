@@ -12,18 +12,19 @@ namespace Local.Integration.Scripts.Game
     {
         public ScoreData ScoreData;
         public static GameManager instance;
+        public int GameplayTime;
         public int CountdownTime;
         public string StartText;
         public int EndTime;
         public string EndText;
         public bool HasStarted;
 
+        public float RemainingTime;
+
         [SerializeField] private GameObject _bungalowUIGo;
         [SerializeField] private TextMeshProUGUI _scoreText;
         [SerializeField] private TextMeshProUGUI _collectedItemsText;
         [SerializeField] private TextMeshPro _floatingTextPrefab;
-        [SerializeField] private Camera _mainCamera;
-
         private Dictionary<string, int> _validatedItems = new Dictionary<string, int>();
 
         private void Awake()
@@ -42,6 +43,16 @@ namespace Local.Integration.Scripts.Game
             CloseBungalowCanvas();
             LoadBestScore();
             UpdateScoreUI();
+        }
+
+        private void Start()
+        {
+            RemainingTime = GameplayTime + CountdownTime;
+        }
+        
+        private void Update()
+        {
+            RemainingTime -= Time.deltaTime;
         }
 
         public void UpdateScoreUI()
@@ -149,5 +160,6 @@ namespace Local.Integration.Scripts.Game
             floatingText.DOFade(0, 1f).SetEase(Ease.InCubic).OnComplete(() => Destroy(floatingText.gameObject));
             Destroy(floatingText, destroyTime);
         }
+
     }
 }
