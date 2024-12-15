@@ -176,25 +176,34 @@ namespace Local.Integration.Scripts.Game
 
         private IEnumerator QTEGrab() {
             _isInQTE = true;
-
             for (float dt = 0f; dt < _maxQTETime; dt += Time.deltaTime) {
                 if (_currentTouchCount >= _maxTouchCount) {
                     Debug.Log("QTE Successful!");
                     ItemStats itemStats = _hitObj.GetComponent<ItemStats>();
                     if (itemStats != null && itemStats.Item != null) {
-                        float itemWeight = itemStats.Item.Weight;
-                        
+                        string itemName = itemStats.Item.Name;
+                        int itemWeight = itemStats.Item.Weight;
+                        int itemScore = itemStats.Item.Score;
+
                         if (_weightHold + itemWeight <= _weightMaxCapacity) {
                             _weightHold += itemWeight;
+                            _holdScore += itemScore;
+
+                            if (_collectedItems.ContainsKey(itemName)) {
+                                _collectedItems[itemName].Quantity++;
+                            } else {
+                                _collectedItems[itemName] = new CollectedItemData(itemName, itemWeight, itemScore);
+                            }
 
                             float targetFillAmount = _weightHold / _weightMaxCapacity;
                             _weightFillImage.DOFillAmount(targetFillAmount, 0.5f).SetEase(Ease.InOutQuad);
 
-                            Debug.Log(
-                                $"Poids ajouté : {itemWeight}, Poids total : {_weightHold}/{_weightMaxCapacity}");
+                            Debug.Log($"Poids ajouté : {itemWeight}, Poids total : {_weightHold}/{_weightMaxCapacity}");
 
                             _hitObj.SetActive(false);
                             _hitObj = null;
+                            _isInQTE = false;
+                            _isAFish = false;
                             yield break;
                         }
                     }
@@ -217,18 +226,22 @@ namespace Local.Integration.Scripts.Game
                 _hitObj = other.gameObject;
                 other.GetComponent<Renderer>().material.SetVector("_OutlineColor", Vector4.one);
                 _isAFish = false;
+                _isInQTE = false;
             }
 
             if (other.CompareTag("Fish")) {
+                StopAllCoroutines();
                 _hitObj = other.gameObject;
                 other.GetComponent<Renderer>().material.SetVector("_OutlineColor", Vector4.one);
                 _isAFish = true;
+                _isInQTE = false;
             }
         }
 
         private void OnTriggerExit(Collider other)
         {
             if (other.CompareTag("Item") || other.CompareTag("Fish")) {
+                StopAllCoroutines();
                 _hitObj = null;
                 other.GetComponent<Renderer>().material.SetVector("_OutlineColor", new Vector4(0, 0, 0, 1));
                 _isAFish = false;
