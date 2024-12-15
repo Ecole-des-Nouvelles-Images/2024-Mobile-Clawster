@@ -21,13 +21,14 @@ namespace Local.Integration.Scripts.MainMenu
         private bool _isMusicEnabled;
         private bool _isSoundEnabled;
 
+        private const string MusicVolumeKey = "MusicVolume";
+        private const string SoundsVolumeKey = "SoundsVolume";
+        private const string MusicEnabledKey = "MusicEnabled";
+        private const string SoundsEnabledKey = "SoundsEnabled";
+
         void Start()
         {
-            _musicSlider.value = MusicSource.volume * 100f;
-            _soundsSlider.value = SoundSource.volume * 100f;
-
-            _isMusicEnabled = true;
-            _isSoundEnabled = true;
+            LoadSettings();
         }
 
         public void SetMusicVolume(float sliderValue)
@@ -35,9 +36,10 @@ namespace Local.Integration.Scripts.MainMenu
             if (_isMusicEnabled)
             {
                 float linearVolume = sliderValue / 8f;
-                float decibelVolume = MapToDecibelRange(linearVolume, -40f, 0f);
+                float decibelVolume = MapToDecibelRange(linearVolume, -80f, 0f);
                 _audioMixer.SetFloat("musicVolume", decibelVolume);
                 MusicSource.volume = linearVolume;
+                PlayerPrefs.SetFloat(MusicVolumeKey, sliderValue);
             }
         }
 
@@ -46,53 +48,75 @@ namespace Local.Integration.Scripts.MainMenu
             if (_isSoundEnabled)
             {
                 float linearVolume = sliderValue / 8f;
-                float decibelVolume = MapToDecibelRange(linearVolume, -40f, 0f);
+                float decibelVolume = MapToDecibelRange(linearVolume, -80f, 0f);
                 _audioMixer.SetFloat("soundsVolume", decibelVolume);
                 SoundSource.volume = linearVolume;
+                PlayerPrefs.SetFloat(SoundsVolumeKey, sliderValue);
             }
         }
 
         public void ToggleMusic()
         {
-            if (_isMusicEnabled)
-            {
-                _musicSlider.interactable = false;
-                MusicSource.volume = 0;
-                _musicSlider.value = 0;
-                _toggleMusicButton.GetComponentInChildren<TextMeshProUGUI>().text = "OFF";
-                _isMusicEnabled = false;
-            }
-            else
-            {
-                _musicSlider.interactable = true;
-                MusicSource.volume = _musicSlider.value / 8f;
-                _toggleMusicButton.GetComponentInChildren<TextMeshProUGUI>().text = "ON";
-                _isMusicEnabled = true;
-            }
+            _isMusicEnabled = !_isMusicEnabled;
+            UpdateMusicToggleButton();
+            PlayerPrefs.SetInt(MusicEnabledKey, _isMusicEnabled ? 1 : 0);
         }
 
         public void ToggleSounds()
         {
-            if (_isSoundEnabled)
-            {
-                _soundsSlider.interactable = false;
-                SoundSource.volume = 0;
-                _soundsSlider.value = 0;
-                _toggleSoundButton.GetComponentInChildren<TextMeshProUGUI>().text = "OFF";
-                _isSoundEnabled = false;
-            }
-            else
-            {
-                _soundsSlider.interactable = true;
-                SoundSource.volume = _soundsSlider.value / 8f;
-                _toggleSoundButton.GetComponentInChildren<TextMeshProUGUI>().text = "ON";
-                _isSoundEnabled = true;
-            }
+            _isSoundEnabled = !_isSoundEnabled;
+            UpdateSoundToggleButton();
+            PlayerPrefs.SetInt(SoundsEnabledKey, _isSoundEnabled ? 1 : 0);
         }
 
         private float MapToDecibelRange(float linear, float minDb, float maxDb)
         {
             return Mathf.Lerp(minDb, maxDb, linear);
+        }
+
+        private void LoadSettings()
+        {
+            _musicSlider.value = PlayerPrefs.GetFloat(MusicVolumeKey, 8f);
+            _soundsSlider.value = PlayerPrefs.GetFloat(SoundsVolumeKey, 8f);
+
+            _isMusicEnabled = PlayerPrefs.GetInt(MusicEnabledKey, 1) == 1;
+            _isSoundEnabled = PlayerPrefs.GetInt(SoundsEnabledKey, 1) == 1;
+
+            SetMusicVolume(_musicSlider.value);
+            SetSoundsVolume(_soundsSlider.value);
+
+            UpdateMusicToggleButton();
+            UpdateSoundToggleButton();
+        }
+
+        private void UpdateMusicToggleButton()
+        {
+            _musicSlider.interactable = _isMusicEnabled;
+            _toggleMusicButton.GetComponentInChildren<TextMeshProUGUI>().text = _isMusicEnabled ? "ON" : "OFF";
+            if (!_isMusicEnabled)
+            {
+                MusicSource.volume = 0;
+                _musicSlider.value = 0;
+            }
+            else
+            {
+                MusicSource.volume = _musicSlider.value / 8f;
+            }
+        }
+
+        private void UpdateSoundToggleButton()
+        {
+            _soundsSlider.interactable = _isSoundEnabled;
+            _toggleSoundButton.GetComponentInChildren<TextMeshProUGUI>().text = _isSoundEnabled ? "ON" : "OFF";
+            if (!_isSoundEnabled)
+            {
+                SoundSource.volume = 0;
+                _soundsSlider.value = 0;
+            }
+            else
+            {
+                SoundSource.volume = _soundsSlider.value / 8f;
+            }
         }
     }
 }
