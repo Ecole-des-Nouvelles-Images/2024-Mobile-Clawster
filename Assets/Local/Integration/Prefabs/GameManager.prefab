@@ -57,10 +57,11 @@ MonoBehaviour:
   HasEnded: 0
   RemainingTime: 0
   _bungalowUIGo: {fileID: 0}
-  _panelEndGame: {fileID: 0}
-  _objectsToHideEndGame:
-  - {fileID: 0}
-  - {fileID: 0}
+  _blackScreen: {fileID: 0}
+  _panelWin: {fileID: 0}
+  _panelWinText: {fileID: 0}
+  _panelGameOver: {fileID: 0}
+  _gameCanvas: {fileID: 0}
   _scoreText: {fileID: 0}
   _collectedItemsText: {fileID: 0}
   _floatingTextPrefab: {fileID: 1670952906825007081, guid: 5d64db5f64c3cd14f89009c12f1673ea, type: 3}

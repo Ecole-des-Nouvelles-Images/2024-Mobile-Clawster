@@ -21,9 +21,11 @@ namespace Local.Integration.Scripts.Game
         public bool HasEnded;
 
         public float RemainingTime;
-
+        
         [SerializeField] private GameObject _bungalowUIGo;
+        [SerializeField] private GameObject _blackScreen;
         [SerializeField] private GameObject _panelWin;
+        [SerializeField] private TextMeshProUGUI _panelWinText;
         [SerializeField] private GameObject _panelGameOver;
         [SerializeField] private Canvas _gameCanvas;
         [SerializeField] private TextMeshProUGUI _scoreText;
@@ -79,7 +81,7 @@ namespace Local.Integration.Scripts.Game
             UpdateScoreUI();
         }
 
-        public void ResetScore()
+        private void ResetScore()
         {
             ScoreData.CurrentScore = 0;
             _validatedItems.Clear();
@@ -139,26 +141,38 @@ namespace Local.Integration.Scripts.Game
 
                 AddScore(item.Score * item.Quantity);
             }
-
             UpdateCollectedItemsUI();
-
             OpenBungalowCanvas();
         }
 
         public void Win()
         {
-            HasEnded = true;
-            _gameCanvas.enabled = false;
-            _panelWin.transform.localScale = Vector3.zero;
-            _panelWin.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack);            
+            if (!HasEnded)
+            {
+                HasEnded = true;
+                _blackScreen.SetActive(true);
+                UpdateWinUI();
+                _gameCanvas.enabled = false;
+                _panelWin.transform.localScale = Vector3.zero;
+                _panelWin.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack);  
+            }
         }
 
         public void GameOver()
         {
-            HasEnded = true;
-            _gameCanvas.enabled = false;
-            _panelGameOver.transform.localScale = Vector3.zero;
-            _panelGameOver.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack);
+            if (!HasEnded)
+            {
+                HasEnded = true;
+                _blackScreen.SetActive(true);
+                _gameCanvas.enabled = false;
+                _panelGameOver.transform.localScale = Vector3.zero;
+                _panelGameOver.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack);
+            }
+        }
+
+        private void UpdateWinUI()
+        {
+            _panelWinText.text = "Ton Score\n " + $"{ScoreData.CurrentScore}\n" + "Meilleur Score\n " + $"{ScoreData.BestScore}";
         }
         
         private void UpdateCollectedItemsUI()
