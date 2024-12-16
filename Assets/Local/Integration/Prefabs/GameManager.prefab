@@ -55,6 +55,7 @@ MonoBehaviour:
   EndText: Finish!
   HasStarted: 0
   HasEnded: 0
+  RemainingTime: 0
   _bungalowUIGo: {fileID: 0}
   _blackScreen: {fileID: 0}
   _panelWin: {fileID: 0}
@@ -64,7 +65,6 @@ MonoBehaviour:
   _scoreText: {fileID: 0}
   _collectedItemsText: {fileID: 0}
   _floatingTextPrefab: {fileID: 1670952906825007081, guid: 5d64db5f64c3cd14f89009c12f1673ea, type: 3}
-  _remainingTime: 50
 --- !u!114 &2568707329220548029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78,6 +78,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gameTimerText: {fileID: 0}
+  _scoreText: {fileID: 0}
   _easeInOut:
     serializedVersion: 2
     m_Curve:
