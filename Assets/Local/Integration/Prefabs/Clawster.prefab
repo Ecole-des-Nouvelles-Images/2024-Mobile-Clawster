@@ -5401,7 +5401,7 @@ MonoBehaviour:
   _cameraTransform: {fileID: 0}
   _grabCollider: {fileID: 5214618743536043051}
   _speed: 2.5
-  _sprintSpeedMultiplier: 3
+  _sprintSpeedMultiplier: 1.5
   _slowFactor: 2
   _maxStamina: 100
   _maxHealth: 0
@@ -5545,7 +5545,7 @@ Rigidbody:
   m_GameObject: {fileID: 9021562472261455225}
   serializedVersion: 4
   m_Mass: 0.0000001
-  m_Drag: 15
+  m_Drag: 10
   m_AngularDrag: 0
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}

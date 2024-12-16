@@ -46,8 +46,8 @@ namespace Local.Integration.Scripts.Game
         [SerializeField] private int _maxTouchCount;
 
         [Header("UI Elements")] [SerializeField]
-        private Image _redWheel;
-
+        private GameObject _wholeWheel;
+        [SerializeField] private Image _redWheel;
         [SerializeField] private Image _greenWheel;
 
         private int _health;
@@ -61,17 +61,22 @@ namespace Local.Integration.Scripts.Game
         private bool _isSprinting;
         private Dictionary<string, CollectedItemData> _collectedItems = new Dictionary<string, CollectedItemData>();
 
+        private CanvasGroup _wholeWheelCanvasGroup;
 
         private void Awake()
         {
             _handAnimator = GetComponent<Animator>();
+            _wholeWheelCanvasGroup = _wholeWheel.GetComponent<CanvasGroup>();
+            HideWholeWheel();
         }
 
         private void Start()
         {
+            _weightHold = 0;
             _stamina = _maxStamina;
             _health = _maxHealth;
             _weightFillImage.fillAmount = _weightHold / _weightMaxCapacity;
+            HideWholeWheel();
         }
 
         private void FixedUpdate()
@@ -106,19 +111,45 @@ namespace Local.Integration.Scripts.Game
             }
         }
 
-        public void HandleSprint()
+        private void Update()
+        {
+            if (!_isSprinting && _stamina < _maxStamina)
+            {
+                _stamina += 10 * Time.deltaTime;
+                _stamina = Mathf.Clamp(_stamina, 0, _maxStamina);
+                _redWheel.fillAmount = (_stamina / _maxStamina);
+                _greenWheel.fillAmount = (_stamina / _maxStamina);
+
+                if (_stamina >= _maxStamina)
+                {
+                    _greenWheel.enabled = true;
+                    _staminaExhausted = false;
+                    HideWholeWheel();
+                }
+            }
+        }
+
+        public void OnSprint()
         {
             if (!GameManager.instance.HasStarted) return;
             _isSprinting = true;
+            ShowWholeWheel();
+        }
+
+        public void OnUnsprint()
+        {
+            if (!GameManager.instance.HasStarted) return;
+            _isSprinting = false;
         }
 
         public void HandleStamina()
         {
-            if (!_staminaExhausted)
+            if (_isSprinting && !_staminaExhausted)
             {
                 if (_stamina > 0)
                 {
                     _stamina -= 30 * Time.deltaTime;
+                    _stamina = Mathf.Clamp(_stamina, 0, _maxStamina);
                 }
                 else
                 {
@@ -132,7 +163,8 @@ namespace Local.Integration.Scripts.Game
             {
                 if (_stamina < _maxStamina)
                 {
-                    _stamina += 30 * Time.deltaTime;
+                    _stamina += 10 * Time.deltaTime;
+                    _stamina = Mathf.Clamp(_stamina, 0, _maxStamina);
                 }
                 else
                 {
@@ -173,6 +205,7 @@ namespace Local.Integration.Scripts.Game
             if (_isSprinting && !_staminaExhausted)
             {
                 currentSpeed *= _sprintSpeedMultiplier;
+                HandleStamina();
             }
             else
             {
@@ -311,6 +344,17 @@ namespace Local.Integration.Scripts.Game
                 _isAFish = false;
                 _currentTouchCount = 0;
             }
+        }
+
+        private void ShowWholeWheel()
+        {
+            _wholeWheel.SetActive(true);
+            _wholeWheelCanvasGroup.DOFade(1f, 0.5f).SetEase(Ease.InOutQuad);
+        }
+
+        private void HideWholeWheel()
+        {
+            _wholeWheelCanvasGroup.DOFade(0f, 0.5f).SetEase(Ease.InOutQuad).OnComplete(() => _wholeWheel.SetActive(false));
         }
     }
 }
