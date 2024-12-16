@@ -10,6 +10,7 @@ TagManager:
   - Ground
   - Wall
   - HeadPlayer
+  - Fish
   layers:
   - Default
   - TransparentFX

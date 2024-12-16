@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 2258357827905830782}
   - component: {fileID: 1105787332250553480}
   - component: {fileID: 2568707329220548029}
-  - component: {fileID: 7643297526630509502}
+  - component: {fileID: 8363188145325053323}
+  - component: {fileID: 3137005206759209718}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -52,6 +53,10 @@ MonoBehaviour:
   EndTime: 0
   EndText: 
   HasStarted: 0
+  _bungalowUIGo: {fileID: 0}
+  _scoreText: {fileID: 0}
+  _collectedItemsText: {fileID: 0}
+  _floatingTextPrefab: {fileID: 1670952906825007081, guid: 5d64db5f64c3cd14f89009c12f1673ea, type: 3}
 --- !u!114 &2568707329220548029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100,7 +105,28 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   InitialScale: {x: 0, y: 0, z: 0}
---- !u!114 &7643297526630509502
+--- !u!65 &8363188145325053323
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2928012516959706649}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 8.793644, y: 1.7154455, z: 6.437149}
+  m_Center: {x: 0.1473484, y: 5.380985, z: -46.41562}
+--- !u!114 &3137005206759209718
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -109,15 +135,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2928012516959706649}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b92e4afe9b72e8e40915dc383620c0a0, type: 3}
+  m_Script: {fileID: 11500000, guid: 301ebe5424b9cdb4db734b8ebd134814, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spawnPoint: {fileID: 0}
-  _itemPrefabs:
-  - {fileID: 6139012312234190179, guid: b5db6322dfdee2741a4cdc91cb12b0a8, type: 3}
-  - {fileID: 7700245793200039514, guid: a4990d6704e8f5f46a0a58330269f945, type: 3}
-  - {fileID: 623178906267310512, guid: f89622efdb161f842ac2d5ade497e102, type: 3}
-  - {fileID: 5740705842556071262, guid: 9f9763e9037ec4c4f9493dd348f0b29f, type: 3}
-  - {fileID: 5780739362500668114, guid: 51c99df329ebe1e45a863c98a9082923, type: 3}
-  - {fileID: 6478765039539900375, guid: d013d021c55e8fd41a12ed3a37df9fa6, type: 3}
-  _numberOfItemsToSpawn: 1
+  fpsText: {fileID: 0}

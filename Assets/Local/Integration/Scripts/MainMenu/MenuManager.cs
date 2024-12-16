@@ -10,14 +10,7 @@ namespace Local.Integration.Scripts.MainMenu
         [SerializeField] private GameObject _settingsMenuCanvasGo;
         [SerializeField] private GameObject _volumeMenuCanvasGo;
         [SerializeField] private GameObject _creditsMenuCanvasGo;
-
-
-
-        [Header("First Selected Options")] [SerializeField]
-        private GameObject _mainMenuFirst;
-
-        [SerializeField] private GameObject _settingsMenuFirst;
-        [SerializeField] private GameObject _volumeMenuFirst;
+        
         
         private void Start()
         {
@@ -36,8 +29,6 @@ namespace Local.Integration.Scripts.MainMenu
             _settingsMenuCanvasGo.SetActive(false);
             _volumeMenuCanvasGo.SetActive(false);
             _creditsMenuCanvasGo.SetActive(false);
-
-            EventSystem.current.SetSelectedGameObject(_mainMenuFirst);
         }
 
         private void OpenSettingsMenuHandle()

@@ -1,3 +1,4 @@
+using Local.Integration.Scripts.Game;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -22,7 +23,7 @@ public class PlayerController : MonoBehaviour {
     private GameObject _grabTarget; //Grabbed item
     
     private void Update() {
-        if (!gm.GameStarted) return;
+        if (!gm.HasStarted) return;
 
         Vector3 direction = new Vector3(_movement.x, 0f, _movement.y).normalized;
 
