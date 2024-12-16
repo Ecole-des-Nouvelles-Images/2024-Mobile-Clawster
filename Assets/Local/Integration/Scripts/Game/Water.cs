@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.Serialization;
 using UnityEngine.UI; 
 
 namespace Local.Integration.Scripts.Game
@@ -8,19 +9,18 @@ namespace Local.Integration.Scripts.Game
     public class Water : MonoBehaviour
     {
         [SerializeField] private Transform _waterPlane;
-        [SerializeField] private float drowningTime = 5f; 
-        [SerializeField] private float vignetteMaxIntensity = 1f; 
-        [SerializeField] private Image blackScreen; 
+        [SerializeField] private float _drowningTime = 5f; 
+        [SerializeField] private float _vignetteMaxIntensity = 1f; 
+        [SerializeField] private Image _blackScreen; 
+        [SerializeField] private Volume _postProcessVolume;
 
         private bool _isInWater = false;
         private float _timeInWater = 0f;
 
         private Vignette _vignette;
-        private Volume _postProcessVolume;
 
         private void Start()
         {
-            _postProcessVolume = FindObjectOfType<Volume>();
             if (_postProcessVolume.profile.TryGet(out _vignette))
             {
                 _vignette.intensity.value = 0f;
@@ -29,9 +29,9 @@ namespace Local.Integration.Scripts.Game
                 _vignette.rounded.value = false;
             }
 
-            if (blackScreen != null)
+            if (_blackScreen != null)
             {
-                blackScreen.color = new Color(0, 0, 0, 0); 
+                _blackScreen.color = new Color(0, 0, 0, 0); 
             }
         }
 
@@ -43,19 +43,19 @@ namespace Local.Integration.Scripts.Game
 
                 if (_vignette != null)
                 {
-                    float progress = _timeInWater / drowningTime;
+                    float progress = _timeInWater / _drowningTime;
 
-                    _vignette.intensity.value = Mathf.Lerp(0f, vignetteMaxIntensity, progress);
+                    _vignette.intensity.value = Mathf.Lerp(0f, _vignetteMaxIntensity, progress);
                     _vignette.smoothness.value = Mathf.Lerp(0.5f, 1f, progress);
                 }
 
-                if (blackScreen != null)
+                if (_blackScreen != null)
                 {
-                    float alpha = Mathf.SmoothStep(0f, 1f, _timeInWater / drowningTime);
-                    blackScreen.color = new Color(0, 0, 0, alpha);
+                    float alpha = Mathf.SmoothStep(0f, 1f, _timeInWater / _drowningTime);
+                    _blackScreen.color = new Color(0, 0, 0, alpha);
                 }
 
-                if (_timeInWater >= drowningTime)
+                if (_timeInWater >= _drowningTime)
                 {
                     HandleDrowning();
                 }
@@ -66,15 +66,15 @@ namespace Local.Integration.Scripts.Game
 
                 if (_vignette != null)
                 {
-                    float progress = _timeInWater / drowningTime;
-                    _vignette.intensity.value = Mathf.Lerp(0f, vignetteMaxIntensity, progress);
+                    float progress = _timeInWater / _drowningTime;
+                    _vignette.intensity.value = Mathf.Lerp(0f, _vignetteMaxIntensity, progress);
                     _vignette.smoothness.value = Mathf.Lerp(0.5f, 1f, progress);
                 }
 
-                if (blackScreen != null)
+                if (_blackScreen != null)
                 {
-                    float alpha = Mathf.SmoothStep(0f, 1f, _timeInWater / drowningTime);
-                    blackScreen.color = new Color(0, 0, 0, alpha);
+                    float alpha = Mathf.SmoothStep(0f, 1f, _timeInWater / _drowningTime);
+                    _blackScreen.color = new Color(0, 0, 0, alpha);
                 }
             }
         }
@@ -97,10 +97,11 @@ namespace Local.Integration.Scripts.Game
 
         private void HandleDrowning()
         {
-            _timeInWater = drowningTime; 
-            _vignette.intensity.value = vignetteMaxIntensity;
+            _timeInWater = _drowningTime; 
+            _vignette.intensity.value = _vignetteMaxIntensity;
             _vignette.smoothness.value = 1f;
-            blackScreen.color = new Color(0, 0, 0, 1);
+            _blackScreen.color = new Color(0, 0, 0, 1);
+            GameManager.instance.GameOver();
         }
     }
 }

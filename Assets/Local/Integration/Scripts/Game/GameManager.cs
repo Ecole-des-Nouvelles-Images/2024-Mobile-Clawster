@@ -18,10 +18,14 @@ namespace Local.Integration.Scripts.Game
         public int EndTime;
         public string EndText;
         public bool HasStarted;
+        public bool HasEnded;
 
         public float RemainingTime;
 
         [SerializeField] private GameObject _bungalowUIGo;
+        [SerializeField] private GameObject _panelWin;
+        [SerializeField] private GameObject _panelGameOver;
+        [SerializeField] private Canvas _gameCanvas;
         [SerializeField] private TextMeshProUGUI _scoreText;
         [SerializeField] private TextMeshProUGUI _collectedItemsText;
         [SerializeField] private TextMeshPro _floatingTextPrefab;
@@ -38,7 +42,6 @@ namespace Local.Integration.Scripts.Game
             {
                 Destroy(gameObject);
             }
-            
             ResetScore();
             CloseBungalowCanvas();
             LoadBestScore();
@@ -141,8 +144,23 @@ namespace Local.Integration.Scripts.Game
 
             OpenBungalowCanvas();
         }
-        
 
+        public void Win()
+        {
+            HasEnded = true;
+            _gameCanvas.enabled = false;
+            _panelWin.transform.localScale = Vector3.zero;
+            _panelWin.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack);            
+        }
+
+        public void GameOver()
+        {
+            HasEnded = true;
+            _gameCanvas.enabled = false;
+            _panelGameOver.transform.localScale = Vector3.zero;
+            _panelGameOver.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack);
+        }
+        
         private void UpdateCollectedItemsUI()
         {
             _collectedItemsText.text = "Objets validés :\n";
