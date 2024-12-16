@@ -74,6 +74,8 @@ GameObject:
   - component: {fileID: 3610197000324872232}
   - component: {fileID: 5469712412917425100}
   - component: {fileID: 5683739610383702211}
+  - component: {fileID: 5146627836691548973}
+  - component: {fileID: 8354978484259664230}
   m_Layer: 0
   m_Name: SeagullAttack
   m_TagString: Untagged
@@ -168,6 +170,41 @@ MonoBehaviour:
   - {fileID: 8815885831831887307}
   - {fileID: 6626783044748844513}
   - {fileID: 7220137961318748666}
+--- !u!136 &5146627836691548973
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 770218030164155548}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.2
+  m_Height: 1
+  m_Direction: 2
+  m_Center: {x: 0, y: 0.1, z: 0}
+--- !u!114 &8354978484259664230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 770218030164155548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a5f0c22052822f49979214a9c26c96b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &836087022574090854
 GameObject:
   m_ObjectHideFlags: 0
