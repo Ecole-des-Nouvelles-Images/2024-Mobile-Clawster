@@ -10,6 +10,7 @@ namespace Local.Integration.Scripts.Game
 {
     public class GameManager : MonoBehaviour
     {
+        [Header("Game Settings")]
         public ScoreData ScoreData;
         public static GameManager instance;
         public int GameplayTime;
@@ -19,8 +20,6 @@ namespace Local.Integration.Scripts.Game
         public string EndText;
         public bool HasStarted;
         public bool HasEnded;
-
-        public float RemainingTime;
         
         [SerializeField] private GameObject _bungalowUIGo;
         [SerializeField] private GameObject _blackScreen;
@@ -32,6 +31,8 @@ namespace Local.Integration.Scripts.Game
         [SerializeField] private TextMeshProUGUI _collectedItemsText;
         [SerializeField] private TextMeshPro _floatingTextPrefab;
         private Dictionary<string, int> _validatedItems = new Dictionary<string, int>();
+        public float _remainingTime = 1;
+
 
         private void Awake()
         {
@@ -52,12 +53,16 @@ namespace Local.Integration.Scripts.Game
 
         private void Start()
         {
-            RemainingTime = GameplayTime + CountdownTime;
+            _remainingTime = GameplayTime + CountdownTime;
         }
         
         private void Update()
         {
-            RemainingTime -= Time.deltaTime;
+            _remainingTime -= Time.deltaTime;
+            if (_remainingTime <= 0)
+            {
+                Win();
+            }
         }
 
         public void UpdateScoreUI()
@@ -150,7 +155,6 @@ namespace Local.Integration.Scripts.Game
             if (!HasEnded)
             {
                 HasEnded = true;
-                _blackScreen.SetActive(true);
                 UpdateWinUI();
                 _gameCanvas.enabled = false;
                 _panelWin.transform.localScale = Vector3.zero;

@@ -16,7 +16,7 @@ public class Timer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _rawTimer = _gameManager.RemainingTime;
+        _rawTimer = _gameManager._remainingTime;
 
         _fill = _rawTimer / _gameManager.GameplayTime;
         _minutes = Mathf.FloorToInt(_rawTimer / 60);

@@ -16,7 +16,6 @@ namespace Local.Integration.Scripts.Game
         [SerializeField] private Joystick _joystick;
         [SerializeField] private Transform _cameraTransform;
         [SerializeField] private Collider _grabCollider;
-        [SerializeField] private GameManager _gameManager;
 
         [Header("Movement Settings")] [SerializeField]
         private float _speed;
@@ -75,7 +74,7 @@ namespace Local.Integration.Scripts.Game
             if (!GameManager.instance.HasStarted) return;
             HandleMovement();
             
-            if(_health == 0) _gameManager.GameOver();
+            // if(_health == 0) _gameManager.GameOver();
         }
 
         [UsedImplicitly]
