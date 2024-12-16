@@ -51,7 +51,6 @@ namespace Local.Integration.Scripts.Game
             }
 
             ResetScore();
-            CloseBungalowCanvas();
             LoadBestScore();
             UpdateScoreUI();
         }
@@ -111,12 +110,13 @@ namespace Local.Integration.Scripts.Game
 
         private void OpenBungalowCanvas()
         {
-            _bungalowUIGo.gameObject.SetActive(true);
+            _bungalowUIGo.transform.localScale = Vector3.zero;
+            _bungalowUIGo.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack);
         }
 
         public void CloseBungalowCanvas()
         {
-            _bungalowUIGo.gameObject.SetActive(false);
+            _bungalowUIGo.transform.localScale = Vector3.zero;
         }
 
         private void OnTriggerEnter(Collider other)
