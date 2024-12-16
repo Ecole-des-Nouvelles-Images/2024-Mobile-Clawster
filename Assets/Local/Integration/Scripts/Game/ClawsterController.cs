@@ -157,7 +157,9 @@ namespace Local.Integration.Scripts.Game
                 yield break;
             }
             _health--;
-            Destroy(_healthBar.HeartIcons[_health].gameObject);
+            GameObject heart = _healthBar.HeartIcons[_health].gameObject;
+            heart.transform.DOScale(Vector3.zero, 0.3f).SetEase(Ease.OutBounce);
+            Destroy(heart, 0.5f);
             _isVulnerable = false;
             yield return new WaitForSeconds(_invincibilityTime);
             _isVulnerable = true;

@@ -172,7 +172,7 @@ namespace Local.Integration.Scripts.Game
 
         private void UpdateWinUI()
         {
-            _panelWinText.text = "Ton Score\n " + $"{ScoreData.CurrentScore}\n" + "Meilleur Score\n " + $"{ScoreData.BestScore}";
+            //_panelWinText.text = "Ton Score\n " + $"{ScoreData.CurrentScore}\n" + "Meilleur Score\n " + $"{ScoreData.BestScore}";
         }
         
         private void UpdateCollectedItemsUI()
