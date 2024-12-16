@@ -16,7 +16,7 @@ GameObject:
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 2800000, guid: ac5de94053f294b929e8105eced63bbe, type: 3}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -48,12 +48,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ScoreData: {fileID: 11400000, guid: 62e09f5acccbd914c87ed709e48aaeb3, type: 2}
+  GameplayTime: 120
   CountdownTime: 3
   StartText: Bin it !
   EndTime: 0
-  EndText: 
+  EndText: Finish!
   HasStarted: 0
+  HasEnded: 0
+  RemainingTime: 0
   _bungalowUIGo: {fileID: 0}
+  _panelEndGame: {fileID: 0}
+  _objectsToHideEndGame:
+  - {fileID: 0}
+  - {fileID: 0}
   _scoreText: {fileID: 0}
   _collectedItemsText: {fileID: 0}
   _floatingTextPrefab: {fileID: 1670952906825007081, guid: 5d64db5f64c3cd14f89009c12f1673ea, type: 3}
