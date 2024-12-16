@@ -9,7 +9,6 @@ namespace Local.Integration.Scripts.Game
     {
 
         [SerializeField] private TMP_Text _gameTimerText;
-        [SerializeField] private TMP_Text _scoreText;
         [SerializeField] private AnimationCurve _easeInOut;
 
         public Vector3 InitialScale;
@@ -34,7 +33,6 @@ namespace Local.Integration.Scripts.Game
             {
                 yield return new WaitForSeconds(0.01f); 
                 _gameTimerText.enabled = false;
-                _scoreText.enabled = false;
                 GameManager.instance.HasStarted = true;
                 yield break;
             }
