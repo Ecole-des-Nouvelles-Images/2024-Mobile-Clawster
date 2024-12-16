@@ -48,14 +48,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ScoreData: {fileID: 11400000, guid: 62e09f5acccbd914c87ed709e48aaeb3, type: 2}
-  GameplayTime: 120
+  GameTime: 120
+  ElapsedTime: 0
   CountdownTime: 3
   StartText: Bin it !
   EndTime: 0
-  EndText: Finish!
+  EndText: "Termin\xE9 !"
   HasStarted: 0
   HasEnded: 0
-  RemainingTime: 0
+  _timerFillImage: {fileID: 0}
   _bungalowUIGo: {fileID: 0}
   _blackScreen: {fileID: 0}
   _panelWin: {fileID: 0}
@@ -78,7 +79,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gameTimerText: {fileID: 0}
-  _scoreText: {fileID: 0}
   _easeInOut:
     serializedVersion: 2
     m_Curve:

@@ -4,7 +4,9 @@ using Local.Integration.Scripts.SCORE;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 namespace Local.Integration.Scripts.Game
+
 {
     public class GameManager : MonoBehaviour
     {
@@ -179,7 +181,7 @@ namespace Local.Integration.Scripts.Game
 
         private void UpdateWinUI()
         {
-            _panelWinText.text = "Ton Score\n " + $"{ScoreData.CurrentScore}\n" + "Meilleur Score\n " +
+            _panelWinText.text = "Ton Score\n " + $"{ScoreData.CurrentScore}\n" + "\n" + "Meilleur Score\n " +
                                  $"{ScoreData.BestScore}";
         }
 
@@ -200,5 +202,27 @@ namespace Local.Integration.Scripts.Game
             floatingText.DOFade(0, 1f).SetEase(Ease.InCubic).OnComplete(() => Destroy(floatingText.gameObject));
             Destroy(floatingText, destroyTime);
         }
+        
+        public void PlayAgain()
+        {
+            ResetScore();
+            ElapsedTime = 0f;
+            HasStarted = true;
+            HasEnded = false;
+
+            _gameCanvas.enabled = true;
+            _panelWin.SetActive(false);
+            _panelGameOver.SetActive(false);
+            _blackScreen.SetActive(false);
+
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+        
+        
+        public void GoToMenu()
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
+
     }
 }
