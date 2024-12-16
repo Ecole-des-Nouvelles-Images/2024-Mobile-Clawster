@@ -30,9 +30,11 @@ namespace Local.Integration.Scripts.Game
         private float _stamina;
         private bool _staminaExhausted;
         
-        [Header("Health Settings")]
+        [Header("Health & Damage Settings")]
         [SerializeField] private int _maxHealth;
-
+        [SerializeField] private HealthBar _healthBar; 
+        [SerializeField] private int _invincibilityTime;
+        
         [Header("Weight Settings")] [SerializeField]
         private float _weightMaxCapacity;
 
@@ -50,6 +52,7 @@ namespace Local.Integration.Scripts.Game
         [SerializeField] private Image _greenWheel;
 
         private int _health;
+        private bool _isVulnerable;
         private int _holdScore;
         private float _targetAngle;
         private GameObject _hitObj;
@@ -59,8 +62,7 @@ namespace Local.Integration.Scripts.Game
         private int _currentTouchCount;
         private bool _isSprinting;
         private Dictionary<string, CollectedItemData> _collectedItems = new Dictionary<string, CollectedItemData>();
-
-
+        
         private void Awake() {
             _handAnimator = GetComponent<Animator>();
         }
@@ -68,14 +70,13 @@ namespace Local.Integration.Scripts.Game
         private void Start() {
             _stamina = _maxStamina;
             _health = _maxHealth;
+            _isVulnerable = true;
             _weightFillImage.fillAmount = _weightHold / _weightMaxCapacity;
         }
 
         private void FixedUpdate() {
             if (!GameManager.instance.HasStarted) return;
             HandleMovement();
-            
-            if(_health == 0) _gameManager.GameOver();
         }
 
         [UsedImplicitly]
@@ -148,6 +149,18 @@ namespace Local.Integration.Scripts.Game
             }
             Vector3 move = moveDirection * currentSpeed * Time.fixedDeltaTime;
             _rigidbody.MovePosition(_rigidbody.position + move);
+        }
+
+        private IEnumerator HandleDamage() {
+            if (_health < 0) {
+                _gameManager.GameOver();
+                yield break;
+            }
+            _health--;
+            Destroy(_healthBar.HeartIcons[_health].gameObject);
+            _isVulnerable = false;
+            yield return new WaitForSeconds(_invincibilityTime);
+            _isVulnerable = true;
         }
 
         private void Grab() {
@@ -243,13 +256,12 @@ namespace Local.Integration.Scripts.Game
                 _isInQTE = false;
             }
             
-            if (other.CompareTag("Enemy")) { 
-                _health--;
+            if (other.CompareTag("Enemy") && _isVulnerable) { 
+                StartCoroutine(HandleDamage());
             }
         }
 
-        private void OnTriggerExit(Collider other)
-        {
+        private void OnTriggerExit(Collider other) {
             if (other.CompareTag("Item") || other.CompareTag("Fish")) {
                 StopAllCoroutines();
                 _hitObj = null;
