@@ -13,10 +13,10 @@ namespace Local.Integration.Scripts.Game
     {
         [Header("Components")] [SerializeField]
         private Rigidbody _rigidbody;
-
         [SerializeField] private Joystick _joystick;
         [SerializeField] private Transform _cameraTransform;
         [SerializeField] private Collider _grabCollider;
+        [SerializeField] private GameManager _gameManager;
 
         [Header("Movement Settings")] [SerializeField]
         private float _speed;
@@ -27,9 +27,11 @@ namespace Local.Integration.Scripts.Game
 
         [Header("Stamina Settings")] [SerializeField]
         private float _maxStamina;
-
         private float _stamina;
         private bool _staminaExhausted;
+        
+        [Header("Health Settings")]
+        [SerializeField] private int _maxHealth;
 
         [Header("Weight Settings")] [SerializeField]
         private float _weightMaxCapacity;
@@ -47,6 +49,7 @@ namespace Local.Integration.Scripts.Game
 
         [SerializeField] private Image _greenWheel;
 
+        private int _health;
         private int _holdScore;
         private float _targetAngle;
         private GameObject _hitObj;
@@ -64,12 +67,15 @@ namespace Local.Integration.Scripts.Game
 
         private void Start() {
             _stamina = _maxStamina;
+            _health = _maxHealth;
             _weightFillImage.fillAmount = _weightHold / _weightMaxCapacity;
         }
 
         private void FixedUpdate() {
             if (!GameManager.instance.HasStarted) return;
             HandleMovement();
+            
+            if(_health == 0) _gameManager.GameOver();
         }
 
         [UsedImplicitly]
@@ -228,13 +234,17 @@ namespace Local.Integration.Scripts.Game
                 _isAFish = false;
                 _isInQTE = false;
             }
-
+            
             if (other.CompareTag("Fish")) {
                 StopAllCoroutines();
                 _hitObj = other.gameObject;
                 other.GetComponent<Renderer>().material.SetVector("_OutlineColor", Vector4.one);
                 _isAFish = true;
                 _isInQTE = false;
+            }
+            
+            if (other.CompareTag("Enemy")) { 
+                _health--;
             }
         }
 
