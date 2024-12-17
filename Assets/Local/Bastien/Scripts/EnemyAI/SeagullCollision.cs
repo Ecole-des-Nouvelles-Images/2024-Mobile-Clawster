@@ -11,7 +11,6 @@ public class SeagullCollision : MonoBehaviour
     private void OnTriggerEnter(Collider other) {
         
         if(other.gameObject.CompareTag("Player") == false) return;
-        
         _gameManager.GameOver();
     }
 }

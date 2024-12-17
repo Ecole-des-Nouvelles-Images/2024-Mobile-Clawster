@@ -31,8 +31,11 @@ namespace Local.Integration.Scripts.Game
         private float _stamina;
         private bool _staminaExhausted;
 
-        [Header("Health Settings")] [SerializeField]
+        [Header("Health & Damage Settings")] [SerializeField]
         private int _maxHealth;
+
+        [SerializeField] private HealthBar _healthBar;
+        [SerializeField] private int _invincibilityTime;
 
         [Header("Weight Settings")] [SerializeField]
         private float _weightMaxCapacity;
@@ -47,10 +50,12 @@ namespace Local.Integration.Scripts.Game
 
         [Header("UI Elements")] [SerializeField]
         private GameObject _wholeWheel;
+
         [SerializeField] private Image _redWheel;
         [SerializeField] private Image _greenWheel;
 
         private int _health;
+        private bool _isVulnerable;
         private int _holdScore;
         private float _targetAngle;
         private GameObject _hitObj;
@@ -83,8 +88,6 @@ namespace Local.Integration.Scripts.Game
         {
             if (!GameManager.instance.HasStarted) return;
             HandleMovement();
-
-            // if(_health == 0) _gameManager.GameOver();
         }
 
         [UsedImplicitly]
@@ -216,6 +219,23 @@ namespace Local.Integration.Scripts.Game
             _rigidbody.MovePosition(_rigidbody.position + move);
         }
 
+        private IEnumerator HandleDamage()
+        {
+            if (_health < 0)
+            {
+                GameManager.instance.GameOver();
+                yield break;
+            }
+
+            _health--;
+            GameObject heart = _healthBar.HeartIcons[_health].gameObject;
+            heart.transform.DOScale(Vector3.zero, 0.3f).SetEase(Ease.OutBounce);
+            Destroy(heart, 0.5f);
+            _isVulnerable = false;
+            yield return new WaitForSeconds(_invincibilityTime);
+            _isVulnerable = true;
+        }
+
         private void Grab()
         {
             if (_hitObj != null && _hitObj.CompareTag("Item"))
@@ -246,6 +266,7 @@ namespace Local.Integration.Scripts.Game
                         _hitObj.SetActive(false);
                         _hitObj = null;
                     }
+
                     if (_weightHold + itemWeight >= _weightMaxCapacity)
                     {
                         if (_hitObj != null) GameManager.instance.ShowFloatingText(_hitObj.transform.position, 1f);
@@ -292,6 +313,7 @@ namespace Local.Integration.Scripts.Game
                         }
                     }
                 }
+
                 yield return new WaitForEndOfFrame();
             }
 
@@ -328,9 +350,9 @@ namespace Local.Integration.Scripts.Game
                 _isInQTE = false;
             }
 
-            if (other.CompareTag("Enemy"))
+            if (other.CompareTag("Enemy") && _isVulnerable)
             {
-                _health--;
+                StartCoroutine(HandleDamage());
             }
         }
 
@@ -354,7 +376,8 @@ namespace Local.Integration.Scripts.Game
 
         private void HideWholeWheel()
         {
-            _wholeWheelCanvasGroup.DOFade(0f, 0.5f).SetEase(Ease.InOutQuad).OnComplete(() => _wholeWheel.SetActive(false));
+            _wholeWheelCanvasGroup.DOFade(0f, 0.5f).SetEase(Ease.InOutQuad)
+                .OnComplete(() => _wholeWheel.SetActive(false));
         }
     }
 }
