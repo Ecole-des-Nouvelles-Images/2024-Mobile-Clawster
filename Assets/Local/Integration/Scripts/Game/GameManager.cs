@@ -218,6 +218,7 @@ namespace Local.Integration.Scripts.Game
         public void ShowFloatingText(Vector3 spawnPosition, float destroyTime)
         {
             TextMeshPro floatingText = Instantiate(_floatingTextPrefab, spawnPosition, Quaternion.identity, transform);
+            floatingText.transform.position = spawnPosition + new Vector3(0, 0, -2);
             floatingText.transform.rotation = Quaternion.Euler(0, 180, 0);
             floatingText.DOFade(0, 1f).SetEase(Ease.InCubic).OnComplete(() => Destroy(floatingText.gameObject));
             Destroy(floatingText, destroyTime);

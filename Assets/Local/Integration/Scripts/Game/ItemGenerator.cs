@@ -12,12 +12,7 @@ public class ItemGenerator : MonoBehaviour {
     [SerializeField] private int _totalItems;
     [SerializeField] private float _minOffset, _maxOffset;
     
-    private void Update() {
-        if (Input.GetKeyDown(KeyCode.I)) {
-            GenerateItems();
-        }
-    }
-
+    
     /*private void SpawnItems() {
         for (int i = 0; i < _totalItems; i++) {
             int randomIndex = Random.Range(0, _itemPrefabs.Count);  //Select Random Index
