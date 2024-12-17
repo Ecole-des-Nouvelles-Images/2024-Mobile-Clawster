@@ -152,7 +152,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IKTarget: {fileID: 2682180232906436267}
   MaxDistance: 0.5
-  InterpolationTime: 0.1
+  InterpolationTime: 0.2
   LegRaise: 0.2
   _overshootFac: {x: 0, y: 0, z: -0.5}
   _interpolationCurve:
@@ -3001,7 +3001,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IKTarget: {fileID: 7962178010497833275}
   MaxDistance: 0.5
-  InterpolationTime: 0.1
+  InterpolationTime: 0.2
   LegRaise: 0.2
   _overshootFac: {x: 0, y: 0, z: -0.5}
   _interpolationCurve:
@@ -5422,7 +5422,7 @@ MonoBehaviour:
   _redWheel: {fileID: 0}
   _greenWheel: {fileID: 0}
   _grabButton: {fileID: 0}
-  _grabSound: {fileID: 0}
+  _grabSound: {fileID: 8300000, guid: f1471d8c4f2891e479d19654ca80bab2, type: 3}
 --- !u!114 &678499683890828525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5557,7 +5557,7 @@ Rigidbody:
   m_GameObject: {fileID: 9021562472261455225}
   serializedVersion: 4
   m_Mass: 0.0000001
-  m_Drag: 10
+  m_Drag: 12
   m_AngularDrag: 0
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}

@@ -114,7 +114,7 @@ namespace Local.Integration.Scripts.Game
         {
             if (other.CompareTag("Player"))
             {
-                _bungalowUI.SetActive(true);
+                OpenBangalowUI();
             }
         }
         
@@ -123,8 +123,18 @@ namespace Local.Integration.Scripts.Game
         {
             if (other.CompareTag("Player"))
             {
-                _bungalowUI.SetActive(false);
+                CloseBangalowUI();
             }
+        }
+        
+        private void OpenBangalowUI()
+        {
+            _bungalowUI.SetActive(true);
+        }
+
+        public void CloseBangalowUI()
+        {
+            _bungalowUI.SetActive(false);
         }
         
         public void DisplayCollectedItems(Dictionary<string, CollectedItemData> collectedItems)

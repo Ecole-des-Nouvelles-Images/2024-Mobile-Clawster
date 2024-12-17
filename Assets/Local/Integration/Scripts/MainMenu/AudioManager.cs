@@ -93,14 +93,19 @@ namespace Local.Integration.Scripts.MainMenu
         {
             _musicSlider.interactable = _isMusicEnabled;
             _toggleMusicButton.GetComponentInChildren<TextMeshProUGUI>().text = _isMusicEnabled ? "ON" : "OFF";
+
             if (!_isMusicEnabled)
             {
                 MusicSource.volume = 0;
                 _musicSlider.value = 0;
+                _audioMixer.SetFloat("musicVolume", -80f); 
             }
             else
             {
-                MusicSource.volume = _musicSlider.value / 8f;
+                float linearVolume = _musicSlider.value / 8f;
+                float decibelVolume = MapToDecibelRange(linearVolume, -60f, 0f);
+                _audioMixer.SetFloat("musicVolume", decibelVolume);
+                MusicSource.volume = linearVolume;
             }
         }
 
@@ -108,15 +113,21 @@ namespace Local.Integration.Scripts.MainMenu
         {
             _soundsSlider.interactable = _isSoundEnabled;
             _toggleSoundButton.GetComponentInChildren<TextMeshProUGUI>().text = _isSoundEnabled ? "ON" : "OFF";
+
             if (!_isSoundEnabled)
             {
                 SoundSource.volume = 0;
                 _soundsSlider.value = 0;
+                _audioMixer.SetFloat("soundsVolume", -80f); 
             }
             else
             {
-                SoundSource.volume = _soundsSlider.value / 8f;
+                float linearVolume = _soundsSlider.value / 8f;
+                float decibelVolume = MapToDecibelRange(linearVolume, -60f, 0f);
+                _audioMixer.SetFloat("soundsVolume", decibelVolume);
+                SoundSource.volume = linearVolume;
             }
         }
+
     }
 }

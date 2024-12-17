@@ -4569,7 +4569,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40.7
+  m_fontSize: 43.1
   m_fontSizeBase: 49.94
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -6589,6 +6589,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _stepParticles: {fileID: 0}
+  _step: {fileID: 0}
 --- !u!4 &213069149300062806
 Transform:
   m_ObjectHideFlags: 0
@@ -6726,6 +6727,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _stepParticles: {fileID: 0}
+  _step: {fileID: 0}
 --- !u!1 &452240207437322524
 GameObject:
   m_ObjectHideFlags: 0
@@ -6936,6 +6938,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _stepParticles: {fileID: 0}
+  _step: {fileID: 0}
 --- !u!1 &983038736235526974
 GameObject:
   m_ObjectHideFlags: 0
@@ -8128,6 +8131,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _stepParticles: {fileID: 0}
+  _step: {fileID: 0}
 --- !u!1 &2946992419115456329
 GameObject:
   m_ObjectHideFlags: 0
@@ -8496,6 +8500,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _stepParticles: {fileID: 0}
+  _step: {fileID: 0}
 --- !u!1 &3510420643392638293
 GameObject:
   m_ObjectHideFlags: 0
@@ -9188,6 +9193,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _stepParticles: {fileID: 0}
+  _step: {fileID: 0}
 --- !u!137 &5121714996009850679
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
@@ -9879,6 +9885,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _stepParticles: {fileID: 0}
+  _step: {fileID: 0}
 --- !u!1 &5974081695795111061
 GameObject:
   m_ObjectHideFlags: 0
@@ -10877,6 +10884,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _stepParticles: {fileID: 0}
+  _step: {fileID: 0}
 --- !u!4 &7671084291486534587
 Transform:
   m_ObjectHideFlags: 0
