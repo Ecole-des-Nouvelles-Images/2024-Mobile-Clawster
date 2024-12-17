@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using JetBrains.Annotations;
+using Local.Integration.Scripts.MainMenu;
 using Local.Integration.Scripts.UI;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -48,6 +49,9 @@ namespace Local.Integration.Scripts.Game
         [SerializeField] private Image _greenWheel;
         [SerializeField] private CanvasGroup _grabButton;
 
+        [Header("Sound Effects")]
+        private AudioClip _grabSound;
+        
         private GameObject _hitObj;
         private bool _canTakeDamage;
         private int _health;
@@ -265,6 +269,7 @@ namespace Local.Integration.Scripts.Game
                             _collectedItems[itemName] = new CollectedItemData(itemName, itemWeight, itemScore);
                         }
 
+                        SoundFXManager.instance.PlaySoundFXClip(_grabSound, transform, 1f);
                         float targetFillAmount = _weightHold / _weightMaxCapacity;
                         _weightFillImage.DOFillAmount(targetFillAmount, 0.5f).SetEase(Ease.InOutQuad);
                         _hitObj.SetActive(false);

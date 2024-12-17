@@ -1259,6 +1259,7 @@ GameObject:
   - component: {fileID: 393083859}
   - component: {fileID: 393083858}
   - component: {fileID: 393083857}
+  - component: {fileID: 393083860}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -1492,6 +1493,19 @@ MonoBehaviour:
   _audioMixer: {fileID: 24100000, guid: ed62f92eab92b6f4babfcc817a8b214e, type: 2}
   MusicSource: {fileID: 393083858}
   SoundSource: {fileID: 393083857}
+--- !u!114 &393083860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 393083855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fce1ed9b91d081644bf01c3c2fcce9c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _soundFXObject: {fileID: 5516541683796941514, guid: 0e11690a37d6f2a4da34bde052facca3, type: 3}
 --- !u!1 &398235515
 GameObject:
   m_ObjectHideFlags: 0
@@ -2639,6 +2653,8 @@ MonoBehaviour:
   _settingsPanel: {fileID: 650704755}
   _volumePanel: {fileID: 556730124}
   _creditsPanel: {fileID: 1077873118}
+  _buttonSoundA: {fileID: 8300000, guid: 6f89eb423fc5d374e99aa0edb04edba9, type: 3}
+  _buttonSoundB: {fileID: 8300000, guid: 46336b8dc111d154b9d736df6c91025f, type: 3}
   animationDuration: 0.5
 --- !u!1 &799371812
 GameObject:
@@ -4553,7 +4569,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 41.6
+  m_fontSize: 40.7
   m_fontSizeBase: 49.94
   m_fontWeight: 400
   m_enableAutoSizing: 1
