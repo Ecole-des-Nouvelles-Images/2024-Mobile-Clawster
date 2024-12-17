@@ -2,76 +2,65 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using JetBrains.Annotations;
-using Joystick_Pack.Scripts.Joysticks;
+using Local.Integration.Scripts.UI;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Local.Integration.Scripts.Game
 {
     public class ClawsterController : MonoBehaviour
     {
-        [Header("Components")] [SerializeField]
-        private Rigidbody _rigidbody;
-
+        [Header("Components")]
         [SerializeField] private Joystick _joystick;
+        [SerializeField] private HealthBar _healthBar;
         [SerializeField] private Transform _cameraTransform;
         [SerializeField] private Collider _grabCollider;
+        private Rigidbody _rigidbody;
 
-        [Header("Movement Settings")] [SerializeField]
-        private float _speed;
-
+        [Header("Movement Settings")] 
+        [SerializeField] private float _speed;
         [SerializeField] private float _sprintSpeedMultiplier = 1.5f;
         [SerializeField] private float _slowFactor;
         private float _currentSpeed;
 
-        [Header("Stamina Settings")] [SerializeField]
-        private float _maxStamina;
-
+        [Header("Stamina Settings")] 
+        [SerializeField] private float _maxStamina;
         private float _stamina;
         private bool _staminaExhausted;
 
-        [Header("Health & Damage Settings")] [SerializeField]
-        private int _maxHealth;
+        [Header("Health & Damage Settings")] 
+        [SerializeField] private int _maxHealth;
 
-        [SerializeField] private HealthBar _healthBar;
-        [SerializeField] private int _invincibilityTime;
-
-        [Header("Weight Settings")] [SerializeField]
-        private float _weightMaxCapacity;
-
-        [SerializeField] private Image _weightFillImage;
+        [Header("Weight Settings")] 
+        [SerializeField] private float _weightMaxCapacity;
         private float _weightHold = 0;
-
-        [Header("QTE Settings")] [SerializeField]
-        private float _maxQTETime;
-
+        
+        [Header("QTE Settings")] 
+        [SerializeField] private float _maxQteTime;
         [SerializeField] private int _maxTouchCount;
 
-        [Header("UI Elements")] [SerializeField]
-        private GameObject _wholeWheel;
-
+        [Header("UI Elements")]
+        [SerializeField] private Image _weightFillImage;
+        [SerializeField] private CanvasGroup _wholeWheelCanvasGroup;
         [SerializeField] private Image _redWheel;
         [SerializeField] private Image _greenWheel;
-
+        [SerializeField] private CanvasGroup _grabButton;
+        
+        private GameObject _hitObj;
         private int _health;
-        private bool _isVulnerable;
         private int _holdScore;
         private float _targetAngle;
-        private GameObject _hitObj;
         private Animator _handAnimator;
-        private bool _isAFish; //Self-explanatory
-        private bool _isInQTE; //Is the QTE running ?
+        private bool _isAFish; 
+        private bool _isInQte; 
         private int _currentTouchCount;
         private bool _isSprinting;
         private Dictionary<string, CollectedItemData> _collectedItems = new Dictionary<string, CollectedItemData>();
 
-        private CanvasGroup _wholeWheelCanvasGroup;
-
         private void Awake()
         {
+            _rigidbody = GetComponent<Rigidbody>();
             _handAnimator = GetComponent<Animator>();
-            _wholeWheelCanvasGroup = _wholeWheel.GetComponent<CanvasGroup>();
             HideWholeWheel();
         }
 
@@ -97,7 +86,7 @@ namespace Local.Integration.Scripts.Game
 
             if (_isAFish)
             {
-                if (_isInQTE)
+                if (_isInQte)
                 {
                     _currentTouchCount++;
                 }
@@ -129,7 +118,9 @@ namespace Local.Integration.Scripts.Game
                     _staminaExhausted = false;
                     HideWholeWheel();
                 }
+                _grabButton.alpha = 1f;
             }
+            _grabButton.alpha = 0.5f;
         }
 
         public void OnSprint()
@@ -219,21 +210,16 @@ namespace Local.Integration.Scripts.Game
             _rigidbody.MovePosition(_rigidbody.position + move);
         }
 
-        private IEnumerator HandleDamage()
+        private void HandleDamage()
         {
             if (_health < 0)
             {
                 GameManager.instance.GameOver();
-                yield break;
             }
-
             _health--;
             GameObject heart = _healthBar.HeartIcons[_health].gameObject;
             heart.transform.DOScale(Vector3.zero, 0.3f).SetEase(Ease.OutBounce);
             Destroy(heart, 0.5f);
-            _isVulnerable = false;
-            yield return new WaitForSeconds(_invincibilityTime);
-            _isVulnerable = true;
         }
 
         private void Grab()
@@ -277,8 +263,8 @@ namespace Local.Integration.Scripts.Game
 
         private IEnumerator QTEGrab()
         {
-            _isInQTE = true;
-            for (float dt = 0f; dt < _maxQTETime; dt += Time.deltaTime)
+            _isInQte = true;
+            for (float dt = 0f; dt < _maxQteTime; dt += Time.deltaTime)
             {
                 if (_currentTouchCount >= _maxTouchCount)
                 {
@@ -307,7 +293,7 @@ namespace Local.Integration.Scripts.Game
                             _weightFillImage.DOFillAmount(targetFillAmount, 0.5f).SetEase(Ease.InOutQuad);
                             _hitObj.SetActive(false);
                             _hitObj = null;
-                            _isInQTE = false;
+                            _isInQte = false;
                             _isAFish = false;
                             yield break;
                         }
@@ -317,7 +303,7 @@ namespace Local.Integration.Scripts.Game
                 yield return new WaitForEndOfFrame();
             }
 
-            _isInQTE = false;
+            _isInQte = false;
         }
 
         public void ValidateScore()
@@ -335,24 +321,23 @@ namespace Local.Integration.Scripts.Game
         {
             if (other.CompareTag("Item"))
             {
+                _grabButton.alpha = 1f;
                 _hitObj = other.gameObject;
                 other.GetComponent<Renderer>().material.SetVector("_OutlineColor", Vector4.one);
                 _isAFish = false;
-                _isInQTE = false;
+                _isInQte = false;
             }
-
             if (other.CompareTag("Fish"))
             {
                 StopAllCoroutines();
                 _hitObj = other.gameObject;
                 other.GetComponent<Renderer>().material.SetVector("_OutlineColor", Vector4.one);
                 _isAFish = true;
-                _isInQTE = false;
+                _isInQte = false;
             }
-
-            if (other.CompareTag("Enemy") && _isVulnerable)
+            if (other.CompareTag("Enemy"))
             {
-                StartCoroutine(HandleDamage());
+                HandleDamage();
             }
         }
 
@@ -370,14 +355,12 @@ namespace Local.Integration.Scripts.Game
 
         private void ShowWholeWheel()
         {
-            _wholeWheel.SetActive(true);
             _wholeWheelCanvasGroup.DOFade(1f, 0.5f).SetEase(Ease.InOutQuad);
         }
 
         private void HideWholeWheel()
         {
-            _wholeWheelCanvasGroup.DOFade(0f, 0.5f).SetEase(Ease.InOutQuad)
-                .OnComplete(() => _wholeWheel.SetActive(false));
+            _wholeWheelCanvasGroup.DOFade(0f, 0.5f).SetEase(Ease.InOutQuad);
         }
     }
 }

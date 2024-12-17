@@ -5,6 +5,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
+
 namespace Local.Integration.Scripts.Game
 
 {
@@ -26,7 +28,7 @@ namespace Local.Integration.Scripts.Game
         [Header("UI Elements")] 
         [SerializeField] private Image _timerFillImage;
 
-        [SerializeField] private GameObject _bungalowUIGo;
+        [FormerlySerializedAs("_bungalowUIGo")] [SerializeField] private GameObject _bungalowUI;
         [SerializeField] private GameObject _blackScreen;
         [SerializeField] private GameObject _panelWin;
         [SerializeField] private TextMeshProUGUI _panelWinText;
@@ -110,13 +112,13 @@ namespace Local.Integration.Scripts.Game
 
         private void OpenBungalowCanvas()
         {
-            _bungalowUIGo.transform.localScale = Vector3.zero;
-            _bungalowUIGo.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack);
+            _bungalowUI.transform.localScale = Vector3.one;
+            _bungalowUI.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack);
         }
 
         public void CloseBungalowCanvas()
         {
-            _bungalowUIGo.transform.localScale = Vector3.zero;
+            _bungalowUI.transform.localScale = Vector3.zero;
         }
 
         private void OnTriggerEnter(Collider other)
@@ -124,6 +126,7 @@ namespace Local.Integration.Scripts.Game
             if (other.CompareTag("Player"))
             {
                 OpenBungalowCanvas();
+                Debug.Log("rentrer");
             }
         }
 
@@ -132,6 +135,7 @@ namespace Local.Integration.Scripts.Game
             if (other.CompareTag("Player"))
             {
                 CloseBungalowCanvas();
+                Debug.Log("partir");
             }
         }
 
@@ -152,7 +156,6 @@ namespace Local.Integration.Scripts.Game
             }
 
             UpdateCollectedItemsUI();
-            OpenBungalowCanvas();
         }
 
         public void Win()
