@@ -53,6 +53,8 @@ namespace Local.Integration.Scripts.Game
         [SerializeField] private AudioClip _grabSE;
         [SerializeField] private AudioClip _tooHeavySE;
 
+        [Header("VFX")] [SerializeField] private ParticleSystem _disapearParticleSystem;
+
         private GameObject _hitObj;
         private bool _canTakeDamage;
         private int _health;
@@ -278,7 +280,8 @@ namespace Local.Integration.Scripts.Game
                         {
                             _collectedItems[itemName] = new CollectedItemData(itemName, itemWeight, itemScore);
                         }
-
+                        _disapearParticleSystem.transform.position = _hitObj.transform.position;
+                        _disapearParticleSystem.Play();
                         SoundFXManager.instance.PlaySoundFXClip(_grabSE, transform, 1f);
                         float targetFillAmount = _weightHold / _weightMaxCapacity;
                         _weightFillImage.DOFillAmount(targetFillAmount, 0.5f).SetEase(Ease.InOutQuad);
