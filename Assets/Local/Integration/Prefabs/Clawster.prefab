@@ -5422,7 +5422,8 @@ MonoBehaviour:
   _redWheel: {fileID: 0}
   _greenWheel: {fileID: 0}
   _grabButton: {fileID: 0}
-  _grabSound: {fileID: 8300000, guid: f1471d8c4f2891e479d19654ca80bab2, type: 3}
+  _grabSE: {fileID: 8300000, guid: 709d15f7e67363c439f0c81ac309c976, type: 3}
+  _tooHeavySE: {fileID: 8300000, guid: 0f2c1cc65c3984c48b653bc82a10cd71, type: 3}
 --- !u!114 &678499683890828525
 MonoBehaviour:
   m_ObjectHideFlags: 0

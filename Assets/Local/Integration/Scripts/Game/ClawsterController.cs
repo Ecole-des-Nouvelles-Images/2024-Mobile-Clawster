@@ -48,10 +48,11 @@ namespace Local.Integration.Scripts.Game
         [SerializeField] private Image _redWheel;
         [SerializeField] private Image _greenWheel;
         [SerializeField] private CanvasGroup _grabButton;
-
-        [Header("Sound Effects")]
-        [SerializeField] private AudioClip _grabSound;
         
+        [Header("Sound Effects")]
+        [SerializeField] private AudioClip _grabSE;
+        [SerializeField] private AudioClip _tooHeavySE;
+
         private GameObject _hitObj;
         private bool _canTakeDamage;
         private int _health;
@@ -278,7 +279,7 @@ namespace Local.Integration.Scripts.Game
                             _collectedItems[itemName] = new CollectedItemData(itemName, itemWeight, itemScore);
                         }
 
-                        SoundFXManager.instance.PlaySoundFXClip(_grabSound, transform, 1f);
+                        SoundFXManager.instance.PlaySoundFXClip(_grabSE, transform, 1f);
                         float targetFillAmount = _weightHold / _weightMaxCapacity;
                         _weightFillImage.DOFillAmount(targetFillAmount, 0.5f).SetEase(Ease.InOutQuad);
                         _hitObj.SetActive(false);
@@ -287,7 +288,11 @@ namespace Local.Integration.Scripts.Game
 
                     if (_weightHold + itemWeight >= _weightMaxCapacity)
                     {
-                        if (_hitObj != null) GameManager.instance.ShowFloatingText(_hitObj.transform.position, 1f);
+                        if (_hitObj != null)
+                        {
+                            GameManager.instance.ShowFloatingText(_hitObj.transform.position, 1f);
+                            SoundFXManager.instance.PlaySoundFXClip(_tooHeavySE, transform, 1f);
+                        }
                     }
                 }
             }

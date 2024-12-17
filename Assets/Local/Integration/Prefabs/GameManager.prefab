@@ -66,6 +66,8 @@ MonoBehaviour:
   _scoreText: {fileID: 0}
   _collectedItemsText: {fileID: 0}
   _floatingTextPrefab: {fileID: 1670952906825007081, guid: 5d64db5f64c3cd14f89009c12f1673ea, type: 3}
+  _victorySE: {fileID: 8300000, guid: d591e172ce9064846bd0529b00954891, type: 3}
+  _defeatSE: {fileID: 8300000, guid: bdb27beb421563f4c903c5f7681e1813, type: 3}
 --- !u!114 &2568707329220548029
 MonoBehaviour:
   m_ObjectHideFlags: 0

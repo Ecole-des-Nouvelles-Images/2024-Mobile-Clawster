@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using DG.Tweening;
+using Local.Integration.Scripts.MainMenu;
 using Local.Integration.Scripts.SCORE;
 using TMPro;
 using UnityEngine;
@@ -37,6 +38,12 @@ namespace Local.Integration.Scripts.Game
         [SerializeField] private TextMeshProUGUI _collectedItemsText;
         [SerializeField] private TextMeshPro _floatingTextPrefab;
         private Dictionary<string, int> _validatedItems = new Dictionary<string, int>();
+
+        [Header("Sound Effects")] 
+        [SerializeField] private AudioSource _gameMusic;
+        [SerializeField] private AudioSource _gameAtmosphere;
+        [SerializeField] private AudioClip _victorySE;
+        [SerializeField] private AudioClip _defeatSE;
 
 
         private void Awake()
@@ -161,24 +168,36 @@ namespace Local.Integration.Scripts.Game
             if (!HasEnded)
             {
                 HasEnded = true;
+                if (_gameMusic != null && _gameMusic.isPlaying)
+                {
+                    _gameMusic.Stop();
+                }
                 UpdateWinUI();
                 _gameCanvas.enabled = false;
                 _panelWin.transform.localScale = Vector3.zero;
                 _panelWin.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack);
+                SoundFXManager.instance.PlaySoundFXClip(_victorySE, transform, 1f);
             }
         }
-
+        
         public void GameOver()
         {
             if (!HasEnded)
             {
                 HasEnded = true;
+                if (_gameMusic != null && _gameMusic.isPlaying)
+                {
+                    _gameMusic.Stop();
+                }
                 _blackScreen.SetActive(true);
                 _gameCanvas.enabled = false;
                 _panelGameOver.transform.localScale = Vector3.zero;
                 _panelGameOver.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack);
+
+                SoundFXManager.instance.PlaySoundFXClip(_defeatSE, transform, 1f);
             }
         }
+
 
         private void UpdateWinUI()
         {

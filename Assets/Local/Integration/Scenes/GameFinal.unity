@@ -7600,7 +7600,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fce1ed9b91d081644bf01c3c2fcce9c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _soundFXObject: {fileID: 1954044182}
+  _soundFXObject: {fileID: 5516541683796941514, guid: 0e11690a37d6f2a4da34bde052facca3, type: 3}
 --- !u!1 &1972207117
 GameObject:
   m_ObjectHideFlags: 0
@@ -8557,6 +8557,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 131541288}
     - target: {fileID: 1105787332250553480, guid: 26369bbb10a184246a7de703cad9a484, type: 3}
+      propertyPath: _gameMusic
+      value: 
+      objectReference: {fileID: 1954044182}
+    - target: {fileID: 1105787332250553480, guid: 26369bbb10a184246a7de703cad9a484, type: 3}
       propertyPath: _scoreText
       value: 
       objectReference: {fileID: 290831415}
@@ -8804,6 +8808,10 @@ PrefabInstance:
     - target: {fileID: 4917872428253622166, guid: f093df391011f2e4aa5b539f2741d1df, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5146627836691548973, guid: f093df391011f2e4aa5b539f2741d1df, type: 3}
+      propertyPath: m_Radius
+      value: 0.9
       objectReference: {fileID: 0}
     - target: {fileID: 7853724041170193465, guid: f093df391011f2e4aa5b539f2741d1df, type: 3}
       propertyPath: _target
@@ -9186,9 +9194,9 @@ CanvasRenderer:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 2059914007}
   - {fileID: 1309870776}
-  - {fileID: 179071330}
   - {fileID: 1155796320}
-  - {fileID: 163081176}
+  - {fileID: 179071330}
+  - {fileID: 2059914007}
   - {fileID: 1348774621}
+  - {fileID: 163081176}
