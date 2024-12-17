@@ -367,16 +367,12 @@ namespace Local.Integration.Scripts.Game
 
             _meshFilter.sharedMesh = mesh;
 
-            // Configuration du MeshCollider
             MeshCollider meshCollider = GetComponent<MeshCollider>();
             if (meshCollider == null)
             {
                 meshCollider = gameObject.AddComponent<MeshCollider>();
             }
-
             meshCollider.sharedMesh = mesh;
-
-
         }
     }
 }

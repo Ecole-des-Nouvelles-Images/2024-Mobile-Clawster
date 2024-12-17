@@ -47,6 +47,7 @@ namespace Local.Integration.Scripts.Game
         [SerializeField] private CanvasGroup _grabButton;
         
         private GameObject _hitObj;
+        private bool _canTakeDamage;
         private int _health;
         private int _holdScore;
         private float _targetAngle;
@@ -56,6 +57,8 @@ namespace Local.Integration.Scripts.Game
         private int _currentTouchCount;
         private bool _isSprinting;
         private Dictionary<string, CollectedItemData> _collectedItems = new Dictionary<string, CollectedItemData>();
+        private float _nextDamageTime = 0f;
+
 
         private void Awake()
         {
@@ -70,7 +73,6 @@ namespace Local.Integration.Scripts.Game
             _stamina = _maxStamina;
             _health = _maxHealth;
             _weightFillImage.fillAmount = _weightHold / _weightMaxCapacity;
-            HideWholeWheel();
         }
 
         private void FixedUpdate()
@@ -212,15 +214,20 @@ namespace Local.Integration.Scripts.Game
 
         private void HandleDamage()
         {
-            if (_health < 0)
+            if (_health == 1)
             {
                 GameManager.instance.GameOver();
+                return;
             }
+
             _health--;
             GameObject heart = _healthBar.HeartIcons[_health].gameObject;
             heart.transform.DOScale(Vector3.zero, 0.3f).SetEase(Ease.OutBounce);
             Destroy(heart, 0.5f);
+            _nextDamageTime = Time.time + 0.5f;
         }
+        
+
 
         private void Grab()
         {
@@ -337,7 +344,10 @@ namespace Local.Integration.Scripts.Game
             }
             if (other.CompareTag("Enemy"))
             {
-                HandleDamage();
+                if (Time.time >= _nextDamageTime)
+                {
+                    HandleDamage();
+                }
             }
         }
 
@@ -346,8 +356,8 @@ namespace Local.Integration.Scripts.Game
             if (other.CompareTag("Item") || other.CompareTag("Fish"))
             {
                 StopAllCoroutines();
-                _hitObj = null;
                 other.GetComponent<Renderer>().material.SetVector("_OutlineColor", new Vector4(0, 0, 0, 1));
+                _hitObj = null;
                 _isAFish = false;
                 _currentTouchCount = 0;
             }

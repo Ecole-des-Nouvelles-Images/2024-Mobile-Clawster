@@ -27,8 +27,7 @@ namespace Local.Integration.Scripts.Game
 
         [Header("UI Elements")] 
         [SerializeField] private Image _timerFillImage;
-
-        [FormerlySerializedAs("_bungalowUIGo")] [SerializeField] private GameObject _bungalowUI;
+        [SerializeField] private GameObject _bungalowUI;
         [SerializeField] private GameObject _blackScreen;
         [SerializeField] private GameObject _panelWin;
         [SerializeField] private TextMeshProUGUI _panelWinText;
@@ -65,6 +64,11 @@ namespace Local.Integration.Scripts.Game
                 _timerFillImage.fillAmount = Mathf.Clamp01(1 - (ElapsedTime / GameTime));
             }
             else
+            {
+                Win();
+            }
+
+            if (Input.GetKeyDown(KeyCode.Escape))
             {
                 Win();
             }
@@ -110,35 +114,24 @@ namespace Local.Integration.Scripts.Game
             PlayerPrefs.Save();
         }
 
-        private void OpenBungalowCanvas()
-        {
-            _bungalowUI.transform.localScale = Vector3.one;
-            _bungalowUI.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack);
-        }
-
-        public void CloseBungalowCanvas()
-        {
-            _bungalowUI.transform.localScale = Vector3.zero;
-        }
 
         private void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag("Player"))
             {
-                OpenBungalowCanvas();
-                Debug.Log("rentrer");
+                _bungalowUI.SetActive(true);
             }
         }
+        
 
         private void OnTriggerExit(Collider other)
         {
             if (other.CompareTag("Player"))
             {
-                CloseBungalowCanvas();
-                Debug.Log("partir");
+                _bungalowUI.SetActive(false);
             }
         }
-
+        
         public void DisplayCollectedItems(Dictionary<string, CollectedItemData> collectedItems)
         {
             foreach (var item in collectedItems.Values)

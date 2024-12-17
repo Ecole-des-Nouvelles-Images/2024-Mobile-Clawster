@@ -57,7 +57,7 @@ MonoBehaviour:
   HasStarted: 0
   HasEnded: 0
   _timerFillImage: {fileID: 0}
-  _bungalowUIGo: {fileID: 0}
+  _bungalowUI: {fileID: 0}
   _blackScreen: {fileID: 0}
   _panelWin: {fileID: 0}
   _panelWinText: {fileID: 0}
@@ -132,8 +132,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 8.793644, y: 1.7154455, z: 6.437149}
-  m_Center: {x: 0.1473484, y: 5.380985, z: -46.41562}
+  m_Size: {x: 7.354435, y: 1.7154455, z: 5.4748}
+  m_Center: {x: -0.5722561, y: 5.380985, z: -46.896793}
 --- !u!114 &3137005206759209718
 MonoBehaviour:
   m_ObjectHideFlags: 0
