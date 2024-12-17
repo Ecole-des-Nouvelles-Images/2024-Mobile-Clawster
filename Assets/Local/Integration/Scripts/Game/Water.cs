@@ -13,10 +13,9 @@ namespace Local.Integration.Scripts.Game
         [SerializeField] private float _vignetteMaxIntensity = 1f; 
         [SerializeField] private Image _blackScreen; 
         [SerializeField] private Volume _postProcessVolume;
-
+        
         private bool _isInWater = false;
         private float _timeInWater = 0f;
-
         private Vignette _vignette;
 
         private void Start()

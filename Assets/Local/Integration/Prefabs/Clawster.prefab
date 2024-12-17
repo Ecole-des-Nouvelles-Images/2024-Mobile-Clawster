@@ -5404,6 +5404,7 @@ MonoBehaviour:
   _sprintSpeedMultiplier: 1.5
   _slowFactor: 2
   _maxStamina: 100
+  _speedRecover: 20
   _maxHealth: 3
   _weightMaxCapacity: 10
   _maxQteTime: 5
