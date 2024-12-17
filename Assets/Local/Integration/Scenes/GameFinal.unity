@@ -9268,6 +9268,26 @@ PrefabInstance:
       propertyPath: _virtualCameras.Array.data[0]
       value: 
       objectReference: {fileID: 27315098}
+    - target: {fileID: 1344979070203473025, guid: 909625a6483d51d40b4962ea3de6b327, type: 3}
+      propertyPath: _stepParticles
+      value: 
+      objectReference: {fileID: 8318690964499053886, guid: 904a02c736ca9212c9d2e9b942e2bfeb, type: 3}
+    - target: {fileID: 1458903974668541338, guid: 909625a6483d51d40b4962ea3de6b327, type: 3}
+      propertyPath: _stepParticles
+      value: 
+      objectReference: {fileID: 8318690964499053886, guid: 904a02c736ca9212c9d2e9b942e2bfeb, type: 3}
+    - target: {fileID: 2045951721410178880, guid: 909625a6483d51d40b4962ea3de6b327, type: 3}
+      propertyPath: _stepParticles
+      value: 
+      objectReference: {fileID: 8318690964499053886, guid: 904a02c736ca9212c9d2e9b942e2bfeb, type: 3}
+    - target: {fileID: 2344652035815822488, guid: 909625a6483d51d40b4962ea3de6b327, type: 3}
+      propertyPath: _stepParticles
+      value: 
+      objectReference: {fileID: 8318690964499053886, guid: 904a02c736ca9212c9d2e9b942e2bfeb, type: 3}
+    - target: {fileID: 4043775423196160702, guid: 909625a6483d51d40b4962ea3de6b327, type: 3}
+      propertyPath: _stepParticles
+      value: 
+      objectReference: {fileID: 8318690964499053886, guid: 904a02c736ca9212c9d2e9b942e2bfeb, type: 3}
     - target: {fileID: 4132175604036049100, guid: 909625a6483d51d40b4962ea3de6b327, type: 3}
       propertyPath: _joystick
       value: 
@@ -9308,6 +9328,10 @@ PrefabInstance:
       propertyPath: _feathersParticleSystem
       value: 
       objectReference: {fileID: 1153487213}
+    - target: {fileID: 4762688059880884378, guid: 909625a6483d51d40b4962ea3de6b327, type: 3}
+      propertyPath: _stepParticles
+      value: 
+      objectReference: {fileID: 8318690964499053886, guid: 904a02c736ca9212c9d2e9b942e2bfeb, type: 3}
     - target: {fileID: 6131495294893809037, guid: 909625a6483d51d40b4962ea3de6b327, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.8808742e-11
@@ -9348,6 +9372,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6235184864181731813, guid: 909625a6483d51d40b4962ea3de6b327, type: 3}
+      propertyPath: _stepParticles
+      value: 
+      objectReference: {fileID: 8318690964499053886, guid: 904a02c736ca9212c9d2e9b942e2bfeb, type: 3}
+    - target: {fileID: 8827359967077571307, guid: 909625a6483d51d40b4962ea3de6b327, type: 3}
+      propertyPath: _stepParticles
+      value: 
+      objectReference: {fileID: 8318690964499053886, guid: 904a02c736ca9212c9d2e9b942e2bfeb, type: 3}
     - target: {fileID: 9021562472261455225, guid: 909625a6483d51d40b4962ea3de6b327, type: 3}
       propertyPath: m_Name
       value: Clawster

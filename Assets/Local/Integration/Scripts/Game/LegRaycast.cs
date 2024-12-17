@@ -68,16 +68,12 @@ namespace Local.Integration.Scripts.Game
                 yield return null;
             }
             _IKPos = end;
-
-            if (_stepParticles != null)
-            {
-                _stepParticles.Play();
-            }
         }
 
         IEnumerator Walk(float dt, Vector3 start, Vector3 end)
         {
-            yield return StartCoroutine(WalkInterpolate(dt, start, end));
+            _stepParticles.Play();
+			yield return StartCoroutine(WalkInterpolate(dt, start, end));
         }
     }
 }
