@@ -1,4 +1,5 @@
 using System.Collections;
+using Local.Integration.Scripts.MainMenu;
 using UnityEngine;
 using Vector3 = UnityEngine.Vector3;
 
@@ -19,6 +20,9 @@ namespace Local.Integration.Scripts.Game
 
         [Header("Graphics")]
         [SerializeField] private ParticleSystem _stepParticles;
+
+        [Header("Sound")] 
+        [SerializeField] private AudioClip _step;
     
         private Vector3 _IKPos;                    
         private Vector3 _currentHitPos;  
@@ -30,7 +34,6 @@ namespace Local.Integration.Scripts.Game
             }
         
             if (Vector3.Distance(IKTarget.position, _currentHitPos) > MaxDistance) {
-            
                 StartCoroutine(Walk(InterpolationTime, _IKPos, _currentHitPos)); 
             } else {
                 IKTarget.position = _IKPos;                  
@@ -42,6 +45,8 @@ namespace Local.Integration.Scripts.Game
             float pi = Mathf.PI;
             float dtNorm;
 
+
+
             for (dt = 0f; dt < InterpolationTime; dt += Time.deltaTime) {
                 dtNorm = dt / InterpolationTime;
                 tempPos = Vector3.Lerp(start, end, _interpolationCurve.Evaluate(dtNorm));
@@ -49,15 +54,20 @@ namespace Local.Integration.Scripts.Game
                 IKTarget.position = tempPos;       
                 yield return null;
             }
-            _IKPos = end; 
+            _IKPos = end;
+            if (_step != null) {
+                SoundFXManager.instance.PlaySoundFXClip(_step, this.transform, .5f);
+            } 
+            
             if (_stepParticles != null)
             {
                 _stepParticles.Play();
             }
         }
 
-        IEnumerator Walk(float dt, Vector3 start, Vector3 end) {
-            yield return StartCoroutine(WalkInterpolate(dt, start, end));
+        IEnumerator Walk(float dt, Vector3 start, Vector3 end) { 
+           
+            yield return StartCoroutine(WalkInterpolate(dt, start, end));                
         }
     }
 }

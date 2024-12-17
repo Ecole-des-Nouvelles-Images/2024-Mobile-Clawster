@@ -1,5 +1,6 @@
 using Unity.Mathematics;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Local.Integration.Scripts.Game
 {
@@ -392,10 +393,12 @@ namespace Local.Integration.Scripts.Game
 
             Mesh mesh = _meshFilter.sharedMesh;
             Vector3[] vertices = mesh.vertices;
-            Vector3[] normals = mesh.normals; 
+            Vector3[] normals = mesh.normals;
+            int yRot;
 
             for (int i = 0; i < _objectCount; i++)
             {
+                yRot = Random.Range(0, 360);
                 int randomIndex = UnityEngine.Random.Range(0, vertices.Length);
                 Vector3 localPosition = vertices[randomIndex];
                 Vector3 worldPosition = transform.TransformPoint(localPosition);
@@ -404,10 +407,11 @@ namespace Local.Integration.Scripts.Game
                 Vector3 localNormal = normals[randomIndex];
                 Vector3 worldNormal = transform.TransformDirection(localNormal);
 
-                Quaternion rotation = Quaternion.FromToRotation(Vector3.up, worldNormal);
+                Quaternion normQuat = Quaternion.FromToRotation(Vector3.up, worldNormal);
+                Quaternion rotQuat = Quaternion.Euler(0, yRot, 0);
 
                 GameObject objectToSpawn = _objectsToSpawn[UnityEngine.Random.Range(0, _objectsToSpawn.Length)];
-                Instantiate(objectToSpawn, worldPosition, rotation, transform);
+                Instantiate(objectToSpawn, worldPosition, normQuat * rotQuat, transform);
             }
         }
 

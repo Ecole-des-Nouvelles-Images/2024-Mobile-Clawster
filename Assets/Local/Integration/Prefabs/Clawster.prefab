@@ -180,6 +180,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _stepParticles: {fileID: 0}
+  _step: {fileID: 0}
 --- !u!1 &372203815124297491
 GameObject:
   m_ObjectHideFlags: 0
@@ -728,6 +729,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _stepParticles: {fileID: 0}
+  _step: {fileID: 0}
 --- !u!1 &1877567687016028529
 GameObject:
   m_ObjectHideFlags: 0
@@ -1522,6 +1524,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _stepParticles: {fileID: 0}
+  _step: {fileID: 0}
 --- !u!1 &3307832119315317079
 GameObject:
   m_ObjectHideFlags: 0
@@ -1596,6 +1599,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _stepParticles: {fileID: 0}
+  _step: {fileID: 0}
 --- !u!1 &3381196636275190625
 GameObject:
   m_ObjectHideFlags: 0
@@ -2338,6 +2342,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _stepParticles: {fileID: 0}
+  _step: {fileID: 0}
 --- !u!1 &4084964349784694956
 GameObject:
   m_ObjectHideFlags: 0
@@ -3024,6 +3029,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _stepParticles: {fileID: 0}
+  _step: {fileID: 0}
 --- !u!1 &5382563858228844217
 GameObject:
   m_ObjectHideFlags: 0
@@ -4148,6 +4154,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _stepParticles: {fileID: 0}
+  _step: {fileID: 0}
 --- !u!1 &7320142569653871659
 GameObject:
   m_ObjectHideFlags: 0
@@ -4767,6 +4774,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _stepParticles: {fileID: 0}
+  _step: {fileID: 0}
 --- !u!1 &8338076346730424794
 GameObject:
   m_ObjectHideFlags: 0
@@ -5414,6 +5422,7 @@ MonoBehaviour:
   _redWheel: {fileID: 0}
   _greenWheel: {fileID: 0}
   _grabButton: {fileID: 0}
+  _grabSound: {fileID: 0}
 --- !u!114 &678499683890828525
 MonoBehaviour:
   m_ObjectHideFlags: 0
