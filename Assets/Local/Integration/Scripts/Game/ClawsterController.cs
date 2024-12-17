@@ -4,6 +4,7 @@ using DG.Tweening;
 using JetBrains.Annotations;
 using Local.Integration.Scripts.UI;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Local.Integration.Scripts.Game
@@ -24,7 +25,8 @@ namespace Local.Integration.Scripts.Game
         private float _currentSpeed;
 
         [Header("Stamina Settings")] 
-        [SerializeField] private float _maxStamina;
+        [SerializeField] private float _maxStamina; 
+        [SerializeField] private float _speedRecover = 20f;
         private float _stamina;
         private bool _staminaExhausted;
 
@@ -117,7 +119,7 @@ namespace Local.Integration.Scripts.Game
 
             if (!_isSprinting && _stamina < _maxStamina)
             {
-                _stamina += 10 * Time.deltaTime;
+                _stamina +=  _speedRecover * Time.deltaTime;
                 _stamina = Mathf.Clamp(_stamina, 0, _maxStamina);
                 _redWheel.fillAmount = (_stamina / _maxStamina);
                 _greenWheel.fillAmount = (_stamina / _maxStamina);
