@@ -56,6 +56,7 @@ namespace Local.Integration.Scripts.Game
         [Header("VFX")] 
         [SerializeField] private ParticleSystem _disapearParticleSystem;
         [SerializeField] private ParticleSystem _feathersParticleSystem;
+        [SerializeField] private ParticleSystem _sweatDropsParticleSystem;
 
         private GameObject _hitObj;
         private bool _canTakeDamage;
@@ -124,6 +125,15 @@ namespace Local.Integration.Scripts.Game
         {
             if (!GameManager.instance.HasStarted) return;
 
+            if (_weightHold >= 8)
+            {
+                _sweatDropsParticleSystem.Play();
+            }
+            else
+            {
+                _sweatDropsParticleSystem.Pause();
+            }
+            
             if (CanGrab())
             {
                 _grabButton.alpha = 1f;
@@ -229,7 +239,7 @@ namespace Local.Integration.Scripts.Game
             {
                 currentSpeed *= (1 - (_weightHold / _weightMaxCapacity) * _slowFactor);
             }
-
+            
             if (_isSprinting && !_staminaExhausted)
             {
                 currentSpeed *= _sprintSpeedMultiplier;
