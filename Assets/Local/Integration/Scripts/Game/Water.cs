@@ -101,7 +101,7 @@ namespace Local.Integration.Scripts.Game
             _vignette.intensity.value = _vignetteMaxIntensity;
             _vignette.smoothness.value = 1f;
             _blackScreen.color = new Color(0, 0, 0, 1);
-            GameManager.instance.Win();
+            GameManager.instance.GameOver();
         }
     }
 }

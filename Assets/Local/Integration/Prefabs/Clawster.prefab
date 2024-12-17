@@ -4359,8 +4359,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0.42, z: 1}
+  m_Radius: 0.6
+  m_Center: {x: 0, y: 0.42, z: 0.9}
 --- !u!1 &7592906856547059227
 GameObject:
   m_ObjectHideFlags: 0
@@ -4956,7 +4956,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.1, y: 0.01, z: 0.1}
+  m_Size: {x: 0.4, y: 0.01, z: 0.4}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8581297357401743184
 GameObject:
@@ -5396,20 +5396,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9de9cf0c38bd96343b5fa9fd3bcf6914, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rigidbody: {fileID: 5654663772189066681}
   _joystick: {fileID: 0}
   _cameraTransform: {fileID: 0}
   _grabCollider: {fileID: 5214618743536043051}
   _speed: 2.5
-  _sprintSpeedMultiplier: 3
+  _sprintSpeedMultiplier: 1.5
   _slowFactor: 2
   _maxStamina: 100
+  _maxHealth: 0
+  _healthBar: {fileID: 0}
   _weightMaxCapacity: 10
   _weightFillImage: {fileID: 0}
-  _maxQTETime: 3
+  _maxQteTime: 0
   _maxTouchCount: 5
   _redWheel: {fileID: 0}
   _greenWheel: {fileID: 0}
+  _grabButton: {fileID: 0}
 --- !u!114 &678499683890828525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5544,7 +5546,7 @@ Rigidbody:
   m_GameObject: {fileID: 9021562472261455225}
   serializedVersion: 4
   m_Mass: 0.0000001
-  m_Drag: 15
+  m_Drag: 10
   m_AngularDrag: 0
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}

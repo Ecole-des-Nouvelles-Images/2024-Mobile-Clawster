@@ -1,18 +1,23 @@
-using System;
 using System.Collections.Generic;
 using DG.Tweening;
 using Local.Integration.Scripts.SCORE;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 
 namespace Local.Integration.Scripts.Game
+
 {
     public class GameManager : MonoBehaviour
     {
+        [Header("Game Settings")] 
         public ScoreData ScoreData;
         public static GameManager instance;
-        public int GameplayTime;
+        public float GameTime = 120f;
+        public float ElapsedTime;
+
         public int CountdownTime;
         public string StartText;
         public int EndTime;
@@ -20,9 +25,9 @@ namespace Local.Integration.Scripts.Game
         public bool HasStarted;
         public bool HasEnded;
 
-        public float RemainingTime;
-        
-        [SerializeField] private GameObject _bungalowUIGo;
+        [Header("UI Elements")] 
+        [SerializeField] private Image _timerFillImage;
+        [SerializeField] private GameObject _bungalowUI;
         [SerializeField] private GameObject _blackScreen;
         [SerializeField] private GameObject _panelWin;
         [SerializeField] private TextMeshProUGUI _panelWinText;
@@ -32,6 +37,7 @@ namespace Local.Integration.Scripts.Game
         [SerializeField] private TextMeshProUGUI _collectedItemsText;
         [SerializeField] private TextMeshPro _floatingTextPrefab;
         private Dictionary<string, int> _validatedItems = new Dictionary<string, int>();
+
 
         private void Awake()
         {
@@ -44,20 +50,23 @@ namespace Local.Integration.Scripts.Game
             {
                 Destroy(gameObject);
             }
+
             ResetScore();
-            CloseBungalowCanvas();
             LoadBestScore();
             UpdateScoreUI();
-        }
-
-        private void Start()
-        {
-            RemainingTime = GameplayTime + CountdownTime;
         }
         
         private void Update()
         {
-            RemainingTime -= Time.deltaTime;
+            if (ElapsedTime < GameTime)
+            {
+                ElapsedTime += Time.deltaTime;
+                _timerFillImage.fillAmount = Mathf.Clamp01(1 - (ElapsedTime / GameTime));
+            }
+            else
+            {
+                Win();
+            }
         }
 
         public void UpdateScoreUI()
@@ -100,32 +109,24 @@ namespace Local.Integration.Scripts.Game
             PlayerPrefs.Save();
         }
 
-        private void OpenBungalowCanvas()
-        {
-            _bungalowUIGo.gameObject.SetActive(true);
-        }
-
-        public void CloseBungalowCanvas()
-        {
-            _bungalowUIGo.gameObject.SetActive(false);
-        }
 
         private void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag("Player"))
             {
-                OpenBungalowCanvas();
+                _bungalowUI.SetActive(true);
             }
         }
+        
 
         private void OnTriggerExit(Collider other)
         {
             if (other.CompareTag("Player"))
             {
-                CloseBungalowCanvas();
+                _bungalowUI.SetActive(false);
             }
         }
-
+        
         public void DisplayCollectedItems(Dictionary<string, CollectedItemData> collectedItems)
         {
             foreach (var item in collectedItems.Values)
@@ -141,8 +142,8 @@ namespace Local.Integration.Scripts.Game
 
                 AddScore(item.Score * item.Quantity);
             }
+
             UpdateCollectedItemsUI();
-            OpenBungalowCanvas();
         }
 
         public void Win()
@@ -150,11 +151,10 @@ namespace Local.Integration.Scripts.Game
             if (!HasEnded)
             {
                 HasEnded = true;
-                _blackScreen.SetActive(true);
                 UpdateWinUI();
                 _gameCanvas.enabled = false;
                 _panelWin.transform.localScale = Vector3.zero;
-                _panelWin.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack);  
+                _panelWin.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack);
             }
         }
 
@@ -172,9 +172,10 @@ namespace Local.Integration.Scripts.Game
 
         private void UpdateWinUI()
         {
-            //_panelWinText.text = "Ton Score\n " + $"{ScoreData.CurrentScore}\n" + "Meilleur Score\n " + $"{ScoreData.BestScore}";
+            _panelWinText.text = "Ton Score\n " + $"{ScoreData.CurrentScore}\n" + "\n" + "Meilleur Score\n " +
+                                 $"{ScoreData.BestScore}";
         }
-        
+
         private void UpdateCollectedItemsUI()
         {
             _collectedItemsText.text = "Objets validés :\n";
@@ -188,9 +189,30 @@ namespace Local.Integration.Scripts.Game
         public void ShowFloatingText(Vector3 spawnPosition, float destroyTime)
         {
             TextMeshPro floatingText = Instantiate(_floatingTextPrefab, spawnPosition, Quaternion.identity, transform);
-            floatingText.transform.rotation = Quaternion.Euler(0, 180, 0); 
+            floatingText.transform.rotation = Quaternion.Euler(0, 180, 0);
             floatingText.DOFade(0, 1f).SetEase(Ease.InCubic).OnComplete(() => Destroy(floatingText.gameObject));
             Destroy(floatingText, destroyTime);
+        }
+        
+        public void PlayAgain()
+        {
+            ResetScore();
+            ElapsedTime = 0f;
+            HasStarted = true;
+            HasEnded = false;
+
+            _gameCanvas.enabled = true;
+            _panelWin.SetActive(false);
+            _panelGameOver.SetActive(false);
+            _blackScreen.SetActive(false);
+
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+        
+        
+        public void GoToMenu()
+        {
+            SceneManager.LoadScene("MainMenu");
         }
 
     }
