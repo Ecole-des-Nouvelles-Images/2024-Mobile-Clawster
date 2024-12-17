@@ -50,6 +50,15 @@ namespace Local.Integration.Scripts.Game
 
         [SerializeField, Range(0, 1)] private float _thresholdValue = 0.5f;
         
+                
+        [SerializeField]
+        private GameObject[] _objectsToSpawn; 
+
+        [SerializeField]
+        private int _objectCount = 50; 
+
+        [SerializeField]
+        private float _heightOffset = 0.1f;
 
         private CellData[,] _grid;
         private MeshFilter _meshFilter;
@@ -373,16 +382,6 @@ namespace Local.Integration.Scripts.Game
             meshCollider.sharedMesh = mesh;
         }
         
-        
-        [SerializeField]
-        private GameObject[] _objectsToSpawn; 
-
-        [SerializeField]
-        private int _objectCount = 50; 
-
-        [SerializeField]
-        private float _heightOffset = 0.1f;
-
         private void SpawnObjectsOnBeach()
         {
             if (_meshFilter.sharedMesh == null || _objectsToSpawn == null || _objectsToSpawn.Length == 0)
@@ -393,7 +392,7 @@ namespace Local.Integration.Scripts.Game
 
             Mesh mesh = _meshFilter.sharedMesh;
             Vector3[] vertices = mesh.vertices;
-            Vector3[] normals = mesh.normals; // Obtenir les normales du mesh
+            Vector3[] normals = mesh.normals; 
 
             for (int i = 0; i < _objectCount; i++)
             {

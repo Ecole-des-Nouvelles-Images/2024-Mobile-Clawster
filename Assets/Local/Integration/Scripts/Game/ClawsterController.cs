@@ -22,7 +22,7 @@ namespace Local.Integration.Scripts.Game
         [Header("Movement Settings")]
         [SerializeField] private float _speed;
         [SerializeField] private float _sprintSpeedMultiplier = 1.5f;
-        [SerializeField] private float _slowFactor;
+        [SerializeField] private float _slowFactor = 0.15f;
         private float _currentSpeed;
 
         [Header("Stamina Settings")]
@@ -119,7 +119,16 @@ namespace Local.Integration.Scripts.Game
         {
             if (!GameManager.instance.HasStarted) return;
 
-            _grabButton.alpha = CanGrab() ? 1f : 0.5f;
+            if (CanGrab())
+            {
+                _grabButton.alpha = 1f;
+                _grabButton.interactable = true;
+            }
+            else
+            {
+                _grabButton.alpha = 0;
+                _grabButton.interactable = false;
+            }
 
             if (!_isSprinting && _stamina < _maxStamina)
             {
