@@ -18,26 +18,26 @@ namespace Local.Integration.Scripts.Game
         [SerializeField] private Collider _grabCollider;
         private Rigidbody _rigidbody;
 
-        [Header("Movement Settings")] 
+        [Header("Movement Settings")]
         [SerializeField] private float _speed;
         [SerializeField] private float _sprintSpeedMultiplier = 1.5f;
         [SerializeField] private float _slowFactor;
         private float _currentSpeed;
 
-        [Header("Stamina Settings")] 
-        [SerializeField] private float _maxStamina; 
+        [Header("Stamina Settings")]
+        [SerializeField] private float _maxStamina;
         [SerializeField] private float _speedRecover = 20f;
         private float _stamina;
         private bool _staminaExhausted;
 
-        [Header("Health & Damage Settings")] 
+        [Header("Health & Damage Settings")]
         [SerializeField] private int _maxHealth;
 
-        [Header("Weight Settings")] 
+        [Header("Weight Settings")]
         [SerializeField] private float _weightMaxCapacity;
         private float _weightHold = 0;
-        
-        [Header("QTE Settings")] 
+
+        [Header("QTE Settings")]
         [SerializeField] private float _maxQteTime;
         [SerializeField] private int _maxTouchCount;
 
@@ -47,15 +47,15 @@ namespace Local.Integration.Scripts.Game
         [SerializeField] private Image _redWheel;
         [SerializeField] private Image _greenWheel;
         [SerializeField] private CanvasGroup _grabButton;
-        
+
         private GameObject _hitObj;
         private bool _canTakeDamage;
         private int _health;
         private int _holdScore;
         private float _targetAngle;
         private Animator _handAnimator;
-        private bool _isAFish; 
-        private bool _isInQte; 
+        private bool _isAFish;
+        private bool _isInQte;
         private int _currentTouchCount;
         private bool _isSprinting;
         private Dictionary<string, CollectedItemData> _collectedItems = new Dictionary<string, CollectedItemData>();
@@ -133,7 +133,6 @@ namespace Local.Integration.Scripts.Game
             }
         }
 
-
         public void OnSprint()
         {
             if (!GameManager.instance.HasStarted) return;
@@ -207,6 +206,12 @@ namespace Local.Integration.Scripts.Game
             }
 
             float currentSpeed = _speed;
+
+            if (_weightHold > 0)
+            {
+                currentSpeed *= (1 - (_weightHold / _weightMaxCapacity) * _slowFactor);
+            }
+
             if (_isSprinting && !_staminaExhausted)
             {
                 currentSpeed *= _sprintSpeedMultiplier;
@@ -232,11 +237,8 @@ namespace Local.Integration.Scripts.Game
             _health--;
             GameObject heart = _healthBar.HeartIcons[_health].gameObject;
             heart.transform.DOScale(Vector3.zero, 0.3f).SetEase(Ease.OutBounce);
-            Destroy(heart, 0.5f);
             _nextDamageTime = Time.time + 0.5f;
         }
-        
-
 
         private void Grab()
         {
