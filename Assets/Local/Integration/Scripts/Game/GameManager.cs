@@ -67,11 +67,6 @@ namespace Local.Integration.Scripts.Game
             {
                 Win();
             }
-
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                Win();
-            }
         }
 
         public void UpdateScoreUI()
