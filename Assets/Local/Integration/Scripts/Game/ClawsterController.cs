@@ -53,7 +53,9 @@ namespace Local.Integration.Scripts.Game
         [SerializeField] private AudioClip _grabSE;
         [SerializeField] private AudioClip _tooHeavySE;
 
-        [Header("VFX")] [SerializeField] private ParticleSystem _disapearParticleSystem;
+        [Header("VFX")] 
+        [SerializeField] private ParticleSystem _disapearParticleSystem;
+        [SerializeField] private ParticleSystem _feathersParticleSystem;
 
         private GameObject _hitObj;
         private bool _canTakeDamage;
@@ -379,6 +381,8 @@ namespace Local.Integration.Scripts.Game
                 if (Time.time >= _nextDamageTime)
                 {
                     HandleDamage();
+                    _feathersParticleSystem.transform.position = other.transform.position;
+                    _feathersParticleSystem.Play();
                 }
             }
         }
