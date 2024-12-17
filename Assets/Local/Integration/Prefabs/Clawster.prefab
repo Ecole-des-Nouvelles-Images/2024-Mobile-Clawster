@@ -5402,7 +5402,7 @@ MonoBehaviour:
   _grabCollider: {fileID: 5214618743536043051}
   _speed: 2.5
   _sprintSpeedMultiplier: 1.5
-  _slowFactor: 2
+  _slowFactor: 0.15
   _maxStamina: 100
   _speedRecover: 20
   _maxHealth: 3
