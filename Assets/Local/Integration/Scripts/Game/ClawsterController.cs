@@ -59,6 +59,10 @@ namespace Local.Integration.Scripts.Game
         private Dictionary<string, CollectedItemData> _collectedItems = new Dictionary<string, CollectedItemData>();
         private float _nextDamageTime = 0f;
 
+        private bool CanGrab()
+        {
+            return _hitObj != null && !_isInQte;
+        }
 
         private void Awake()
         {
@@ -107,6 +111,10 @@ namespace Local.Integration.Scripts.Game
 
         private void Update()
         {
+            if (!GameManager.instance.HasStarted) return;
+
+            _grabButton.alpha = CanGrab() ? 1f : 0.5f;
+
             if (!_isSprinting && _stamina < _maxStamina)
             {
                 _stamina += 10 * Time.deltaTime;
@@ -120,10 +128,9 @@ namespace Local.Integration.Scripts.Game
                     _staminaExhausted = false;
                     HideWholeWheel();
                 }
-                _grabButton.alpha = 1f;
             }
-            _grabButton.alpha = 0.5f;
         }
+
 
         public void OnSprint()
         {
@@ -328,7 +335,6 @@ namespace Local.Integration.Scripts.Game
         {
             if (other.CompareTag("Item"))
             {
-                _grabButton.alpha = 1f;
                 _hitObj = other.gameObject;
                 other.GetComponent<Renderer>().material.SetVector("_OutlineColor", Vector4.one);
                 _isAFish = false;
