@@ -50,7 +50,7 @@ namespace Local.Integration.Scripts.Game
         [SerializeField] private CanvasGroup _grabButton;
 
         [Header("Sound Effects")]
-        private AudioClip _grabSound;
+        [SerializeField] private AudioClip _grabSound;
         
         private GameObject _hitObj;
         private bool _canTakeDamage;
