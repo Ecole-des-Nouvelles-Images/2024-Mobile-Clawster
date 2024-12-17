@@ -3807,7 +3807,7 @@ GameObject:
   - component: {fileID: 923248263}
   - component: {fileID: 923248262}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: PanelWin_Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7677,6 +7677,17 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 60, y: 8, z: 8}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2026571352 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8170153791668043265, guid: 0d230cc8be529a542a08cb878ab14b18, type: 3}
+  m_PrefabInstance: {fileID: 270741392}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a47f546fc70ec8428172694e78e4288, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2028455816
 GameObject:
   m_ObjectHideFlags: 3
@@ -8200,7 +8211,7 @@ PrefabInstance:
     - target: {fileID: 1105787332250553480, guid: 26369bbb10a184246a7de703cad9a484, type: 3}
       propertyPath: _scoreText
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 847154222}
     - target: {fileID: 1105787332250553480, guid: 26369bbb10a184246a7de703cad9a484, type: 3}
       propertyPath: _bungalowUI
       value: 
@@ -8228,7 +8239,7 @@ PrefabInstance:
     - target: {fileID: 1105787332250553480, guid: 26369bbb10a184246a7de703cad9a484, type: 3}
       propertyPath: _collectedItemsText
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1539475552}
     - target: {fileID: 2258357827905830782, guid: 26369bbb10a184246a7de703cad9a484, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -8276,10 +8287,6 @@ PrefabInstance:
     - target: {fileID: 2928012516959706649, guid: 26369bbb10a184246a7de703cad9a484, type: 3}
       propertyPath: m_Name
       value: GameManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 3137005206759209718, guid: 26369bbb10a184246a7de703cad9a484, type: 3}
-      propertyPath: fpsText
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8583,7 +8590,7 @@ PrefabInstance:
     - target: {fileID: 4132175604036049100, guid: 909625a6483d51d40b4962ea3de6b327, type: 3}
       propertyPath: _joystick
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2026571352}
     - target: {fileID: 4132175604036049100, guid: 909625a6483d51d40b4962ea3de6b327, type: 3}
       propertyPath: _redWheel
       value: 
