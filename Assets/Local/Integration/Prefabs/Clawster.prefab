@@ -5423,8 +5423,9 @@ MonoBehaviour:
   _redWheel: {fileID: 0}
   _greenWheel: {fileID: 0}
   _grabButton: {fileID: 0}
-  _grabSE: {fileID: 8300000, guid: 709d15f7e67363c439f0c81ac309c976, type: 3}
+  _grabSE: {fileID: 8300000, guid: d6617f62133026f4fa085f55fe6ff43a, type: 3}
   _tooHeavySE: {fileID: 8300000, guid: 0f2c1cc65c3984c48b653bc82a10cd71, type: 3}
+  _validateSE: {fileID: 8300000, guid: 904e55fe6ed4cb24b8c04fc8f0608071, type: 3}
   _disapearParticleSystem: {fileID: 0}
   _feathersParticleSystem: {fileID: 0}
   _sweatDropsParticleSystem: {fileID: 6251231019958537516}
@@ -5561,8 +5562,8 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9021562472261455225}
   serializedVersion: 4
-  m_Mass: 0.0000001
-  m_Drag: 12
+  m_Mass: 1
+  m_Drag: 7
   m_AngularDrag: 0
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}

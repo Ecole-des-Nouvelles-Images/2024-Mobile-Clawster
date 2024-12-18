@@ -506,7 +506,7 @@ Canvas:
   m_RenderMode: 0
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
-  m_PixelPerfect: 0
+  m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
@@ -1165,6 +1165,7 @@ MonoBehaviour:
   _playerTransform: {fileID: 688482463}
   _offset: {x: 0, y: 1.5, z: 0}
   _canvas: {fileID: 1728482230}
+  _smoothTime: 0.1
 --- !u!114 &183552147
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1546,7 +1547,7 @@ Canvas:
   m_RenderMode: 0
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
-  m_PixelPerfect: 0
+  m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
@@ -2050,6 +2051,7 @@ MonoBehaviour:
   _playerTransform: {fileID: 688482463}
   _offset: {x: -1, y: 1.5, z: 0}
   _canvas: {fileID: 0}
+  _smoothTime: 0.1
 --- !u!114 &333792189
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4738,7 +4740,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1000363812
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5613,7 +5615,7 @@ Canvas:
   m_RenderMode: 0
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
-  m_PixelPerfect: 0
+  m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
@@ -6275,7 +6277,7 @@ Canvas:
   m_RenderMode: 0
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
-  m_PixelPerfect: 0
+  m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
@@ -6284,7 +6286,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_TargetDisplay: 0
 --- !u!224 &1728482231
 RectTransform:
@@ -7258,7 +7260,7 @@ MonoBehaviour:
   - {fileID: 5780739362500668114, guid: 51c99df329ebe1e45a863c98a9082923, type: 3}
   - {fileID: 6478765039539900375, guid: d013d021c55e8fd41a12ed3a37df9fa6, type: 3}
   - {fileID: 4280446373606099525, guid: bbede3f0103c09f4da84bda84a058647, type: 3}
-  _totalItems: 7
+  _totalItems: 5
   _minOffset: -15
   _maxOffset: 15
 --- !u!114 &1943419197
@@ -7970,6 +7972,7 @@ MonoBehaviour:
   _playerTransform: {fileID: 688482463}
   _offset: {x: -1, y: 1.5, z: 0}
   _canvas: {fileID: 0}
+  _smoothTime: 0.1
 --- !u!114 &2006179851
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8811,6 +8814,10 @@ PrefabInstance:
       propertyPath: fpsText
       value: 
       objectReference: {fileID: 1000363812}
+    - target: {fileID: 3137005206759209718, guid: 26369bbb10a184246a7de703cad9a484, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

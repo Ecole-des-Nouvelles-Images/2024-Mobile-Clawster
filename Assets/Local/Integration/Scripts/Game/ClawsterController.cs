@@ -52,6 +52,7 @@ namespace Local.Integration.Scripts.Game
         [Header("Sound Effects")]
         [SerializeField] private AudioClip _grabSE;
         [SerializeField] private AudioClip _tooHeavySE;
+        [SerializeField] private AudioClip _validateSE;
 
         [Header("VFX")] 
         [SerializeField] private ParticleSystem _disapearParticleSystem;
@@ -294,7 +295,7 @@ namespace Local.Integration.Scripts.Game
                         }
                         _disapearParticleSystem.transform.position = _hitObj.transform.position;
                         _disapearParticleSystem.Play();
-                        SoundFXManager.instance.PlaySoundFXClip(_grabSE, transform, 1f);
+                        SoundFXManager.instance.PlaySoundFXClip(_grabSE, transform, 0.5f);
                         float targetFillAmount = _weightHold / _weightMaxCapacity;
                         _weightFillImage.DOFillAmount(targetFillAmount, 0.5f).SetEase(Ease.InOutQuad);
                         _hitObj.SetActive(false);
@@ -367,6 +368,7 @@ namespace Local.Integration.Scripts.Game
             _collectedItems.Clear();
             _weightFillImage.DOFillAmount(0, 0.2f).SetEase(Ease.InOutQuad);
             GameManager.instance.UpdateScoreUI();
+            SoundFXManager.instance.PlaySoundFXClip(_validateSE, transform, 1f);
         }
 
         private void OnTriggerEnter(Collider other)
@@ -394,6 +396,15 @@ namespace Local.Integration.Scripts.Game
                     _feathersParticleSystem.transform.position = other.transform.position;
                     _feathersParticleSystem.Play();
                 }
+            }
+        }
+        
+        private void OnTriggerStay(Collider other)
+        {
+            if (other.CompareTag("Item"))
+            {
+                _hitObj = other.gameObject;
+                other.GetComponent<Renderer>().material.SetVector("_OutlineColor", Vector4.one);
             }
         }
 
