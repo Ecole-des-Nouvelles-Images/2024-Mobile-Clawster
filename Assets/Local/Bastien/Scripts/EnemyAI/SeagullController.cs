@@ -77,6 +77,7 @@ public class SeagullController : MonoBehaviour {
         //Block the execution of other functions using a Coroutine lasting as long as the tween
         for (float i = 0; i < _attackTime; i += Time.deltaTime) {
             _seagull.transform.LookAt(_lookTarget.transform.position);
+			Debug.DrawRay(_seagull.transform.position, _seagull.transform.forward, Color.blue, 1f);
             yield return new WaitForEndOfFrame();
         }
         
@@ -91,17 +92,22 @@ public class SeagullController : MonoBehaviour {
 
     //Simply wait a random amount of time for the next move
     private IEnumerator WaitForNextAttack() {
-        if (!PlayerPresence) yield break;
+        if (PlayerPresence == false) yield break;
         _truceTimer = Random.Range(_minWaitTime, _maxWaitTime);
+        Debug.Log(_truceTimer);
         yield return new WaitForSeconds(_truceTimer);
         Setup();
     }
 
-    public void Reset() {
+   /* public void Reset() {
         StopAllCoroutines();
-    }
+    }*/
 
-    public void DoCycle() {
+    /*public void DoCycle() {
+        StartCoroutine(WaitForNextAttack());
+    }*/
+
+    private void OnEnable() {
         StartCoroutine(WaitForNextAttack());
     }
 }
