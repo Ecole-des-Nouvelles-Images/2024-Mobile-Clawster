@@ -74,11 +74,6 @@ namespace Local.Integration.Scripts.Game
             }
         }
         
-        private void UpdateScoreWinUI()
-        {
-            _panelWinText.text = "Ton Score\n " + $"{ScoreData.CurrentScore}\n" + "\n" + "Meilleur Score\n " +
-                                 $"{ScoreData.BestScore}";
-        }
         
         public void ValidateScore()
         { 
