@@ -72,7 +72,7 @@ namespace Local.Integration.Scripts.Game
             }
             else
             {
-                Win();
+                //Win();
             }
         }
 

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using Local.Integration.Scripts.MainMenu;
 using Local.Integration.Scripts.SCORE;
 using TMPro;
 using UnityEngine;
@@ -8,6 +9,8 @@ using UnityEngine;
 public class ScoreDigits : MonoBehaviour {
     [SerializeField] private TextMeshProUGUI _digits;
     [SerializeField] private ScoreData _scoreData;
+    [SerializeField] private float _interpolationTime;
+    [SerializeField] private AudioClip _scoreSound;
 
     private int _prevScore, _currScore;
     private bool _isTweening;
@@ -24,8 +27,10 @@ public class ScoreDigits : MonoBehaviour {
 
     private IEnumerator TweenScore() {
         _isTweening = true;
-        DOTween.To(()=> _prevScore, _currScore => _prevScore = _currScore, _currScore, 3f).SetEase(Ease.OutCubic);
-        yield return new WaitForSeconds(3f);
+        SoundFXManager.instance.PlaySoundFXClip(_scoreSound, transform, .35f);
+        DOTween.To(()=> _prevScore, _currScore => _prevScore = _currScore,
+            _currScore, _interpolationTime).SetEase(Ease.OutCirc);
+        yield return new WaitForSeconds(_interpolationTime);
         _isTweening = false;
     }
 }

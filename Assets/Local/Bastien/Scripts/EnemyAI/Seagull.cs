@@ -10,11 +10,11 @@ public class Seagull : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) {
         _seagullController.PlayerPresence = true;
-        _seagullController.Reset();
-        _seagullController.DoCycle();
+        _seagullController.gameObject.SetActive(true);
     }
 
     private void OnTriggerExit(Collider other) {
         _seagullController.PlayerPresence = false;
+        _seagullController.gameObject.SetActive(false);
     }
 }

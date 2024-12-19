@@ -92,17 +92,22 @@ public class SeagullController : MonoBehaviour {
 
     //Simply wait a random amount of time for the next move
     private IEnumerator WaitForNextAttack() {
-        if (!PlayerPresence) yield break;
+        if (PlayerPresence == false) yield break;
         _truceTimer = Random.Range(_minWaitTime, _maxWaitTime);
+        Debug.Log(_truceTimer);
         yield return new WaitForSeconds(_truceTimer);
         Setup();
     }
 
-    public void Reset() {
+   /* public void Reset() {
         StopAllCoroutines();
-    }
+    }*/
 
-    public void DoCycle() {
+    /*public void DoCycle() {
+        StartCoroutine(WaitForNextAttack());
+    }*/
+
+    private void OnEnable() {
         StartCoroutine(WaitForNextAttack());
     }
 }
