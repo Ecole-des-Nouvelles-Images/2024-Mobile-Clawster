@@ -18,7 +18,7 @@ public class ScoreDigits : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         _currScore = _scoreData.CurrentScore;
-        _digits.text = _prevScore.ToString();
+        _digits.text = _prevScore.ToString("000000");
         
         if (_currScore != _prevScore && _isTweening == false) {
             StartCoroutine(TweenScore());

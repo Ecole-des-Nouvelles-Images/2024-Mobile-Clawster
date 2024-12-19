@@ -39,7 +39,7 @@ public class Countdown : MonoBehaviour {
     }
     // Update is called once per frame
     private void Start() {
-        StartCoroutine(CountdownCoroutine(gm.CountdownTime, gm.StartText));
+        StartCoroutine(CountdownCoroutine(gm.StartTime, gm.StartText));
     }
 
     private void Update() {

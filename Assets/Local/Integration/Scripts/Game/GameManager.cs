@@ -19,7 +19,7 @@ namespace Local.Integration.Scripts.Game
         public float GameTime = 120f;
         public float ElapsedTime;
 
-        public int CountdownTime;
+        public int StartTime;
         public string StartText;
         public int EndTime;
         public string EndText;
@@ -65,14 +65,14 @@ namespace Local.Integration.Scripts.Game
         
         private void Update()
         {
-            if (ElapsedTime < GameTime)
+            if (ElapsedTime < GameTime + StartTime)
             {
                 ElapsedTime += Time.deltaTime;
                 _timerFillImage.fillAmount = Mathf.Clamp01(1 - (ElapsedTime / GameTime));
             }
             else
             {
-                //Win();
+                Win();
             }
         }
 

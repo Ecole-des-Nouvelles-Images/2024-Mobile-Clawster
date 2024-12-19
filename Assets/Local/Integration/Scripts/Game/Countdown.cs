@@ -24,17 +24,16 @@ namespace Local.Integration.Scripts.Game
             }
             
             _gameTimerText.transform.localScale = _initialScale;
-            _gameTimerText.transform.DOScale(Vector3.one, 1.1f).SetEase(_easeInOut);
+            _gameTimerText.transform.DOScale(Vector3.one, .95f).SetEase(_easeInOut);
 
-            yield return new WaitForSeconds(1.1f);
+            yield return new WaitForSeconds(1f);
 
             if (time == 0) {
-                yield return new WaitForSeconds(1.1f);
+                yield return new WaitForSeconds(.01f);
 
                 if (end) {
                     GameManager.instance.HasEnded = true;
                     _isCoroutineRunning = false;
-                    GameManager.instance.Win();
                     yield break;
                 }
                 
@@ -47,7 +46,7 @@ namespace Local.Integration.Scripts.Game
         }
 
         private void Start() {
-            StartCoroutine(CountdownCoroutine(GameManager.instance.CountdownTime, GameManager.instance.StartText, false));
+            StartCoroutine(CountdownCoroutine(GameManager.instance.StartTime, GameManager.instance.StartText, false));
         }
 
         private void Update() {
