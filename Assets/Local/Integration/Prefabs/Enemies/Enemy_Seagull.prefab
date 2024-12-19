@@ -74,9 +74,10 @@ GameObject:
   - component: {fileID: 3610197000324872232}
   - component: {fileID: 5469712412917425100}
   - component: {fileID: 5683739610383702211}
+  - component: {fileID: 5146627836691548973}
   m_Layer: 0
   m_Name: SeagullAttack
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -168,6 +169,29 @@ MonoBehaviour:
   - {fileID: 8815885831831887307}
   - {fileID: 6626783044748844513}
   - {fileID: 7220137961318748666}
+--- !u!136 &5146627836691548973
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 770218030164155548}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1
+  m_Height: 1
+  m_Direction: 2
+  m_Center: {x: 0, y: 0.1, z: 0}
 --- !u!1 &836087022574090854
 GameObject:
   m_ObjectHideFlags: 0
@@ -242,7 +266,7 @@ GameObject:
   - component: {fileID: 6679913768004628888}
   m_Layer: 0
   m_Name: Origin
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -433,7 +457,7 @@ GameObject:
   - component: {fileID: 7998084278495461341}
   m_Layer: 0
   m_Name: Point
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -525,7 +549,7 @@ GameObject:
   - component: {fileID: 2386680884311199018}
   m_Layer: 0
   m_Name: LineRenderer
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -723,7 +747,7 @@ GameObject:
   - component: {fileID: 6733480774551879463}
   m_Layer: 0
   m_Name: LookTarget
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -755,7 +779,7 @@ GameObject:
   - component: {fileID: 4360073546221764944}
   m_Layer: 0
   m_Name: Point
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -943,7 +967,7 @@ GameObject:
   - component: {fileID: 9115577819843236640}
   m_Layer: 0
   m_Name: Points
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1062,16 +1086,16 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 127
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 49.4, y: 10, z: 40}
+  m_Size: {x: 50, y: 10, z: 40}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &7414366386051538852
 MonoBehaviour:
@@ -1098,7 +1122,7 @@ GameObject:
   - component: {fileID: 5975829310570021402}
   m_Layer: 0
   m_Name: Point (2)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1188,7 +1212,7 @@ GameObject:
   - component: {fileID: 5528468021907642800}
   m_Layer: 0
   m_Name: Point (1)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1344,8 +1368,8 @@ GameObject:
   - component: {fileID: 3353065086393854550}
   m_Layer: 0
   m_Name: StartPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
+  m_TagString: Enemy
+  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1407,8 +1431,8 @@ GameObject:
   - component: {fileID: 1922440796159901486}
   m_Layer: 0
   m_Name: EndPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
+  m_TagString: Enemy
+  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1518,7 +1542,7 @@ GameObject:
   - component: {fileID: 8587322786258731698}
   m_Layer: 0
   m_Name: SeagullController
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

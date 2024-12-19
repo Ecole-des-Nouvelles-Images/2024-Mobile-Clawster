@@ -1,5 +1,6 @@
 using Unity.Mathematics;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Local.Integration.Scripts.Game
 {
@@ -24,7 +25,7 @@ namespace Local.Integration.Scripts.Game
         private bool _doPerlinNoiseInRunTime = true;
 
         [SerializeField, Range(0, 1)] private float _perlinMaxValue = 1;
-        [SerializeField, Range(0, 1)] private float _perlinMinValue = 0f; 
+        [SerializeField, Range(0, 1)] private float _perlinMinValue = 0f;
 
         [SerializeField] private Vector2 _perlinNoiseOffset;
         [SerializeField] private float _perlinNoiseScale;
@@ -50,6 +51,16 @@ namespace Local.Integration.Scripts.Game
 
         [SerializeField, Range(0, 1)] private float _thresholdValue = 0.5f;
         
+                
+        [SerializeField]
+        private GameObject[] _objectsToSpawn; 
+
+        [SerializeField]
+        private int _objectCount = 50; 
+
+        [SerializeField]
+        private float _heightOffset = 0.1f;
+
         private CellData[,] _grid;
         private MeshFilter _meshFilter;
 
@@ -79,6 +90,7 @@ namespace Local.Integration.Scripts.Game
             DoPerlinNoise();
             DoBorder(_borderDirection);
             GenerateMeshFromGrid();
+            SpawnObjectsOnBeach();
         }
 
         [ContextMenu("Process")]
@@ -141,14 +153,13 @@ namespace Local.Integration.Scripts.Game
                     noiseValue /= maxAmplitude;
                     noiseValue = Mathf.Clamp(noiseValue, 0f, 1f);
 
-                    noiseValue = Mathf.Clamp(noiseValue, _perlinMinValue, 1f); 
+                    noiseValue = Mathf.Clamp(noiseValue, _perlinMinValue, 1f);
 
                     _grid[x, y].height = noiseValue * _perlinMaxValue;
                     _grid[x, y].perlinNoiseheight = _grid[x, y].height;
                 }
             }
         }
-
 
         private void DoBorder(Direction direction)
         {
@@ -233,7 +244,6 @@ namespace Local.Integration.Scripts.Game
             }
         }
 
-
         private float CalculateFadeFactor(int distance, int bufferZone, int borderSize)
         {
             if (distance < bufferZone)
@@ -290,7 +300,6 @@ namespace Local.Integration.Scripts.Game
         }
         #endregion
 
-        
         private void Populate()
         {
             Vector3 offset = new Vector3(GridSize.x / 2f, 0, GridSize.y / 2f);
@@ -309,7 +318,6 @@ namespace Local.Integration.Scripts.Game
                 }
             }
         }
-
 
         private void GenerateMeshFromGrid()
         {
@@ -360,23 +368,52 @@ namespace Local.Integration.Scripts.Game
             {
                 vertices = vertices,
                 triangles = triangles,
-                uv = uvs 
+                uv = uvs
             };
             mesh.RecalculateNormals();
-            mesh.RecalculateTangents(); 
+            mesh.RecalculateTangents();
 
             _meshFilter.sharedMesh = mesh;
 
-            // Configuration du MeshCollider
             MeshCollider meshCollider = GetComponent<MeshCollider>();
             if (meshCollider == null)
             {
                 meshCollider = gameObject.AddComponent<MeshCollider>();
             }
-
             meshCollider.sharedMesh = mesh;
-
-
         }
+        
+        private void SpawnObjectsOnBeach()
+        {
+            if (_meshFilter.sharedMesh == null || _objectsToSpawn == null || _objectsToSpawn.Length == 0)
+            {
+                Debug.LogWarning("Mesh or objects to spawn not set up correctly.");
+                return;
+            }
+
+            Mesh mesh = _meshFilter.sharedMesh;
+            Vector3[] vertices = mesh.vertices;
+            Vector3[] normals = mesh.normals;
+            int yRot;
+
+            for (int i = 0; i < _objectCount; i++)
+            {
+                yRot = Random.Range(0, 360);
+                int randomIndex = UnityEngine.Random.Range(0, vertices.Length);
+                Vector3 localPosition = vertices[randomIndex];
+                Vector3 worldPosition = transform.TransformPoint(localPosition);
+                worldPosition.y += _heightOffset;
+
+                Vector3 localNormal = normals[randomIndex];
+                Vector3 worldNormal = transform.TransformDirection(localNormal);
+
+                Quaternion normQuat = Quaternion.FromToRotation(Vector3.up, worldNormal);
+                Quaternion rotQuat = Quaternion.Euler(0, yRot, 0);
+
+                GameObject objectToSpawn = _objectsToSpawn[UnityEngine.Random.Range(0, _objectsToSpawn.Length)];
+                Instantiate(objectToSpawn, worldPosition, normQuat * rotQuat, transform);
+            }
+        }
+
     }
 }

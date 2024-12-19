@@ -11,6 +11,7 @@ TagManager:
   - Wall
   - HeadPlayer
   - Fish
+  - Enemy
   layers:
   - Default
   - TransparentFX

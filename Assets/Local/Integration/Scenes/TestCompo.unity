@@ -198,6 +198,9 @@ MonoBehaviour:
     m_RotationOrder: 4
   _doDoThresholds: 0
   _thresholdValue: 0.5
+  _objectsToSpawn: []
+  _objectCount: 50
+  _heightOffset: 0.1
 --- !u!33 &10477263
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1799,7 +1802,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92d7990e82120554aba6c88a62453cce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _camFreeLook: {fileID: 1197707576}
 --- !u!114 &700838452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2121,11 +2123,19 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1150249671}
     - target: {fileID: 4132175604036049100, guid: 909625a6483d51d40b4962ea3de6b327, type: 3}
+      propertyPath: _grabSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 709d15f7e67363c439f0c81ac309c976, type: 3}
+    - target: {fileID: 4132175604036049100, guid: 909625a6483d51d40b4962ea3de6b327, type: 3}
       propertyPath: _greenWheel
       value: 
       objectReference: {fileID: 222052769}
     - target: {fileID: 4132175604036049100, guid: 909625a6483d51d40b4962ea3de6b327, type: 3}
       propertyPath: cameraTransform
+      value: 
+      objectReference: {fileID: 1493678094}
+    - target: {fileID: 4132175604036049100, guid: 909625a6483d51d40b4962ea3de6b327, type: 3}
+      propertyPath: _cameraTransform
       value: 
       objectReference: {fileID: 1493678094}
     - target: {fileID: 6131495294893809037, guid: 909625a6483d51d40b4962ea3de6b327, type: 3}

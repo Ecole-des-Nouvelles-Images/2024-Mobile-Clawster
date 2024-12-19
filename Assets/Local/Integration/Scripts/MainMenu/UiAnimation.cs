@@ -13,6 +13,8 @@ namespace Local.Integration.Scripts.MainMenu
         [SerializeField] private GameObject _settingsPanel; 
         [SerializeField] private GameObject _volumePanel;
         [SerializeField] private GameObject _creditsPanel;
+        [SerializeField] private AudioClip _buttonSoundA;
+        [SerializeField] private AudioClip _buttonSoundB;
 
         
         public float animationDuration = 0.5f;
@@ -75,36 +77,43 @@ namespace Local.Integration.Scripts.MainMenu
         {
             _settingsPanel.transform.localScale = hiddenScale;
             _settingsPanel.transform.DOScale(visibleScale, animationDuration).SetEase(Ease.OutBack);
+            SoundFXManager.instance.PlaySoundFXClip(_buttonSoundA, transform, 1f);
         }
         
         public void CloseSettingsPanel()
         {
             _settingsPanel.transform.DOScale(hiddenScale, animationDuration).SetEase(Ease.InBack);
             _settingsPanel.transform.localScale = hiddenScale;
+            SoundFXManager.instance.PlaySoundFXClip(_buttonSoundB, transform, 1f);
+
         }
         
         public void OpenVolumePanel()
         {
             _volumePanel.transform.localScale = hiddenScale;
             _volumePanel.transform.DOScale(visibleScale, animationDuration).SetEase(Ease.OutBack);
+            SoundFXManager.instance.PlaySoundFXClip(_buttonSoundA, transform, 1f);
         }
         
         public void CloseVolumePanel()
         {
             _volumePanel.transform.DOScale(hiddenScale, animationDuration).SetEase(Ease.InBack);
             _volumePanel.transform.localScale = hiddenScale;
+            SoundFXManager.instance.PlaySoundFXClip(_buttonSoundB, transform, 1f);
         }
         
         public void OpenCreditsPanel()
         {
             _creditsPanel.transform.localScale = hiddenScale;
             _creditsPanel.transform.DOScale(visibleScale, animationDuration).SetEase(Ease.OutBack);
+            SoundFXManager.instance.PlaySoundFXClip(_buttonSoundA, transform, 1f);
         }
         
         public void CloseCreditsPanel()
         {
             _creditsPanel.transform.DOScale(hiddenScale, animationDuration).SetEase(Ease.InBack);
             _creditsPanel.transform.localScale = hiddenScale;
+            SoundFXManager.instance.PlaySoundFXClip(_buttonSoundB, transform, 1f);
         }
         
     }

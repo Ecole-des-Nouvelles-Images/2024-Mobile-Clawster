@@ -16,7 +16,7 @@ GameObject:
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 2800000, guid: ac5de94053f294b929e8105eced63bbe, type: 3}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -48,15 +48,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ScoreData: {fileID: 11400000, guid: 62e09f5acccbd914c87ed709e48aaeb3, type: 2}
+  GameTime: 120
+  ElapsedTime: 0
   CountdownTime: 3
   StartText: Bin it !
   EndTime: 0
-  EndText: 
+  EndText: "Termin\xE9 !"
   HasStarted: 0
-  _bungalowUIGo: {fileID: 0}
+  HasEnded: 0
+  _timerFillImage: {fileID: 0}
+  _bungalowUI: {fileID: 0}
+  _blackScreen: {fileID: 0}
+  _panelWin: {fileID: 0}
+  _panelWinText: {fileID: 0}
+  _panelGameOver: {fileID: 0}
+  _gameCanvas: {fileID: 0}
   _scoreText: {fileID: 0}
   _collectedItemsText: {fileID: 0}
   _floatingTextPrefab: {fileID: 1670952906825007081, guid: 5d64db5f64c3cd14f89009c12f1673ea, type: 3}
+  _victorySE: {fileID: 8300000, guid: d591e172ce9064846bd0529b00954891, type: 3}
+  _defeatSE: {fileID: 8300000, guid: bdb27beb421563f4c903c5f7681e1813, type: 3}
 --- !u!114 &2568707329220548029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70,7 +81,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gameTimerText: {fileID: 0}
-  _scoreText: {fileID: 0}
   _easeInOut:
     serializedVersion: 2
     m_Curve:
@@ -124,8 +134,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 8.793644, y: 1.7154455, z: 6.437149}
-  m_Center: {x: 0.1473484, y: 5.380985, z: -46.41562}
+  m_Size: {x: 7.354435, y: 1.7154455, z: 5.4748}
+  m_Center: {x: -0.5722561, y: 5.380985, z: -46.896793}
 --- !u!114 &3137005206759209718
 MonoBehaviour:
   m_ObjectHideFlags: 0

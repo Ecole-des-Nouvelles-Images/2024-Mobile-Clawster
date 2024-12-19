@@ -77,6 +77,7 @@ public class SeagullController : MonoBehaviour {
         //Block the execution of other functions using a Coroutine lasting as long as the tween
         for (float i = 0; i < _attackTime; i += Time.deltaTime) {
             _seagull.transform.LookAt(_lookTarget.transform.position);
+			Debug.DrawRay(_seagull.transform.position, _seagull.transform.forward, Color.blue, 1f);
             yield return new WaitForEndOfFrame();
         }
         

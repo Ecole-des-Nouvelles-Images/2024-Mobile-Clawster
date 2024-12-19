@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Local.Integration.Scripts.Game;
 using UnityEngine;
 
 public class Seagull : MonoBehaviour
