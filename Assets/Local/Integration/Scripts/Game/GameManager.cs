@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using DG.Tweening;
 using Local.Integration.Scripts.MainMenu;
-using Local.Integration.Scripts.SCORE;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,8 +13,8 @@ namespace Local.Integration.Scripts.Game
     public class GameManager : MonoBehaviour
     {
         [Header("Game Settings")] 
-        public ScoreData ScoreData;
         public static GameManager instance;
+        public ScoreData ScoreData;
         public float GameTime = 120f;
         public float ElapsedTime;
 
@@ -59,7 +58,6 @@ namespace Local.Integration.Scripts.Game
             }
 
             ResetScore();
-            LoadBestScore();
             UpdateScoreUI();
         }
         
@@ -83,20 +81,7 @@ namespace Local.Integration.Scripts.Game
                 _scoreText.text = $"Score Total : {ScoreData.CurrentScore} points";
             }
         }
-
-        public void AddScore(int points)
-        {
-            ScoreData.CurrentScore += points;
-
-            if (ScoreData.CurrentScore > ScoreData.BestScore)
-            {
-                ScoreData.BestScore = ScoreData.CurrentScore;
-                SaveBestScore();
-            }
-
-            UpdateScoreUI();
-        }
-
+        
         private void ResetScore()
         {
             ScoreData.CurrentScore = 0;
@@ -104,19 +89,7 @@ namespace Local.Integration.Scripts.Game
             UpdateScoreUI();
             UpdateCollectedItemsUI();
         }
-
-        private void LoadBestScore()
-        {
-            ScoreData.BestScore = PlayerPrefs.GetInt("BestScore", 0);
-        }
-
-        private void SaveBestScore()
-        {
-            PlayerPrefs.SetInt("BestScore", ScoreData.BestScore);
-            PlayerPrefs.Save();
-        }
-
-
+        
         private void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag("Player"))
@@ -157,7 +130,7 @@ namespace Local.Integration.Scripts.Game
                     _validatedItems[item.Name] = item.Quantity;
                 }
 
-                AddScore(item.Score * item.Quantity);
+                ScoreManager.instance.AddScore(item.Score * item.Quantity);
             }
 
             UpdateCollectedItemsUI();

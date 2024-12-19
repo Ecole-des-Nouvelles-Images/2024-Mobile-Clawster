@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Local.Integration.Scripts.SCORE
+namespace Local.Integration.Scripts.Game
 {
     [CreateAssetMenu(menuName = "Score Data")]
     public class ScoreData : ScriptableObject

@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using Local.Integration.Scripts.Game;
 using Local.Integration.Scripts.MainMenu;
-using Local.Integration.Scripts.SCORE;
 using TMPro;
 using UnityEngine;
 

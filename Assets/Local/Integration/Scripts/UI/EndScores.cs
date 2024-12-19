@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using Local.Integration.Scripts.SCORE;
+using Local.Integration.Scripts.Game;
 using TMPro;
 using UnityEngine;
 
