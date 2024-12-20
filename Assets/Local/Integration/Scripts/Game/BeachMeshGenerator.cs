@@ -4,14 +4,6 @@ using Random = UnityEngine.Random;
 
 namespace Local.Integration.Scripts.Game
 {
-    public enum Direction
-    {
-        Top,
-        Bot,
-        Left,
-        Right,
-    }
-
     public class BeachMeshGenerator : MonoBehaviour
     {
         [Space(5), Header("Grid")] [SerializeField]

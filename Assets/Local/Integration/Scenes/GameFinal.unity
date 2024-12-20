@@ -7919,6 +7919,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _digits: {fileID: 1972207119}
   _scoreData: {fileID: 11400000, guid: 62e09f5acccbd914c87ed709e48aaeb3, type: 2}
+  _interpolationTime: 0
+  _scoreSound: {fileID: 0}
 --- !u!1 &2006179848
 GameObject:
   m_ObjectHideFlags: 0

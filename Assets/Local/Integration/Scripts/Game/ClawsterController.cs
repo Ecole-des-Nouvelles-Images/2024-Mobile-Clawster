@@ -36,7 +36,8 @@ namespace Local.Integration.Scripts.Game
 
         [Header("Weight Settings")]
         [SerializeField] private float _weightMaxCapacity;
-        private float _weightHold = 0;
+
+        public float _weightHold = 0;
 
         [Header("QTE Settings")]
         [SerializeField] private float _maxQteTime;
@@ -361,7 +362,7 @@ namespace Local.Integration.Scripts.Game
 
         public void ValidateScore()
         {
-            GameManager.instance.AddScore(_holdScore);
+            // GameManager.instance.AddScore(_holdScore);
             GameManager.instance.DisplayCollectedItems(_collectedItems);
             _holdScore = 0;
             _weightHold = 0;
@@ -429,21 +430,5 @@ namespace Local.Integration.Scripts.Game
         {
             _wholeWheelCanvasGroup.DOFade(0f, 0.5f).SetEase(Ease.InOutQuad);
         }
-    }
-}
-
-public class CollectedItemData
-{
-    public string Name { get; set; }
-    public int Weight { get; set; }
-    public int Score { get; set; }
-    public int Quantity { get; set; }
-
-    public CollectedItemData(string name, int weight, int score, int quantity = 1)
-    {
-        Name = name;
-        Weight = weight;
-        Score = score;
-        Quantity = quantity;
     }
 }
