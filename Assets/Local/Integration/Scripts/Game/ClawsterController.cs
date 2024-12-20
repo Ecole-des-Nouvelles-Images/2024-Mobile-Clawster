@@ -362,7 +362,7 @@ namespace Local.Integration.Scripts.Game
 
         public void ValidateScore()
         {
-            // GameManager.instance.AddScore(_holdScore);
+            ScoreManager.instance.AddScore(_holdScore);
             GameManager.instance.DisplayCollectedItems(_collectedItems);
             _holdScore = 0;
             _weightHold = 0;

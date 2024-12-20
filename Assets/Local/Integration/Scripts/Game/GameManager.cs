@@ -114,7 +114,7 @@ namespace Local.Integration.Scripts.Game
 
         public void CloseBangalowUI()
         {
-            _bungalowUI.SetActive(false);
+            _bungalowUI.SetActive(false); 
         }
         
         public void DisplayCollectedItems(Dictionary<string, CollectedItemData> collectedItems)

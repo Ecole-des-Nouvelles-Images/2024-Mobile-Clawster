@@ -16,7 +16,7 @@ namespace Local.Integration.Scripts.Game
         
         [SerializeField] private ClawsterController _clawsterController;
         [SerializeField] private TextMeshProUGUI _scoreText;
-        [SerializeField] private TextMeshProUGUI _panelWinText;
+        //[SerializeField] private TextMeshProUGUI _panelWinText;
         
         private Dictionary<string, int> _validatedItems = new Dictionary<string, int>();
         private Dictionary<string, CollectedItemData> _collectedItems = new Dictionary<string, CollectedItemData>();
