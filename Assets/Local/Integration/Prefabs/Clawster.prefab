@@ -4367,7 +4367,7 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Radius: 1
-  m_Center: {x: 0, y: 0.3, z: 0.9}
+  m_Center: {x: 0, y: 0.3, z: 1.2}
 --- !u!1 &7592906856547059227
 GameObject:
   m_ObjectHideFlags: 0
@@ -5416,6 +5416,8 @@ MonoBehaviour:
   _speedRecover: 20
   _maxHealth: 3
   _weightMaxCapacity: 10
+  _weightHold: 0
+  _handAnimator: {fileID: 0}
   _maxQteTime: 5
   _maxTouchCount: 5
   _weightFillImage: {fileID: 0}
