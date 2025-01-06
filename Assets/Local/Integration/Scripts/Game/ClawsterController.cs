@@ -39,7 +39,8 @@ namespace Local.Integration.Scripts.Game
 
         public float _weightHold = 0;
 
-        [Header("QTE Settings")]
+        [Header("Grab & QTE Settings")]
+        [SerializeField] private Animator _handAnimator;
         [SerializeField] private float _maxQteTime;
         [SerializeField] private int _maxTouchCount;
 
@@ -65,7 +66,6 @@ namespace Local.Integration.Scripts.Game
         private int _health;
         private int _holdScore;
         private float _targetAngle;
-        private Animator _handAnimator;
         private bool _isAFish;
         private bool _isInQte;
         private int _currentTouchCount;
@@ -81,7 +81,7 @@ namespace Local.Integration.Scripts.Game
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody>();
-            _handAnimator = GetComponent<Animator>();
+            //_handAnimator = GetComponent<Animator>();
             HideWholeWheel();
         }
 
@@ -117,9 +117,9 @@ namespace Local.Integration.Scripts.Game
                 }
             }
             else
-            {
-                Grab();
+            {                
                 _handAnimator.SetTrigger("Grab");
+                Grab();
             }
         }
 
