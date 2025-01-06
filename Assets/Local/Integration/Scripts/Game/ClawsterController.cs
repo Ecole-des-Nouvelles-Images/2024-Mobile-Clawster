@@ -143,7 +143,7 @@ namespace Local.Integration.Scripts.Game
             }
             else
             {
-                _grabButton.alpha = 0;
+                _grabButton.alpha = 1f;
                 _grabButton.interactable = false;
             }
 
@@ -356,7 +356,6 @@ namespace Local.Integration.Scripts.Game
 
                 yield return new WaitForEndOfFrame();
             }
-
             _isInQte = false;
         }
 
