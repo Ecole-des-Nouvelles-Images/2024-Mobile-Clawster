@@ -5,10 +5,10 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
+using System.Collections;
+using Cinemachine;
 
 namespace Local.Integration.Scripts.Game
-
 {
     public class GameManager : MonoBehaviour
     {
@@ -25,6 +25,11 @@ namespace Local.Integration.Scripts.Game
         public bool HasStarted;
         public bool HasEnded;
 
+        [Header("Cinemachine Virtual Cameras")]
+        [SerializeField] private CinemachineVirtualCamera overviewCamera;
+        [SerializeField] private CinemachineVirtualCamera gameCamera;
+        [SerializeField] private float overviewDuration = 5f;
+
         [Header("UI Elements")] 
         [SerializeField] private Image _timerFillImage;
         [SerializeField] private GameObject _bungalowUI;
@@ -36,7 +41,6 @@ namespace Local.Integration.Scripts.Game
         [SerializeField] private TextMeshProUGUI _scoreText;
         [SerializeField] private TextMeshProUGUI _collectedItemsText;
         [SerializeField] private TextMeshPro _floatingTextPrefab;
-        private Dictionary<string, int> _validatedItems = new Dictionary<string, int>();
 
         [Header("Sound Effects")] 
         [SerializeField] private AudioSource _gameMusic;
@@ -44,6 +48,7 @@ namespace Local.Integration.Scripts.Game
         [SerializeField] private AudioClip _victorySE;
         [SerializeField] private AudioClip _defeatSE;
 
+        private Dictionary<string, int> _validatedItems = new Dictionary<string, int>();
 
         private void Awake()
         {
@@ -60,7 +65,33 @@ namespace Local.Integration.Scripts.Game
             ResetScore();
             UpdateScoreUI();
         }
-        
+
+        private void Start()
+        {
+            StartCoroutine(StartGameSequence());
+        }
+
+        private IEnumerator StartGameSequence()
+        {
+            SetCameraPriority(overviewCamera, gameCamera);
+            yield return new WaitForSeconds(overviewDuration);
+            SetCameraPriority(gameCamera, overviewCamera);
+            HasStarted = false;
+            Countdown countdown = GetComponent<Countdown>();
+            if (countdown != null)
+            {
+                countdown.enabled = true;
+            }
+            yield return new WaitForSeconds(StartTime);
+            HasStarted = true;
+        }
+
+        private void SetCameraPriority(CinemachineVirtualCamera activeCamera, CinemachineVirtualCamera inactiveCamera)
+        {
+            activeCamera.Priority = 10;
+            inactiveCamera.Priority = 0;
+        }
+
         private void Update()
         {
             if (ElapsedTime < GameTime + 1f)
@@ -81,7 +112,7 @@ namespace Local.Integration.Scripts.Game
                 _scoreText.text = $"Score Total : {ScoreData.CurrentScore} points";
             }
         }
-        
+
         private void ResetScore()
         {
             ScoreData.CurrentScore = 0;
@@ -89,7 +120,7 @@ namespace Local.Integration.Scripts.Game
             UpdateScoreUI();
             UpdateCollectedItemsUI();
         }
-        
+
         private void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag("Player"))
@@ -97,7 +128,6 @@ namespace Local.Integration.Scripts.Game
                 OpenBangalowUI();
             }
         }
-        
 
         private void OnTriggerExit(Collider other)
         {
@@ -106,7 +136,7 @@ namespace Local.Integration.Scripts.Game
                 CloseBangalowUI();
             }
         }
-        
+
         private void OpenBangalowUI()
         {
             _bungalowUI.SetActive(true);
@@ -116,7 +146,7 @@ namespace Local.Integration.Scripts.Game
         {
             _bungalowUI.SetActive(false); 
         }
-        
+
         public void DisplayCollectedItems(Dictionary<string, CollectedItemData> collectedItems)
         {
             foreach (var item in collectedItems.Values)
@@ -152,7 +182,7 @@ namespace Local.Integration.Scripts.Game
                 SoundFXManager.instance.PlaySoundFXClip(_victorySE, transform, 1f);
             }
         }
-        
+
         public void GameOver()
         {
             if (!HasEnded)
@@ -170,7 +200,6 @@ namespace Local.Integration.Scripts.Game
                 SoundFXManager.instance.PlaySoundFXClip(_defeatSE, transform, 1f);
             }
         }
-
 
         private void UpdateWinUI()
         {
@@ -196,7 +225,7 @@ namespace Local.Integration.Scripts.Game
             floatingText.DOFade(0, 1f).SetEase(Ease.InCubic).OnComplete(() => Destroy(floatingText.gameObject));
             Destroy(floatingText, destroyTime);
         }
-        
+
         public void PlayAgain()
         {
             ResetScore();
@@ -211,12 +240,11 @@ namespace Local.Integration.Scripts.Game
 
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
-        
-        
+
         public void GoToMenu()
         {
             SceneManager.LoadScene("MainMenu");
         }
-
     }
 }
+
