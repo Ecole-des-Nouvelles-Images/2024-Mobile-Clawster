@@ -32,7 +32,6 @@ namespace Local.Integration.Scripts.Game
                 yield return new WaitForSeconds(.01f);
 
                 if (end) {
-                    GameManager.instance.HasEnded = true;
                     _isCoroutineRunning = false;
                     yield break;
                 }

@@ -63,7 +63,7 @@ namespace Local.Integration.Scripts.Game
         
         private void Update()
         {
-            if (ElapsedTime < GameTime + StartTime)
+            if (ElapsedTime < GameTime + 1f)
             {
                 ElapsedTime += Time.deltaTime;
                 _timerFillImage.fillAmount = Mathf.Clamp01(1 - (ElapsedTime / GameTime));
