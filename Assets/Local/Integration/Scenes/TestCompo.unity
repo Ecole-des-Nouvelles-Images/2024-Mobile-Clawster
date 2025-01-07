@@ -2182,6 +2182,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Clawster
       objectReference: {fileID: 0}
+    - target: {fileID: 9021562472261455225, guid: 909625a6483d51d40b4962ea3de6b327, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1469383288993067690, guid: 909625a6483d51d40b4962ea3de6b327, type: 3}
     m_RemovedGameObjects: []
@@ -2445,7 +2449,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: e493a82910b66ae40865312145d32756, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.95
+      value: -9.34
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e493a82910b66ae40865312145d32756, type: 3}
       propertyPath: m_LocalPosition.y
