@@ -75,6 +75,7 @@
   <strong>Univers</strong>
 </h2>
 <p>
+    Clawster, un crabe écolo dévoué, consacre sa vie à protéger l’océan des déchets humains. Avant chaque marée, il arpente sa plage pour en ramasser autant que possible, puis finit par les rapporter dans sa grotte. Là, il les recycle en objets pratiques ou en trésors qu’il revend aux créatures marines. Érigé au rang de légende parmi les habitants des océans, Clawster reste un crabe fidèle à ses valeurs et à sa mission.
 </p>
 
 <h1 align="center">
