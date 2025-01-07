@@ -22,7 +22,7 @@ public class TimerDigits : MonoBehaviour {
         if (_rawTimer <= 0 && GameManager.instance.HasStarted) {
             _rawTimer = 0;
         } else {
-            _rawTimer = (GameManager.instance.GameTime + GameManager.instance.StartTime) - GameManager.instance.ElapsedTime;
+            _rawTimer = GameManager.instance.GameTime - GameManager.instance.ElapsedTime;
         }
         
         _minutes = Mathf.FloorToInt(_rawTimer / 60);
