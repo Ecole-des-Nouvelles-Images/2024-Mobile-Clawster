@@ -94,14 +94,17 @@ namespace Local.Integration.Scripts.Game
 
         private void Update()
         {
-            if (ElapsedTime < GameTime + 1f)
+            if (HasStarted)
             {
-                ElapsedTime += Time.deltaTime;
-                _timerFillImage.fillAmount = Mathf.Clamp01(1 - (ElapsedTime / GameTime));
-            }
-            else
-            {
-                Win();
+                if (ElapsedTime < GameTime + 1f)
+                {
+                    ElapsedTime += Time.deltaTime;
+                    _timerFillImage.fillAmount = Mathf.Clamp01(1 - (ElapsedTime / GameTime));
+                }
+                else
+                {
+                    Win();
+                }
             }
         }
 

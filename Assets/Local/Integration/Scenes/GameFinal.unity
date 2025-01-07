@@ -1934,7 +1934,7 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: 0.08611629, y: 0.90565217, z: -0.2224912, w: 0.35053644}
-  m_LocalPosition: {x: -14.424053, y: 9.5008335, z: -2.9931355}
+  m_LocalPosition: {x: -14.9, y: 9.35, z: -5}
   m_LocalScale: {x: 0.08, y: 0.08000001, z: 0.08000002}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2569,7 +2569,7 @@ Transform:
   m_GameObject: {fileID: 388626998}
   serializedVersion: 2
   m_LocalRotation: {x: 0.08611629, y: 0.90565217, z: -0.2224912, w: 0.35053644}
-  m_LocalPosition: {x: -14.424053, y: 9.5008335, z: -2.9931355}
+  m_LocalPosition: {x: -14.9, y: 9.35, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -9717,11 +9717,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1105787332250553480, guid: 26369bbb10a184246a7de703cad9a484, type: 3}
       propertyPath: GameTime
-      value: 100
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 1105787332250553480, guid: 26369bbb10a184246a7de703cad9a484, type: 3}
       propertyPath: StartTime
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1105787332250553480, guid: 26369bbb10a184246a7de703cad9a484, type: 3}
       propertyPath: _panelWin
@@ -9769,7 +9769,7 @@ PrefabInstance:
       objectReference: {fileID: 1888308890}
     - target: {fileID: 1105787332250553480, guid: 26369bbb10a184246a7de703cad9a484, type: 3}
       propertyPath: overviewDuration
-      value: 4.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1105787332250553480, guid: 26369bbb10a184246a7de703cad9a484, type: 3}
       propertyPath: _collectedItemsText
