@@ -59,7 +59,7 @@
     <img src="https://github.com/user-attachments/assets/2a66cfb4-db97-4eb6-b8aa-197e4ca7ca6a" width="200px" alt="avatar noah-rond">
   </a>
       <a href="https://github.com/BastienSANTE">
-    <img src="https://github.com/user-attachments/assets/e9b5fac1-11bf-4827-a017-94b05bdf4b3c" width="200px" alt="avatar noah-rond">
+    <img src="https://github.com/user-attachments/assets/e9b5fac1-11bf-4827-a017-94b05bdf4b3c" width="200px" alt="avatar bastien-rond">
   </a>
 </div>
 
