@@ -7,7 +7,9 @@
   </a>
 </h1>
 
-![Illus_Clawster_01](https://github.com/user-attachments/assets/1a8d4c88-9c16-4248-afea-29fb2ae4fd51)
+<h1 align="center">
+    <img src="https://github.com/user-attachments/assets/5064389b-4bb7-49c5-b38f-20792f8949ce">
+  </a>
 
 <h2 align="center">
   <strong>Sommaire</strong>
@@ -27,7 +29,7 @@
   <strong>Introduction</strong>  
 </h2>
 <p>
-  Le projet <strong>Clawster</strong> est un <strong>jeu mobile</strong>, réalisé du 29 mai au 2 juin 2024 en fin de cycle de 2e année Jeu Vidéo & Image Temps Réel, au sein de l'<a href="https://github.com/Ecole-des-Nouvelles-Images">Ecole des Nouvelles Images</a>. Une phase de préproduction de 3 semaines a été accordée afin de <strong>clarifier les objectifs et la vision du jeu</strong> et de <strong>prévoir la gestion du temps</strong> lors de la production finale.
+  Le projet <strong>Clawster</strong> est un <strong>jeu mobile</strong>, réalisé du 25 novembre au 13 décembre 2024 en premier cycle de 3e année Jeu Vidéo & Image Temps Réel, au sein de l'<a href="https://github.com/Ecole-des-Nouvelles-Images">Ecole des Nouvelles Images</a>. Une phase de préproduction de 1 semaine a été accordée afin de <strong>clarifier les objectifs et la vision du jeu</strong> et de <strong>prévoir la gestion du temps</strong> lors de la production finale.
 </p>
 
 <h2 id="équipe" align="center">
