@@ -391,7 +391,7 @@ namespace Local.Integration.Scripts.Game
             for (int i = 0; i < _objectCount; i++)
             {
                 yRot = Random.Range(0, 360);
-                int randomIndex = UnityEngine.Random.Range(0, vertices.Length);
+                int randomIndex = Random.Range(0, vertices.Length);
                 Vector3 localPosition = vertices[randomIndex];
                 Vector3 worldPosition = transform.TransformPoint(localPosition);
                 worldPosition.y += _heightOffset;
@@ -402,7 +402,7 @@ namespace Local.Integration.Scripts.Game
                 Quaternion normQuat = Quaternion.FromToRotation(Vector3.up, worldNormal);
                 Quaternion rotQuat = Quaternion.Euler(0, yRot, 0);
 
-                GameObject objectToSpawn = _objectsToSpawn[UnityEngine.Random.Range(0, _objectsToSpawn.Length)];
+                GameObject objectToSpawn = _objectsToSpawn[Random.Range(0, _objectsToSpawn.Length)];
                 Instantiate(objectToSpawn, worldPosition, normQuat * rotQuat, transform);
             }
         }

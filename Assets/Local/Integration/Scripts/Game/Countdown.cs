@@ -36,7 +36,7 @@ namespace Local.Integration.Scripts.Game
                     yield break;
                 }
                 
-                GameManager.instance.HasStarted = true;
+                GameManager.instance.IsPlaying = true;
                 _isCoroutineRunning = false;
                 yield break;
             }

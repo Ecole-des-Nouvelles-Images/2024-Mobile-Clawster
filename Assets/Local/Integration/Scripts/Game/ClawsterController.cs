@@ -4,6 +4,7 @@ using DG.Tweening;
 using JetBrains.Annotations;
 using Local.Integration.Scripts.MainMenu;
 using Local.Integration.Scripts.UI;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -50,6 +51,7 @@ namespace Local.Integration.Scripts.Game
         [SerializeField] private Image _redWheel;
         [SerializeField] private Image _greenWheel;
         [SerializeField] private CanvasGroup _grabButton;
+        [SerializeField] private TextMeshProUGUI _depositButtonText;
         
         [Header("Sound Effects")]
         [SerializeField] private AudioClip _grabSE;
@@ -75,8 +77,9 @@ namespace Local.Integration.Scripts.Game
 
         private bool CanGrab()
         {
-            return _hitObj != null && !_isInQte;
+            return _hitObj != null;
         }
+
 
         private void Awake()
         {
@@ -95,15 +98,16 @@ namespace Local.Integration.Scripts.Game
 
         private void FixedUpdate()
         {
-            if (!GameManager.instance.HasStarted) return;
+            if (!GameManager.instance.IsPlaying) return;
             HandleMovement();
         }
 
         [UsedImplicitly]
         public void HandleGrab()
         {
-            if (!GameManager.instance.HasStarted) return;
+            if (!GameManager.instance.IsPlaying) return;
 
+            /*
             if (_isAFish)
             {
                 if (_isInQte)
@@ -116,35 +120,41 @@ namespace Local.Integration.Scripts.Game
                     StartCoroutine(QTEGrab());
                 }
             }
-            else
-            {                
-                _handAnimator.SetTrigger("Grab");
-                Grab();
-            }
+            */
+            _handAnimator.SetTrigger("Grab");
+            Grab();
         }
 
         private void Update()
         {
-            if (!GameManager.instance.HasStarted) return;
-
+            if (!GameManager.instance.IsPlaying) return;
+            if (_weightHold == 0)
+            {
+                _depositButtonText.text = "Fermer";
+            }
+            else
+            {
+                _depositButtonText.text = "Déposer";
+            }
             if (_weightHold >= 8)
             {
                 _sweatDropsParticleSystem.Play();
             }
             else
             {
-                _sweatDropsParticleSystem.Pause();
+                _sweatDropsParticleSystem.Stop();
             }
             
             if (CanGrab())
             {
-                _grabButton.alpha = 1f;
                 _grabButton.interactable = true;
+                _grabButton.blocksRaycasts = true;
+
             }
-            else
+            else if (!CanGrab())
             {
-                _grabButton.alpha = 1f;
                 _grabButton.interactable = false;
+                _grabButton.blocksRaycasts = false;
             }
 
             if (!_isSprinting && _stamina < _maxStamina)
@@ -165,14 +175,14 @@ namespace Local.Integration.Scripts.Game
 
         public void OnSprint()
         {
-            if (!GameManager.instance.HasStarted) return;
+            if (!GameManager.instance.IsPlaying) return;
             _isSprinting = true;
             ShowWholeWheel();
         }
 
         public void OnUnsprint()
         {
-            if (!GameManager.instance.HasStarted) return;
+            if (!GameManager.instance.IsPlaying) return;
             _isSprinting = false;
         }
 
@@ -315,6 +325,7 @@ namespace Local.Integration.Scripts.Game
             }
         }
 
+        /*
         private IEnumerator QTEGrab()
         {
             _isInQte = true;
@@ -358,17 +369,25 @@ namespace Local.Integration.Scripts.Game
             }
             _isInQte = false;
         }
+        */
 
         public void ValidateScore()
         {
-            ScoreManager.instance.AddScore(_holdScore);
-            GameManager.instance.DisplayCollectedItems(_collectedItems);
-            _holdScore = 0;
-            _weightHold = 0;
-            _collectedItems.Clear();
-            _weightFillImage.DOFillAmount(0, 0.2f).SetEase(Ease.InOutQuad);
-            GameManager.instance.UpdateScoreUI();
-            SoundFXManager.instance.PlaySoundFXClip(_validateSE, transform, 1f);
+            if (_weightHold > 0)
+            {
+                ScoreManager.instance.AddScore(_holdScore);
+                GameManager.instance.DisplayCollectedItems(_collectedItems);
+                _holdScore = 0;
+                _weightHold = 0;
+                _collectedItems.Clear();
+                _weightFillImage.DOFillAmount(0, 0.2f).SetEase(Ease.InOutQuad);
+                GameManager.instance.UpdateScoreUI();
+                SoundFXManager.instance.PlaySoundFXClip(_validateSE, transform, 1f);
+            }
+            else
+            {
+                GameManager.instance.CloseBangalowUI();
+            }
         }
 
         private void OnTriggerEnter(Collider other)
@@ -380,6 +399,7 @@ namespace Local.Integration.Scripts.Game
                 _isAFish = false;
                 _isInQte = false;
             }
+            /*
             if (other.CompareTag("Fish"))
             {
                 StopAllCoroutines();
@@ -388,6 +408,7 @@ namespace Local.Integration.Scripts.Game
                 _isAFish = true;
                 _isInQte = false;
             }
+            */
             if (other.CompareTag("Enemy"))
             {
                 if (Time.time >= _nextDamageTime)

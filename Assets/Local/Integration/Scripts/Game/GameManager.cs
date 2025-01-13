@@ -7,6 +7,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
 using Cinemachine;
+using UnityEngine.Serialization;
 
 namespace Local.Integration.Scripts.Game
 {
@@ -22,7 +23,7 @@ namespace Local.Integration.Scripts.Game
         public string StartText;
         public int EndTime;
         public string EndText;
-        public bool HasStarted;
+        public bool IsPlaying;
         public bool HasEnded;
 
         [Header("Cinemachine Virtual Cameras")]
@@ -32,6 +33,7 @@ namespace Local.Integration.Scripts.Game
 
         [Header("UI Elements")] 
         [SerializeField] private Image _timerFillImage;
+        [SerializeField] private TextMeshProUGUI _timerText;
         [SerializeField] private GameObject _bungalowUI;
         [SerializeField] private GameObject _blackScreen;
         [SerializeField] private GameObject _panelWin;
@@ -49,6 +51,9 @@ namespace Local.Integration.Scripts.Game
         [SerializeField] private AudioClip _defeatSE;
 
         private Dictionary<string, int> _validatedItems = new Dictionary<string, int>();
+        private float _rawTimer;
+        private int _minutes;
+        private int _seconds;
 
         private void Awake()
         {
@@ -69,21 +74,23 @@ namespace Local.Integration.Scripts.Game
         private void Start()
         {
             StartCoroutine(StartGameSequence());
+            _bungalowUI.SetActive(false); 
         }
 
         private IEnumerator StartGameSequence()
         {
+            IsPlaying = false;
             SetCameraPriority(overviewCamera, gameCamera);
             yield return new WaitForSeconds(overviewDuration);
             SetCameraPriority(gameCamera, overviewCamera);
-            HasStarted = false;
+            IsPlaying = false;
             Countdown countdown = GetComponent<Countdown>();
             if (countdown != null)
             {
                 countdown.enabled = true;
             }
             yield return new WaitForSeconds(StartTime);
-            HasStarted = true;
+            IsPlaying = true;
         }
 
         private void SetCameraPriority(CinemachineVirtualCamera activeCamera, CinemachineVirtualCamera inactiveCamera)
@@ -94,12 +101,16 @@ namespace Local.Integration.Scripts.Game
 
         private void Update()
         {
-            if (HasStarted)
+            if (IsPlaying)
             {
                 if (ElapsedTime < GameTime + 1f)
                 {
                     ElapsedTime += Time.deltaTime;
                     _timerFillImage.fillAmount = Mathf.Clamp01(1 - (ElapsedTime / GameTime));
+                    _rawTimer = instance.GameTime - instance.ElapsedTime;
+                    _minutes = Mathf.FloorToInt(_rawTimer / 60);
+                    _seconds = Mathf.FloorToInt(_rawTimer % 60);
+                    _timerText.text = _minutes.ToString("0") + ":" + _seconds.ToString("00");
                 }
                 else
                 {
@@ -143,11 +154,13 @@ namespace Local.Integration.Scripts.Game
         private void OpenBangalowUI()
         {
             _bungalowUI.SetActive(true);
+            IsPlaying = false;
         }
 
         public void CloseBangalowUI()
         {
             _bungalowUI.SetActive(false); 
+            IsPlaying = true;
         }
 
         public void DisplayCollectedItems(Dictionary<string, CollectedItemData> collectedItems)
@@ -233,7 +246,7 @@ namespace Local.Integration.Scripts.Game
         {
             ResetScore();
             ElapsedTime = 0f;
-            HasStarted = true;
+            IsPlaying = true;
             HasEnded = false;
 
             _gameCanvas.enabled = true;
