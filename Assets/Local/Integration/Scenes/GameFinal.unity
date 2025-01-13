@@ -5447,7 +5447,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 59.15
+  m_fontSize: 68.4
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -9404,9 +9404,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1348774621}
     m_Modifications:
+    - target: {fileID: 2386680884311199018, guid: f093df391011f2e4aa5b539f2741d1df, type: 3}
+      propertyPath: m_Loop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2386680884311199018, guid: f093df391011f2e4aa5b539f2741d1df, type: 3}
+      propertyPath: m_Positions.Array.size
+      value: 37
+      objectReference: {fileID: 0}
     - target: {fileID: 4401823432917004082, guid: f093df391011f2e4aa5b539f2741d1df, type: 3}
       propertyPath: m_Name
       value: Enemy_Seagull
+      objectReference: {fileID: 0}
+    - target: {fileID: 4401823432917004082, guid: f093df391011f2e4aa5b539f2741d1df, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4917872428253622166, guid: f093df391011f2e4aa5b539f2741d1df, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9448,6 +9460,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5090336345045863560, guid: f093df391011f2e4aa5b539f2741d1df, type: 3}
+      propertyPath: m_loop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5090336345045863560, guid: f093df391011f2e4aa5b539f2741d1df, type: 3}
+      propertyPath: drawGizmos
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5146627836691548973, guid: f093df391011f2e4aa5b539f2741d1df, type: 3}
       propertyPath: m_Radius
       value: 0.9
@@ -9462,7 +9482,7 @@ PrefabInstance:
       objectReference: {fileID: 8613719067052594026}
     - target: {fileID: 7853724041170193465, guid: f093df391011f2e4aa5b539f2741d1df, type: 3}
       propertyPath: _attackTime
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7853724041170193465, guid: f093df391011f2e4aa5b539f2741d1df, type: 3}
       propertyPath: _maxWaitTime
