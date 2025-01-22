@@ -1,8 +1,8 @@
 <h1 align="center">
-    <a href="https://github.com/Ecole-des-Nouvelles-Images/Top-Down-3D-Game-Gurus/blob/main/README.fr.md">
+    <a href="https://github.com/Ecole-des-Nouvelles-Images/2024-Mobile-Clawster/blob/main/README.fr.md">
     <img src="https://github.com/user-attachments/assets/41b66b00-1f67-4793-bd92-24e4f4613b26" width="60" height="40">
   </a>
-  <a href="https://github.com/Ecole-des-Nouvelles-Images/Top-Down-3D-Game-Gurus/blob/main/README.md">
+  <a href="https://github.com/Ecole-des-Nouvelles-Images/2024-Mobile-Clawster/blob/main/README.md">
     <img src="https://github.com/user-attachments/assets/8724f8b2-1eeb-402b-9584-50f07269331b" width="60" height="40">
   </a>
 </h1>
