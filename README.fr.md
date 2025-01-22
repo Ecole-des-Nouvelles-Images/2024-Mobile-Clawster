@@ -37,16 +37,16 @@
 </h2>
 <ul>
   <li>
-    <a href="https://github.com/Avorach">Mathis GANZ</a> – <strong>Product Owner</strong> et <strong>Game Artist 3D</strong>
+    <a href="https://github.com/Avorach">Mathis GANZ</a> – <strong>Product Owner</strong> et <strong>Artiste 3D</strong>
   </li>
   <li>
-    <a href="https://github.com/EnsiMarine">Marine ARMROUCHE</a> – <strong>Game Artist 3D/UI</strong>
+    <a href="https://github.com/EnsiMarine">Marine ARMROUCHE</a> – <strong>Artiste 3D/UI</strong>
   </li>
   <li>
-    <a href="https://github.com/NoahMil">Noah MILIANI</a> – <strong>Scrum Master</strong> et <strong>Lead Developer</strong>
+    <a href="https://github.com/NoahMil">Noah MILIANI</a> – <strong>Scrum Master</strong> et <strong>Lead Développeur</strong>
   </li>
     <li>
-    <a href="https://github.com/BastienSANTE">Bastien SANTE</a> – <strong>Animator</strong> et <strong>Developer</strong>
+    <a href="https://github.com/BastienSANTE">Bastien SANTE</a> – <strong>Animateur</strong> et <strong>Développeur</strong>
   </li>
 </ul>
 
