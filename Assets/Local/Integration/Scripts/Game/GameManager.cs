@@ -103,21 +103,34 @@ namespace Local.Integration.Scripts.Game
         {
             if (IsPlaying)
             {
-                if (ElapsedTime < GameTime + 1f)
+                if (ElapsedTime < GameTime + 1)
                 {
                     ElapsedTime += Time.deltaTime;
+
                     _timerFillImage.fillAmount = Mathf.Clamp01(1 - (ElapsedTime / GameTime));
-                    _rawTimer = instance.GameTime - instance.ElapsedTime;
+
+                    _rawTimer = Mathf.Max(0, GameTime - ElapsedTime);
                     _minutes = Mathf.FloorToInt(_rawTimer / 60);
-                    _seconds = Mathf.FloorToInt(_rawTimer % 60);
+                    _seconds = Mathf.CeilToInt(_rawTimer % 60);
+                    
+                    if (_seconds == 60) {
+                        _minutes += 1;
+                        _seconds = 0;
+                    }
+                    
                     _timerText.text = _minutes.ToString("0") + ":" + _seconds.ToString("00");
                 }
                 else
                 {
+                    _timerText.text = "0:00";
+                    _timerFillImage.fillAmount = 0f;
+
                     Win();
                 }
             }
         }
+
+        
 
         public void UpdateScoreUI()
         {

@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 2258357827905830782}
   - component: {fileID: 1105787332250553480}
   - component: {fileID: 8363188145325053323}
-  - component: {fileID: 3137005206759209718}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -47,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ScoreData: {fileID: 11400000, guid: 62e09f5acccbd914c87ed709e48aaeb3, type: 2}
-  GameTime: 150
+  GameTime: 120
   ElapsedTime: 0
   StartTime: 5
   StartText: Bin it !
@@ -94,16 +93,3 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 7.354435, y: 1.7154455, z: 5.4748}
   m_Center: {x: -0.5722561, y: 5.380985, z: -46.896793}
---- !u!114 &3137005206759209718
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2928012516959706649}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 301ebe5424b9cdb4db734b8ebd134814, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fpsText: {fileID: 0}

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
@@ -128,11 +129,7 @@ namespace Local.Integration.Scripts.Game
         private void Update()
         {
             if (!GameManager.instance.IsPlaying) return;
-            if (_weightHold == 0)
-            {
-                _depositButtonText.text = "Fermer";
-            }
-            else
+            if (_weightHold > 0)
             {
                 _depositButtonText.text = "Déposer";
             }
@@ -379,6 +376,7 @@ namespace Local.Integration.Scripts.Game
                 GameManager.instance.DisplayCollectedItems(_collectedItems);
                 _holdScore = 0;
                 _weightHold = 0;
+                _depositButtonText.text = "Fermer";
                 _collectedItems.Clear();
                 _weightFillImage.DOFillAmount(0, 0.2f).SetEase(Ease.InOutQuad);
                 GameManager.instance.UpdateScoreUI();
