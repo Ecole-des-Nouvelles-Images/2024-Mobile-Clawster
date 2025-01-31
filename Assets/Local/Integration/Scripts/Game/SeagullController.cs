@@ -107,7 +107,9 @@ public class SeagullController : MonoBehaviour {
         StartCoroutine(WaitForNextAttack());
     }*/
 
-    private void OnEnable() {
+    private void OnEnable()
+    {
+        GetComponent<BezierSpline>().loop = true;
         StartCoroutine(WaitForNextAttack());
     }
 }

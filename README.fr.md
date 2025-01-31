@@ -12,16 +12,16 @@
   </a>
 
 <h2 align="center">
-  <strong>Summary</strong>
+  <strong>Sommaire</strong>
 </h2>
 
 <details>
-  <summary>Table of Contents</summary>
+  <summary>Table des matières</summary>
   <ol>
     <li><a href="#introduction">Introduction</a></li>
-    <li><a href="#équipe">Team</a></li>
+    <li><a href="#équipe">Équipe</a></li>
     <li><a href="#pitch">Pitch</a></li>
-    <li><a href="#univers">Universe</a></li>
+    <li><a href="#univers">Univers</a></li>
   </ol>
 </details>
 
@@ -29,7 +29,7 @@
   <strong>Introduction</strong>  
 </h2>
 <p>
-  <strong>Clawster</strong> is a mobile game, created during a period spanning from November 25 to December 13, 2024, during our 3rd year in the Video Games & Real-Time Rendering department of the <a href="https://github.com/Ecole-des-Nouvelles-Images">Ecole des Nouvelles Images</a>. A week-long pre-production phase was put in place, in order to define and clarify the game's goals, and smooth the overall production process. 
+  Le projet <strong>Clawster</strong> est un <strong>jeu mobile</strong>, réalisé du 25 novembre au 13 décembre 2024 en premier cycle de 3e année Jeu Vidéo & Image Temps Réel, au sein de l'<a href="https://github.com/Ecole-des-Nouvelles-Images">Ecole des Nouvelles Images</a>. Une phase de préproduction de 1 semaine a été accordée afin de <strong>clarifier les objectifs et la vision du jeu</strong> et de <strong>prévoir la gestion du temps</strong> lors de la production finale.
 </p>
 
 <h2 id="équipe" align="center">
@@ -37,16 +37,16 @@
 </h2>
 <ul>
   <li>
-    <a href="https://github.com/Avorach">Mathis GANZ</a> – <strong>Product Owner</strong> & <strong>3D Game Artist</strong>
+    <a href="https://github.com/Avorach">Mathis GANZ</a> – <strong>Product Owner</strong> et <strong>Artiste 3D</strong>
   </li>
   <li>
-    <a href="https://github.com/EnsiMarine">Marine ARMROUCHE</a> – <strong>3D/UI Artist</strong>
+    <a href="https://github.com/EnsiMarine">Marine ARMROUCHE</a> – <strong>Artiste 3D/UI</strong>
   </li>
   <li>
-    <a href="https://github.com/NoahMil">Noah MILIANI</a> – <strong>Scrum Master</strong> & <strong>Lead Developer</strong>
+    <a href="https://github.com/NoahMil">Noah MILIANI</a> – <strong>Scrum Master</strong> et <strong>Lead Développeur</strong>
   </li>
     <li>
-    <a href="https://github.com/BastienSANTE">Bastien SANTE</a> – <strong>Animator</strong> & <strong>Developer</strong>
+    <a href="https://github.com/BastienSANTE">Bastien SANTE</a> – <strong>Animateur</strong> et <strong>Développeur</strong>
   </li>
 </ul>
 
@@ -70,14 +70,14 @@
   <strong>Pitch</strong>  
 </h2>
 <p>
-  <strong>Clawster</strong> is a <strong>top-down single-player 3D action game</strong>, designed for mobile devices. The player takes on the role of an eponymous crab, collecting and storing as much junk as possible during a single round.
+  <strong>Clawster</strong> est un <strong>jeu d'action 3D</strong> en <strong>Top Down</strong>, solo, jouable sur mobile. Le joueur incarne un <strong>crabe</strong> qui a pour but de ramasser et ramener un maximum de déchets avant la fin du temps imparti.
 </p>
 
 <h2 id="univers" align="center">
-  <strong>Universe</strong>
+  <strong>Univers</strong>
 </h2>
 <p>
-  Clawster, a crab (and a devout environmentalist before all), has made it his life mission to protect the seas from human waste. Before the tide, he takes a tour on his small beach strand to collect as much of it as he can, before bringing it back to his condo. He then recycles the waste, by turning it either into tools or art pieces, which he sells to other fellow creatures. Despite having acquired a legendary status among marine life, he nevertheless stays committed to his goal.
+    Clawster, un crabe écolo dévoué, consacre sa vie à protéger l’océan des déchets humains. Avant chaque marée, il arpente sa plage pour en ramasser autant que possible, puis finit par les rapporter dans sa grotte. Là, il les recycle en objets pratiques ou en trésors qu’il revend aux créatures marines. Érigé au rang de légende parmi les habitants des océans, Clawster reste un crabe fidèle à ses valeurs et à sa mission.
 </p>
 
 <h1 align="center">
