@@ -133,7 +133,7 @@ namespace Local.Integration.Scripts.Game
             }
             else
             {
-                _sweatDropsParticleSystem.Pause();
+                _sweatDropsParticleSystem.Stop();
             }
             
             if (CanGrab())
