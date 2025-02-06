@@ -5545,7 +5545,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 55.55
+  m_fontSize: 64
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -9422,13 +9422,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5090336345045863560, guid: f093df391011f2e4aa5b539f2741d1df, type: 3}
+      propertyPath: drawGizmos
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5146627836691548973, guid: f093df391011f2e4aa5b539f2741d1df, type: 3}
       propertyPath: m_Radius
       value: 0.9
       objectReference: {fileID: 0}
     - target: {fileID: 7827761384662046413, guid: f093df391011f2e4aa5b539f2741d1df, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7853724041170193465, guid: f093df391011f2e4aa5b539f2741d1df, type: 3}
       propertyPath: _target
